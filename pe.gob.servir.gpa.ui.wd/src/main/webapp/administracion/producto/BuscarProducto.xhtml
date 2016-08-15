@@ -15,7 +15,7 @@
 					<p:row>
 						<p:column colspan="4">
 							<p:outputLabel styleClass="resltar"
-							style="font-size:12px !important; text-align:left;"
+							style="font-size:20px !important; text-align:left;font-family:Montserrat;"
 							value="#{rbgpaUI['gpa.producto.administrar.producto.titulo.ouputlabel']}"/>
 						<p:separator />												
 						</p:column>													
@@ -23,26 +23,26 @@
 					<br />
 					<p:row>
 						<p:column>
-							<p:fieldset legend="Criterios de Búsqueda">				
+							<p:fieldset legend="Criterios de Búsqueda" style="font-family:Montserrat;font-size:18px !important;">				
 								<p:panelGrid layout="grid" styleClass="ui-panelgrid columnaOcultar" style="width:100%;">																							
 									<p:row>
 										<p:column>
-											<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.producto.busqueda.familia']}" />														
+											<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.producto.busqueda.familia']}" style="font-family:Montserrat;font-size:13px !important;" />														
 										</p:column>
 										<p:column>
-											<p:selectOneMenu id="somFamilia" value="#{productoBean.identificadorTipoFamilia}" style="width:200px;">
+											<p:selectOneMenu id="somFamilia" value="#{productoBean.identificadorTipoFamilia}" style="width:200px;font-family:Montserrat;font-size:13px !important;">
 												<f:selectItem itemLabel="Seleccione" itemValue="" />
-												<f:selectItems var="valor" value="#{productoBean.listaTipoFamilia}"
+												<f:selectItems var="valor" value="#{productoBean.listaTipoFamilia}" 
 												itemLabel="#{valor.descripcionTipo}" itemValue="#{valor.id}" />
 											</p:selectOneMenu>
 											<p:tooltip  for="somFamilia" value="#{rbgpaUI['gpa.producto.busqueda.familia']}" trackMouse="true" />
 										</p:column>	
 										
 										<p:column>
-											<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.producto.busqueda.descripcion.producto']}" />
+											<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.producto.busqueda.descripcion.producto']}" style="font-family:Montserrat;font-size:13px !important;"/>
 										</p:column>
 										<p:column >
-											<p:inputText value="#{productoBean.descripcionProducto}"  
+											<p:inputText value="#{productoBean.descripcionProducto}"  style="font-family:Montserrat;font-size:13px !important;"
 											id="inpDescripcion" size="52" maxlength="50"
 											onkeyup="$(this).val($(this).val().replace(/(^\s)|(\s\s\s$)/g, '').toUpperCase());">
 											</p:inputText>
@@ -53,10 +53,10 @@
 									</p:row>
 									<p:row>
 										<p:column>
-											<p:outputLabel styleClass="resltar" value="#{rbgpaUI['gpa.producto.tipo.categoria']}"/>
+											<p:outputLabel styleClass="resltar" value="#{rbgpaUI['gpa.producto.tipo.categoria']}" style="font-family:Montserrat;font-size:13px !important;"/>
 										</p:column>
 										<p:column>
-											<p:selectOneMenu id="somCategoria" value="#{productoBean.identificadorTipoCategoria}" style="width:200px;">
+											<p:selectOneMenu id="somCategoria" value="#{productoBean.identificadorTipoCategoria}" style="width:200px;font-family:Montserrat;font-size:13px !important;">
 												<f:selectItem itemLabel="Seleccione" itemValue="" />
 												<f:selectItems var="valor" value="#{productoBean.listaTipoCategoria}"
 												itemLabel="#{valor.descripcionTipo}" itemValue="#{valor.id}" />
@@ -65,10 +65,10 @@
 										</p:column>		
 										
 										<p:column>
-											<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.producto.busqueda.codigo.producto.bien.label']}" />
+											<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.producto.busqueda.codigo.producto.bien.label']}" style="font-family:Montserrat;font-size:13px !important;"/>
 										</p:column>
 										<p:column >
-											<p:inputText value="#{productoBean.codigoProducto}"  id="inpCodigo" 
+											<p:inputText value="#{productoBean.codigoProducto}"  id="inpCodigo" style="font-family:Montserrat;font-size:13px !important;" 
 											maxlength="20" size="25" onkeyup="$(this).val($(this).val().replace(/(^\s)|(\s\s\s$)/g, '').toUpperCase());">
 											</p:inputText>
 											<p:message for="inpCodigo" />
@@ -78,10 +78,10 @@
 									</p:row>																		
 									<p:row>
 										<p:column>
-											<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.ui.general.campo.estado.label']}" />
+											<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.ui.general.campo.estado.label']}" style="font-family:Montserrat;font-size:13px !important;"/>
 										</p:column>
 										<p:column  >
-											<p:selectOneMenu id="somMenEstado" style="width:200px;"
+											<p:selectOneMenu id="somMenEstado" style="width:200px;font-family:Montserrat;font-size:13px !important;"
 												value="#{productoBean.identificadorEstado}">												
 												<f:selectItems value="#{productoBean.listaEstado}"/>
 											</p:selectOneMenu>
@@ -92,26 +92,35 @@
 							</p:fieldset>
 						</p:column>					
 					</p:row>				
-				</p:panelGrid>						
-				<p:panelGrid styleClass="ui-panelgrid columnaOcultar" style="width:100%">
+				</p:panelGrid>	
+				<br></br>					
+				<p:panelGrid styleClass="ui-panelgrid columnaOcultar formulario" style="width:100%">
 					<p:row>
 						<p:column style="text-align:right;">
+							<p:commandButton id="icnAbrirCatalogo" icon="ui-icon-catalogo" styleClass="catalogo" style="font-size:13px !important;"
+											 action="#{productoBean.abrirCatalogoPopup()}" update=":dialogoCatalogoProducto"/>
+							<p:tooltip for="icnAbrirCatalogo" value="Configurar Catálogo de Productos"/>						
 							<p:commandButton id="btnAbrirCatalogo" action="#{productoBean.abrirCatalogoPopup()}"
-								update=":dialogoCatalogoProducto " 
+								update=":dialogoCatalogoProducto" style="font-family:Montserrat;font-size:13px !important;"
 								value="CONFIGURAR CATÁLOGO" styleClass="search">
 								<p:ajax update=":dialogoCatalogoProducto " resetValues="true" />								
 							</p:commandButton>																					
-							<p:tooltip  for="btnAbrirCatalogo" value="Configurar catálogo" trackMouse="true"/>																								
+							<p:tooltip  for="btnAbrirCatalogo" value="Configurar Catálogo de Productos" trackMouse="true"/>
+							<p:commandButton id="icnBuscarProductos" icon="ui-icon-buscar-productos" style="font-size:13px !important;" styleClass="buscarProductos"
+							 				 action="#{productoBean.buscarProducto()}" update="dtListaProducto"/>
+							<p:tooltip for="icnBuscarProductos" value="Buscar productos"/>																								
 							<p:commandButton id="btnBuscar"  styleClass="search" action="#{productoBean.buscarProducto()}" 
-										value="BUSCAR" update="dtListaProducto"/>									
-							<p:tooltip  for="btnBuscar" value="Buscar" trackMouse="true" />										
+										value="BUSCAR" update="dtListaProducto" style="font-family:Montserrat;font-size:13px !important;"/>									
+							<p:tooltip  for="btnBuscar" value="Buscar productos" trackMouse="true" />
+							<p:commandButton id="icnLimpiarTablaProductos" icon="ui-icon-buscar-limpiar" style="font-size:13px !important;" styleClass="limpiarTablaProductos" action="#{productoBean.limpiarBusqueda()}" update="FrmBuscarProducto"/>
+							<p:tooltip for="icnLimpiarTablaProductos" value="Limpiar"/>										
 							<p:commandButton id="btnLimpiar" actionListener="#{productoBean.limpiarBusqueda()}" styleClass="search"
-										value="LIMPIAR" resetValues="true" update="FrmBuscarProducto"/>							
+										value="LIMPIAR" resetValues="true" update="FrmBuscarProducto" style="font-family:Montserrat;font-size:13px !important;"/>							
 							<p:tooltip  for="btnLimpiar" value="Limpiar" trackMouse="true" />	
 						</p:column>
 					</p:row>
 				</p:panelGrid>
-			
+				<br></br>
 				<p:panelGrid style="border:hidden;width:100%" >
 					<p:row>
 						<p:column >
@@ -120,35 +129,35 @@
 								currentPageReportTemplate="Mostrando de {startRecord} a {endRecord} | Total Registros : {totalRecords}"
 								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
 								emptyMessage="Campos vacios" >
-								<p:column headerText="#" width="5px;" style="text-align:center;">
+								<p:column headerText="#" width="5px;" style="text-align:center;font-family:Montserrat;font-size:13px !important;">
 											#{posicion+1}
 								</p:column>
-								<p:column headerText="Id" width="10px;" style="text-align:center;">
-									<p:outputLabel value="#{valor.id}" />
+								<p:column headerText="Id" width="10px;" style="text-align:center;font-family:Montserrat;font-size:13px !important;">
+									<p:outputLabel value="#{valor.id}" style="font-family:Montserrat;font-size:13px !important;"/>
 								</p:column>
-								<p:column headerText="#{rbgpaUI['gpa.producto.busqueda.descripcion.producto']}" width="25%" >
-									<p:outputLabel value="#{valor.descripcionProducto}" />
+								<p:column headerText="#{rbgpaUI['gpa.producto.busqueda.descripcion.producto']}" width="25%" style="font-family:Montserrat;font-size:13px !important;">
+									<p:outputLabel value="#{valor.descripcionProducto}" style="font-family:Montserrat;font-size:13px !important;" />
 								</p:column>
-								<p:column headerText="#{rbgpaUI['gpa.producto.busqueda.unidad.medida.producto']}" width="8%" style="text-align:center;">
-									<p:outputLabel value="#{valor.tipoUnidadMedida.descripcionTipo}" />
+								<p:column headerText="#{rbgpaUI['gpa.producto.busqueda.unidad.medida.producto']}" width="8%" style="text-align:center;font-family:Montserrat;font-size:13px !important;">
+									<p:outputLabel value="#{valor.tipoUnidadMedida.descripcionTipo}" style="font-family:Montserrat;font-size:13px !important;"/>
 								</p:column>
-								<p:column headerText="Stock Mínimo" width="50px;" style="text-align:center;">
-									<p:outputLabel value="#{valor.stockMinimo}" />
+								<p:column headerText="Stock Mínimo" width="50px;" style="text-align:center;font-family:Montserrat;font-size:13px !important;">
+									<p:outputLabel value="#{valor.stockMinimo}" style="font-family:Montserrat;font-size:13px !important;"/>
 								</p:column>
-								<p:column headerText="Stock Actual" width="50px;" style="text-align:center;">
-									<p:outputLabel value="#{valor.stockMaximo}" />
+								<p:column headerText="Stock Actual" width="50px;" style="text-align:center;font-family:Montserrat;font-size:13px !important;">
+									<p:outputLabel value="#{valor.stockMaximo}" style="font-family:Montserrat;font-size:13px !important;"/>
 								</p:column>
-								<p:column headerText="Indicadro Activo" style="text-align:center;width:80px;">
-									<p:outputLabel value="#{valor.indicadorActivo==2?'INACTIVO':'ACTIVO'}"/>
+								<p:column headerText="Indicadro Activo" style="text-align:center;width:80px;font-family:Montserrat;font-size:13px !important;">
+									<p:outputLabel value="#{valor.indicadorActivo==2?'INACTIVO':'ACTIVO'}" style="font-family:Montserrat;font-size:13px !important;"/>
 								</p:column>
-								<p:column headerText="Acciones" width="80px;" style="text-align:center;">
-									<p:commandButton id="btnVerDetalles" icon="ui-icon-search" action="#{productoBean.generarDetalleProducto(posicion)}"
-									update=":dialogoDetalleProducto" immediate="true">
+								<p:column headerText="Acciones" width="50px;" style="text-align:center;font-family:Montserrat;font-size:13px !important;">
+									<p:commandButton id="btnVerDetalles" icon="ui-icon-detalles" action="#{productoBean.generarDetalleProducto(posicion)}"
+									update=":dialogoDetalleProducto" immediate="true" styleClass="detalles">
 										<p:ajax update=":dialogoDetalleProducto" resetValues="true" />
 									</p:commandButton>
 									<p:tooltip for="btnVerDetalles" value="Ver Detalles"/>
-									<p:commandButton id="btnModificar" 
-									icon="ui-icon-document" action="#{productoBean.generarModificarProducto(posicion)}" 
+									<p:commandButton id="btnModificar"  styleClass="actualizar"
+									icon="ui-icon-actualizar" action="#{productoBean.generarModificarProducto(posicion)}" 
 									update=":dialogoDetalleProducto" immediate="true">
 										<p:ajax update=":dialogoDetalleProducto" resetValues="true" />
 									</p:commandButton>

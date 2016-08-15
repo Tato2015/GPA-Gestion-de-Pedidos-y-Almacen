@@ -20,6 +20,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import javax.faces.application.FacesMessage;
@@ -52,7 +54,8 @@ public class UBaseManage {
 	 * 
 	 * @return ipAddress, IP del Ordenador del Usuario, Tipo String
 	 */
-	public String obtieneIPCliente() {
+	public String obtieneIPCliente() 
+	{
 		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		String ipAddress = request.getHeader("X-FORWARDED-FOR");
 		try {
@@ -65,6 +68,44 @@ public class UBaseManage {
 		return ipAddress;
 	}
 
+	//Se suma 1 porque la iteración inicia en:
+	//0 para Enero 
+	//1 para Febrero etc.	
+	public static Integer getMesSistema()
+	{
+		Calendar c = Calendar.getInstance();
+		c.setTime(new Date());
+		return c.get(Calendar.MONTH)+1;
+	}
+	
+	public int obtenerAnioSistema()
+	{
+		Calendar c = Calendar.getInstance();
+		c.setTime(new Date());
+		return c.get(Calendar.YEAR);
+	}
+	
+	public int obtenerDiaSistema()
+	{
+		Calendar c = Calendar.getInstance();
+		c.setTime(new Date());
+		return c.get(Calendar.DAY_OF_MONTH);
+	}
+	
+	
+	
+	public String obtenerFechaActualStr()
+	{
+		Calendar c = Calendar.getInstance();
+		c.setTime(new Date());
+		String anio = String.valueOf(c.get(Calendar.YEAR));
+		String mes = String.valueOf(c.get(Calendar.MONTH)+1);
+		String dia = String.valueOf(c.get(Calendar.DAY_OF_MONTH));
+		return anio+"/"+mes+"/"+dia;
+	}
+	
+	
+	
 	//
 	// /**
 	// * Metodo que permite obtener la ruta del Servidor
@@ -83,7 +124,8 @@ public class UBaseManage {
 	 * @param nombreObjeto
 	 *            ,Identificador del objeto, tipo String.
 	 * */
-	public Object obtenerObjetoContexto(String nombreObjeto) {
+	public Object obtenerObjetoContexto(String nombreObjeto) 
+	{
 		return ((ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext()).getAttribute(nombreObjeto);
 	}
 

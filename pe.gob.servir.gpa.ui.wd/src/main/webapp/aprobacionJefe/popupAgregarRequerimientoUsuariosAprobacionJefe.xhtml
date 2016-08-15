@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<h:form id="frmAgregarRequerimientoUsuariosDesdeAprobacionJefe" class="div_formulario">
+		<p:panelGrid styleClass="columnaOcultar" style="width:100%">
+			<p:row>
+				<p:column>
+					<p:outputLabel value="REQUERIMIENTO CONSOLIDADO POR EL ENCARGADO DE ÁREA" style="font-size:15px !important"/>
+					<p:separator></p:separator>				
+				</p:column>			
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:panelGrid styleClass="columnaOcultar" style="width:100%">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Indicador de Envío al Jefe : "/>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="somIndicadorEnviadoAlJefe" style="width:152px;" 	
+								value="#{requerimientoAreaBean.requerimientoAreaDTO.indicadorEnviadoAlJefe}" disabled="true">
+									<f:selectItems value="#{requerimientoAreaBean.listaIndicadorEnviadoAlJefe}" var="valor"
+									 itemValue="#{valor.value}" itemLabel="#{valor.description}"/>
+								</p:selectOneMenu>						
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Fecha de Envío al Jefe : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoAreaDTO.fechaEnviadoAlJefe}" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Indicador de Recepción del Jefe : "/>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="somIndicadorRecepcionDelJefe" value="#{requerimientoAreaBean.requerimientoAreaDTO.indicadorRequerimientoRecepcionDelJefe}" style="width:152px;" disabled="true">
+									<f:selectItems value="#{requerimientoAreaBean.listaIndicadorRecepcionDelJefe}" var="valor"
+									itemValue="#{valor.value}" itemLabel="#{valor.description}"/>
+								</p:selectOneMenu>
+							</p:column>										
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Fecha de Recepción del Jefe : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoAreaDTO.fechaRequerimientoRecepcionDelJefe}" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Estado"/>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="somEstado" value="#{requerimientoAreaBean.requerimientoAreaDTO.estado.id}" style="width:152px;" disabled="true">
+									<f:selectItems value="#{requerimientoAreaBean.listaEstado}" var="valor"
+									itemValue="#{valor.value}" itemLabel="#{valor.description}"/>
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Programación : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoAreaDTO.programacion.descripcionProgramacion}" disabled="true"/>
+							</p:column>							
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Área : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoAreaDTO.area.descripcionArea}" style="width:200px;" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Tipo de Pedido de Requerimiento : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoAreaDTO.programacion.tipoPedido.descripcionTipo}" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Tipo de Periodo de Requerimiento : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoAreaDTO.programacion.tipoPeriodo.descripcionTipo}" disabled="true"/>
+							</p:column>
+						</p:row>					
+					</p:panelGrid>					
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:outputLabel value="LISTA DE PRODUCTOS DISPONIBLES PARA EL ÁREA"/>
+					<p:separator></p:separator>
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+		<p:panelGrid style="width:100%" styleClass="columnaOcultar">
+			<p:row>
+				<p:column>
+					<p:dataTable id="dtRequerimientoUsuario" value="#{requerimientoAreaBean.rowNames}" var="rowName" rowIndexVar="rowIdx">									
+		    						<p:column headerText="">
+			    						<p:outputLabel value="#{rowName}"/>
+			    					</p:column>
+			    					<p:columns var="columnName" value="#{requerimientoAreaBean.colNames}" headerText="#{columnName}" columnIndexVar="colIdx" style="text-align:center;">
+			    						<p:spinner id="minMax"  min="0" max="5" size="1"  maxlength="5" 
+			    								   value="#{requerimientoAreaBean.arregloValoresAreaProducto[0][colIdx]}" disabled="true">																		
+										</p:spinner>									
+			    					</p:columns>			    					
+					</p:dataTable>			
+				</p:column>			
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:outputLabel value="LISTA DE REQUERIMIENTOS DE LOS USUARIOS"/>
+					<p:separator></p:separator>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:dataTable id="dtRequerimientoUsuarios" value="#{requerimientoAreaBean.rowUsuarios}" var="rowName" rowIndexVar="rowIdx"
+					rows="8" paginator="true" paginatorPosition="bottom" 
+					currentPageReportTemplate="Mostrando de {startRecord} a {endRecord} | Total Registros : {totalRecords}"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+					emptyMessage="Campos vacios"
+					>									
+		    						<p:column headerText="">
+			    						<p:outputLabel value="#{rowName}"/>
+			    					</p:column>
+			    					<p:columns var="columnName" value="#{requerimientoAreaBean.colNames}" headerText="#{columnName}" columnIndexVar="colIdx" style="text-align:center;">
+			    						<p:spinner id="minMaxUsuario"  min="0" max="5" size="1"  maxlength="5" 
+			    								   value="#{requerimientoAreaBean.arregloValoresRequerimientoUsuarios[rowIdx][colIdx]}" disabled="true">																		
+										</p:spinner>									
+			    					</p:columns>
+			    					<p:column headerText="Acciones" style="text-align:center;">
+			    						<p:commandButton value="Detalles" icon="ui-icon-pencil" action="#{requerimientoAreaBean.abrirPopupRequerimientoUsuarioDesdeAgregarRequerimientoUsuario(rowIdx)}" styleClass="search"
+			    						update="@([id$=frmActualizarRequerimientoUsuarioDesdeAgregarRequerimientoUsuario]) @([id$=idRequerimientoUsuario])"/>			    									    					
+			    					</p:column>
+					</p:dataTable>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:dataTable id="dtRequerimientosUsuarios" value="#{requerimientoAreaBean.rowTotalDiferencia}" var="rowTotalDiferencia" rowIndexVar="rowIdx">									
+		    			<p:column headerText="">
+			    			<p:outputLabel value="#{rowTotalDiferencia}"/>
+			    		</p:column>
+			    		<p:columns var="columnName" value="#{requerimientoAreaBean.colNames}" headerText="#{columnName}" columnIndexVar="colIdx" style="text-align:center;">
+			    			<p:spinner id="minMax"  min="0" max="5" size="1"  maxlength="5" 
+			    				value="#{requerimientoAreaBean.arregloTotalSobranteCantidadRequerimientosUsuarios[rowIdx][colIdx]}" disabled="true">																		
+							</p:spinner>									
+			    		</p:columns>			    					
+					</p:dataTable>				
+				</p:column>
+			</p:row>
+			
+			
+			<p:row rendered="#{requerimientoAreaBean.seAproboRequerimientoArea}">
+				<p:column style="text-align:center">
+					<p:commandButton id="btnAprobar" value="Aprobar" styleClass="search" action="#{requerimientoAreaBean.abrirPopupConfirmarAprobarConsolidado}" 
+					/>
+					<p:tooltip for="btnAprobar" value="Aprobar"/>				
+					
+					<p:commandButton id="btnDevolver" value="Devolver" styleClass="search" action="#{requerimientoAreaBean.abrirPopupConfirmarDevolverConsolidado}"/>
+					<p:tooltip for="btnDevolver" value="Devolver"/>
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+		
+						
+	</h:form>
+
+	<p:dialog id="popupConfirmarAprobarConsolidado" widgetVar="popupConfirmarAprobarConsolidado"
+		closable="false" resizable="false"
+		header="#{rbgpaUI['gpa.formulario.aprobacionJefe.titulo.outputlabel']}"
+		width="350px" height="80px" modal="true" appendTo="@(body)">
+		<p:growl id="growl1" showDetail="true" sticky="true" />
+		<h:panelGrid columns="2" style="width:100%; height:60%">
+			<p:graphicImage value="/recursos/images/warning.png" width="20px"
+				style="padding-right: 10px" height="20px" />					
+			<p:outputLabel value="#{rbgpaUI['gpa.ui.general.mensaje.alerta.aprobar.label']}" />
+		</h:panelGrid>
+
+		<h:panelGrid columns="2" style="width:100%;" height="20px">
+			<h:panelGroup style="display:block;text-align:center;">
+				<p:commandButton style="margin-right: 5px;"
+					value="#{rbgpaUI['gpa.ui.general.boton.aceptar.label']}"
+					icon="ui-icon-check" 
+					actionListener="#{requerimientoAreaBean.aprobarRequerimientoArea()}"
+					update="@([id$=dtListaRequerimientosArea]) growl1"
+					onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+
+				<p:commandButton style="margin-left: 5px;"
+					onstart="PF('statusDialog').show();"
+					onsuccess="PF('statusDialog').hide();"
+					value="#{rbgpaUI['gpa.ui.general.boton.cancelar.label']}"
+					onclick="PF('popupConfirmarAprobarConsolidado').hide();" icon="ui-icon-cancel" />
+			</h:panelGroup>
+
+		</h:panelGrid>
+
+	</p:dialog>
+	
+	
+	
+	<p:dialog id="popupConfirmarDevolucionConsolidado" widgetVar="popupConfirmarDevolucionConsolidado"
+		closable="false" resizable="false"
+		header="#{rbgpaUI['gpa.formulario.aprobacionJefe.devolucion.outputlabel']}"
+		width="350px" height="80px" modal="true" appendTo="@(body)">
+		<p:growl id="growl2" showDetail="true" sticky="true" />
+		<h:panelGrid columns="2" style="width:100%; height:60%">
+			<p:graphicImage value="/recursos/images/warning.png" width="20px"
+				style="padding-right: 10px" height="20px" />					
+			<p:outputLabel value="#{rbgpaUI['gpa.ui.general.mensaje.alerta.devolucion.label']}" />
+		</h:panelGrid>
+		<h:panelGrid columns="2" style="width:100%;" height="20px">
+			<h:panelGroup style="display:block;text-align:center;">
+				<p:commandButton style="margin-right: 5px;"
+					value="#{rbgpaUI['gpa.ui.general.boton.aceptar.label']}"
+					icon="ui-icon-check" 
+					actionListener="#{requerimientoAreaBean.devolverRequerimientoAreaAlEncargado()}"
+					update="@([id$=dtListaRequerimientosArea]) growl2"
+					onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+
+				<p:commandButton style="margin-left: 5px;"
+					onstart="PF('statusDialog').show();"
+					onsuccess="PF('statusDialog').hide();"
+					value="#{rbgpaUI['gpa.ui.general.boton.cancelar.label']}"
+					onclick="PF('popupConfirmarDevolucionConsolidado').hide();" icon="ui-icon-cancel" />
+			</h:panelGroup>
+
+		</h:panelGrid>
+
+	</p:dialog>
+	
+		
+
+</h:body>
+
+</html>

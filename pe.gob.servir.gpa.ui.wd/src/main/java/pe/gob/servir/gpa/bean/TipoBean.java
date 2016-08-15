@@ -17,7 +17,6 @@ import org.apache.log4j.Logger;
 import org.primefaces.context.RequestContext;
 import pe.gob.servir.gpa.model.dto.EstadoDTO;
 import pe.gob.servir.gpa.model.dto.TipoDTO;
-
 import pe.gob.servir.gpa.service.ejb.TipoServiceLocal;
 import pe.gob.servir.gpa.util.ConstanteWeb;
 import pe.gob.servir.gpa.util.UBaseManage;
@@ -99,10 +98,12 @@ public class TipoBean extends UBaseManage implements Serializable
 	public void buscarTipo() {
 		try {
 			this.listaTipo = new ArrayList<TipoDTO>();
-			if (identificadorPadre == null || identificadorPadre == 0) {
+			if (identificadorPadre == null || identificadorPadre == 0) 
+			{
 				List<TipoDTO> listaReal = tipoServiceLocal.buscarTipo(
 						identificadorPadre, identificadorEstado);
-				if (listaReal != null && listaReal.size() > 0) {
+				if (listaReal != null && listaReal.size() > 0) 
+				{
 					for (TipoDTO objeto : listaReal) {
 						if (objeto.getPadre().getId() != null
 								&& objeto.getPadre().getId() != 0) {
@@ -201,7 +202,7 @@ public class TipoBean extends UBaseManage implements Serializable
 	{
 		try {			
 			tipoDTO.setCodigoUsuarioModificacion(usuarioModificacion);
-			tipoDTO.setIpRegistro(obtieneIPCliente());
+			tipoDTO.setIpModificacion(obtieneIPCliente());
 			tipoDTO.setEstado(new EstadoDTO());
 			Integer identificadorEstado = ConstanteWeb.VALOR_REGISTRADO;
 			tipoDTO.setEstado(new EstadoDTO());
@@ -271,7 +272,8 @@ public class TipoBean extends UBaseManage implements Serializable
 
 	}
 
-	public void mensajeConfirmacion() {
+	public void mensajeConfirmacion() 
+	{
 		context = RequestContext.getCurrentInstance();
 		context.execute("PF('popupConfirmar').show();");
 	}

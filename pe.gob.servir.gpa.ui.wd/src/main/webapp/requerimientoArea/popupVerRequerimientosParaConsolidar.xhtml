@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<h:form id="frmVerRequerimientosParaConsolidar" class="div_formulario">
+		<p:panelGrid styleClass="columnaOcultar" style="width:100%">
+			<p:row>
+				<p:column>
+					<p:outputLabel value="LISTA DE PRODUCTOS DISPONIBLES" style="font-size: 15px !important"/>
+					<p:separator></p:separator>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:dataTable id="dtRequerimientoDisponibleUsuario" value="#{requerimientoAreaBean.rowNames}" var="rowName" rowIndexVar="rowIdx">									
+		    						<p:column headerText="">
+			    						<p:outputLabel value="#{rowName}"/>
+			    					</p:column>
+			    					<p:columns var="columnName" value="#{requerimientoAreaBean.colNames}" headerText="#{columnName}" columnIndexVar="colIdx" style="text-align:center;">
+			    						<p:spinner id="minMax"  min="0" max="5" size="1"  maxlength="5" 
+			    								   value="#{requerimientoAreaBean.arregloValoresAreaProducto[0][colIdx]}" disabled="true">																		
+										</p:spinner>									
+			    					</p:columns>			    					
+					</p:dataTable>			
+				</p:column>			
+			</p:row>
+			<br></br>
+			<br></br>
+			<p:row>
+				<p:column>
+					<p:outputLabel value="LISTA DE REQUERIMIENTOS DEMANDADOS POR LOS USUARIOS" style="font-size: 15px !important" />
+					<p:separator></p:separator>
+				</p:column>
+			</p:row>
+			
+			<p:row>
+				<p:column>
+					<p:dataTable id="dtRequerimientosUsuarios" value="#{requerimientoAreaBean.rowTotalDiferencia}" var="rowTotalDiferencia" rowIndexVar="rowIdx">									
+		    						<p:column headerText="">
+			    						<p:outputLabel value="#{rowTotalDiferencia}"/>
+			    					</p:column>
+			    					<p:columns var="columnName" value="#{requerimientoAreaBean.colNames}" headerText="#{columnName}" columnIndexVar="colIdx" style="text-align:center;">
+			    						<p:spinner id="minMax"  min="0" max="5" size="1"  maxlength="5" 
+			    								   value="#{requerimientoAreaBean.arregloTotalSobranteCantidadRequerimientosUsuarios[rowIdx][colIdx]}" disabled="true">																		
+										</p:spinner>									
+			    					</p:columns>			    					
+					</p:dataTable>			
+				</p:column>		
+			</p:row>	
+			<p:row>
+				<p:column style="text-align:center;">
+					<p:commandButton id="btnEnviarAlJefe" value="Enviar al Jefe" styleClass="search" action="#{requerimientoAreaBean.mensajeConfirmacionConsolidarRequerimientoArea()}"
+					update="frmVerRequerimientosParaConsolidar"/>
+					<p:tooltip for="btnEnviarAlJefe" value="Enviar al Jefe"/>
+				</p:column>
+			</p:row>	
+		</p:panelGrid>
+	</h:form>
+	
+	
+	<p:dialog id="popupConsolidarRequerimientoArea" widgetVar="popupConsolidarRequerimientoArea"
+		closable="false" resizable="false"
+		header="#{rbgpaUI['gpa.ui.general.titulo.consolidar.aviso']}"
+		width="350px" height="80px" modal="true" appendTo="@(body)">
+		<p:growl id="growl4" showDetail="true" sticky="true" />
+		<h:panelGrid columns="2" style="width:100%; height:60%">
+			<p:graphicImage value="/recursos/images/warning.png" width="20px"
+				style="padding-right: 10px" height="20px" />					
+			<p:outputLabel value="#{rbgpaUI['gpa.ui.general.mensaje.alerta.consolidar.label']}" />
+		</h:panelGrid>
+
+		<h:panelGrid columns="2" style="width:100%;" height="20px">
+			<h:panelGroup style="display:block;text-align:center;">
+				<p:commandButton style="margin-right: 5px;"
+					value="#{rbgpaUI['gpa.ui.general.boton.aceptar.label']}"
+					icon="ui-icon-check" 
+					actionListener="#{requerimientoAreaBean.enviarConsolidadoAlJefe()}"
+					update="@([id$=dtListaRequerimientosArea]) growl4"
+					onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+
+				<p:commandButton style="margin-left: 5px;"
+					onstart="PF('statusDialog').show();"
+					onsuccess="PF('statusDialog').hide();"
+					value="#{rbgpaUI['gpa.ui.general.boton.cancelar.label']}"
+					onclick="PF('popupConsolidarRequerimientoArea').hide();" icon="ui-icon-cancel" />
+			</h:panelGroup>
+
+		</h:panelGrid>
+
+	</p:dialog>
+	
+			
+</h:body>
+
+</html>

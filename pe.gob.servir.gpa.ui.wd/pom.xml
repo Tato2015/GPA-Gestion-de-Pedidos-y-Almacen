@@ -19,6 +19,53 @@
 
 	<dependencies>
 		<dependency>
+		    <groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.1.0</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.itextpdf</groupId>
+		    <artifactId>itextpdf</artifactId>
+		    <version>5.5.5</version>
+		</dependency>
+		
+<!-- https://mvnrepository.com/artifact/cz.i24.util/jasper-utils -->
+<dependency>
+    <groupId>cz.i24.util</groupId>
+    <artifactId>jasper-utils</artifactId>
+    <version>1.0.7</version>
+</dependency>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<dependency>
 			<groupId>pe.gob.servir.gpa</groupId>
 			<artifactId>pe.gob.servir.gpa.bp</artifactId>
 			<version>0.1-A.DESA</version>
@@ -97,6 +144,8 @@
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
+		
+		
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
@@ -216,7 +265,9 @@
 			<version>1.5-beta1</version>
 			<systemPath>${basedir}\src\main\webapp\WEB-INF\lib\barbecue-1.5-beta1.jar</systemPath>
 		</dependency>
-
+			
+		
+			
 	</dependencies>
 	<build>
 

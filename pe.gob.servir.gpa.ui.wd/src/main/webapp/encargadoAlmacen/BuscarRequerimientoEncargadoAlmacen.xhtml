@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/template/layout.xhtml">
+	<ui:define name="content">
+		<h:body>
+			<h:form id="buscarRequerimientoEncargadoAlmacen" styleClass="columnaOcultar">
+				<p:panelGrid style="width:100%">
+					<p:row>
+						<p:column>
+							<p:outputLabel value="ENCARGADO DE ALMACÉN" style="font-size:18px!important"/>
+							<p:separator></p:separator>
+						</p:column>								
+					</p:row>																			   			   			 			   
+					<p:row>
+						<p:column>
+							<p:fieldset legend="Criterios de Búsqueda">
+								<p:panelGrid style="width:100%" styleClass="columnaOcultar">
+									<p:row>
+										<p:column>
+											<p:outputLabel value="Año :"/>
+										</p:column>
+										<p:column>
+											<p:inputText value="#{programacionBean.anio}"/>
+										</p:column>
+										<p:column>
+											<p:outputLabel value="Aprobación : "/>
+										</p:column>
+										<p:column>
+											<p:inputText value="#{programacionBean.aprobacion}"/>
+										</p:column>									
+									</p:row>								
+									<p:row>
+										<p:column>
+											<p:outputLabel value="Estado : "/>
+										</p:column>
+										<p:column>
+											<p:inputText value="#{programacionBean.estado}"/>
+										</p:column>
+										<p:column>
+											<p:outputLabel value="Tipo de Pedido :"/>
+										</p:column>
+										<p:column>
+											<p:inputText value="#{programacionBean.tipoPedido}"/>
+										</p:column>
+									</p:row>
+									<p:row>
+										<p:column>
+											<p:outputLabel value="Tipo de Periodo : "/>
+										</p:column>
+										<p:column>
+											<p:inputText value="#{programacionBean.tipoPeriodo}"/>
+										</p:column>
+									</p:row>
+								</p:panelGrid>																			
+							</p:fieldset>					
+						</p:column>				
+					</p:row>
+					<p:row>
+						<p:column style="text-align:right;">
+							<p:commandButton id="btnBuscar" value="Buscar" styleClass="search" action="#{programacionBean.cargarListaProgramacionEnviadaAlEncargadoDeAlmacen()}" update=":buscarRequerimientoEncargadoAlmacen" resetValues="true">												
+							</p:commandButton>
+							<p:tooltip for="btnBuscar" value="Buscar"/>
+							<p:commandButton id="btnLimpiar" value="Limpiar" styleClass="search" action="#{programacionBean.limpiarProgramacion()}" update=":buscarRequerimientoEncargadoAlmacen">						
+							</p:commandButton>
+							<p:tooltip for="btnLimpiar" value="Limpiar"/>
+						</p:column>
+					</p:row>
+					<p:row>
+					<p:column>
+						<p:outputLabel value="PROGRAMACIÓN / ENCARGADO DE ALMACÉN" style="font-size:15px !important"/>
+						<p:separator></p:separator>
+					</p:column>
+				</p:row>
+				</p:panelGrid>	
+				
+				
+				<p:dataTable id="dtListaProgramacionRequerimientoAprobado" value="#{programacionBean.listaProgramacionEnviadaAlEncargadoDeAlmacen}"  paginator="true"
+								rows="8" paginatorPosition="bottom" rowIndexVar="posicion" var="valor"
+								currentPageReportTemplate="Mostrando de {startRecord} a {endRecord} | Total Registros : {totalRecords}"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+								emptyMessage="Campos vacios" >
+							<p:column headerText="#" style="width:5px;text-align:center;">
+								<p:outputLabel>#{posicion+1}</p:outputLabel>
+							</p:column>	
+							<p:column headerText="Id" style="width:10px;text-align:center;">
+								<p:outputLabel value="#{valor.id}"/>
+							</p:column>
+							<p:column headerText="Descripcion">
+								<p:outputLabel value="#{valor.descripcionProgramacion}"/>
+							</p:column>
+							<p:column headerText="Fecha de Inicio" style="text-align:center;">
+								<p:outputLabel value="#{valor.fechaInicioRegistro}"/>
+							</p:column>
+							<p:column headerText="Fecha de Fin" style="text-align:center;">
+								<p:outputLabel value="#{valor.fechaFinRegistro}"/>
+							</p:column>
+							<p:column headerText="Estado" style="text-align:center;">
+								<p:outputLabel value="#{valor.estado.descripcionEstado}"/>
+							</p:column>
+							<p:column headerText="Tipo de Periodo" style="text-align:center;">
+								<p:outputLabel value="#{valor.tipoPeriodo.descripcionTipo}"/>
+							</p:column>
+							<p:column headerText="Tipo de Pedido" style="text-align:center;">
+								<p:outputLabel value="#{valor.tipoPedido.descripcionTipo}"/>
+							</p:column>
+							<p:column headerText="Acciones" style="text-align:center;width:100px;">
+									<p:commandButton id="btnDetallesRequerimientoAprobadoArea" icon="ui-icon-carat-1-n" action="#{requerimientoAreaBean.abrirPopupDetallesRequerimientosAprobadosEncargadoAlmacen(posicion)}"
+									update="@([id$=frmDetallesRequerimientosAprobados])"> 
+									</p:commandButton> 
+									<p:tooltip for="btnDetallesRequerimientoAprobadoArea" value="Detalles de los Requerimientos Aprobados"/>																		
+							</p:column>						
+					</p:dataTable>
+				
+							
+			</h:form>
+			
+			<p:dialog id="dialogoAbrirPopupDetallesRequerimientosAprobadosEncargadoAlmacen" width="90%" 
+				widgetVar="dialogoAbrirPopupDetallesRequerimientosAprobadosEncargadoAlmacen" closable="true"
+				resizable="false" showEffect="puff" modal="true"  				
+				styleClass="ui-dialog-medium">
+				<ui:include src="popupDetallesRequerimientosAprobados.xhtml" />
+			</p:dialog>			
+						
+		
+			<p:dialog id="dialogoAgregarRequerimientoUsuariosDesdeEncargadoAlmacen" width="90%" 
+				widgetVar="dialogoAgregarRequerimientoUsuariosDesdeEncargadoAlmacen" closable="true"
+				resizable="false" showEffect="puff" modal="true"  				
+				styleClass="ui-dialog-medium">
+				<ui:include src="popupAgregarRequerimientoUsuariosAprobados.xhtml" />
+				<p:ajax event="close" listener="#{requerimientoAreaBean.limpiarAgregarRequerimientoUsuarios()}"
+				update=":frmAgregarRequerimientoUsuariosAprobados"/>
+			</p:dialog>		
+			
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>

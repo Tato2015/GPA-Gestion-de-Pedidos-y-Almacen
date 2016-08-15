@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<h:form id="frmDetalleRequerimientoArea" class="div_formulario">
+		<p:panelGrid style="width:100%" styleClass="columnaOcultar">
+			<p:row>
+				<p:column>
+					<p:outputLabel value="DETALLES DEL REQUERIMIENTO DE ÁREA"
+					style="font-size:18px !important"/>
+					<p:separator></p:separator>
+				</p:column>			
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:panelGrid style="width:100%" styleClass="columnaOcultar">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Id del Requerimiento : " />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoAreaDTO.id}" disabled="true"/>
+							</p:column>			
+							<p:column>
+								<p:outputLabel value="Indicador de Enviado al Jefe : "/>
+							</p:column>																		
+							<p:column>
+								<p:selectOneMenu id="somIndicadorEnviadoAlJefe" style="width:152px;" disabled="true"	
+								value="#{requerimientoAreaBean.requerimientoAreaDTO.indicadorEnviadoAlJefe}">
+									<f:selectItems value="#{requerimientoAreaBean.listaIndicadorEnviadoAlJefe}" var="valor"
+									 itemValue="#{valor.value}" itemLabel="#{valor.description}"/>
+								</p:selectOneMenu>							
+							</p:column>				
+							<p:column>
+								<p:outputLabel value="Fecha de Envío al Jefe : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoAreaDTO.fechaEnviadoAlJefe}" disabled="true"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Indicador Recepción del Jefe : "/>
+							</p:column>
+							<p:column>								
+								<p:selectOneMenu id="somIndicadorRecepcionDelJefe" value="#{requerimientoAreaBean.requerimientoAreaDTO.indicadorRequerimientoRecepcionDelJefe}" disabled="true">
+									<f:selectItems value="#{requerimientoAreaBean.listaIndicadorRecepcionDelJefe}" var="valor"
+									itemValue="#{valor.value}" itemLabel="#{valor.description}"/>
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Fecha de Recepción del Jefe : "/>
+							</p:column>							
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoAreaDTO.fechaRequerimientoRecepcionDelJefe}" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Estado : "/>
+							</p:column>
+							<p:column>															
+								<p:selectOneMenu id="somEstado" value="#{requerimientoAreaBean.requerimientoAreaDTO.estado.id}" disabled="true">
+									<f:selectItems value="#{requerimientoAreaBean.listaEstado}" var="valor"
+									itemValue="#{valor.value}" itemLabel="#{valor.description}"/>
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Tipo de Periodo de Requerimiento : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoAreaDTO.programacion.tipoPeriodo.descripcionTipo}" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Programación : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoAreaDTO.programacion.descripcionProgramacion}" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Tipo de Pedido de Requerimiento : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoAreaDTO.programacion.tipoPedido.descripcionTipo}" disabled="true"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Área : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoAreaDTO.area.descripcionArea}" style="width:200px;" disabled="true"/>
+							</p:column>							
+						</p:row>
+					
+					
+					</p:panelGrid>
+					
+					
+					
+															
+				</p:column>
+
+
+			</p:row>
+		</p:panelGrid>	
+	</h:form>
+</h:body>
+
+</html>

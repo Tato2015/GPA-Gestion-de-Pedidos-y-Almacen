@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<h:form id="frmDetallesRequerimientosAprobados" class="div_formulario">
+		<p:panelGrid styleClass="columnaOcultar" style="width:100%">
+			<p:row>
+				<p:column>
+					<p:outputLabel value="LISTADO DE REQUERIMIENTOS APROBADOS" style="font-size:15px !important;"/>																				
+				</p:column>		
+				<p:column>
+					<p:outputLabel value=" PROGRAMACIÓN : #{requerimientoAreaBean.programacionSeleccionAlmacen.descripcionProgramacion}" style="font-size:15px !important;"/>					
+				</p:column>							
+			</p:row>				
+			<p:row>
+				<p:column>
+					<p:separator></p:separator>
+				</p:column>
+				<p:column>
+					<p:separator></p:separator>
+				</p:column>
+			</p:row>
+								
+			<p:messages for ="ErrorCantidadesDiferentesRequAreaVSAprobados" showDetail="true" autoUpdate="true" closable="true" />
+			<p:messages for ="ErrorNoSePudoDerivar" showDetail="true" autoUpdate="true" closable="true" />			
+			<p:messages for ="ErrorEntregaAlJefeDeArea" showDetail="true" autoUpdate="true" closable="true" />
+			<p:messages for ="ErrorActuaizarEntregaAlJefeDeArea" showDetail="true" autoUpdate="true" closable="true" />
+			
+						
+			<p:row>
+				<p:column>
+				<p:outputLabel value="#{requerimientoAreaBean.avisoDerivado}" style="font-size:15px !important"/>
+					<p:commandButton id="btnDerivar" value="Derivar" styleClass="search" style="font-size:13px !important"
+					action="#{requerimientoAreaBean.abrirPopupConfirmarDerivacionAlEncargadoDelArea()}" rendered="#{requerimientoAreaBean.paraDerivarAlEncargadoDeAlmacen}"/>
+					<p:tooltip for="btnDerivar" value="Derivar requerimiento aprobado al Encargado del Almacén"/>
+				</p:column>
+			</p:row>
+						
+		</p:panelGrid>
+
+	 <p:dataTable id="dtListaRequerimientosArea" value="#{requerimientoAreaBean.listaRequerimientoParaJefeAlmacen}"  paginator="true"
+								rows="8" paginatorPosition="bottom" rowIndexVar="posicion" var="valor" 
+								currentPageReportTemplate="Mostrando de {startRecord} a {endRecord} | Total Registros : {totalRecords}"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+								emptyMessage="Campos vacios">
+					<p:column headerText="Id" style="text-align:center;width:20px;">
+						<p:outputLabel value="#{valor.id}"></p:outputLabel>
+					</p:column>
+					<p:column headerText="Descripción del Área" style="text-align:center;">
+						<p:outputLabel value="#{valor.area.descripcionArea}"></p:outputLabel>
+					</p:column>
+					<p:column headerText="Programación" style="text-align:center;">
+						<p:outputLabel value="#{valor.programacion.descripcionProgramacion}"></p:outputLabel>
+					</p:column>
+					<p:column headerText="Fecha de Envío al Jefe" style="text-align:center;">
+						<p:outputLabel value="#{valor.fechaEnviadoAlJefe}"/>
+					</p:column>
+					<p:column headerText="Enviado al Jefe" style="text-align:center;">
+						<p:outputLabel value="#{requerimientoAreaBean.obtenerStringIndicadorEnviadoAlJefe(valor.indicadorEnviadoAlJefe)}"/>											
+					</p:column>
+					<p:column headerText="Recepción del Jefe" style="text-align:center;">
+						<p:outputLabel value="#{requerimientoAreaBean.obtenerStringIndicadorRecepcionDelJefe(valor.indicadorRequerimientoRecepcionDelJefe)}"/>						
+					</p:column>
+					<p:column headerText="Tipo de Periodo" style="text-align:center;">
+						<p:outputLabel value="#{valor.programacion.tipoPeriodo.descripcionTipo}"/>
+					</p:column>
+					<p:column headerText="Acciones" style="text-align:center;">
+						<p:commandButton id="btnDetalle" icon="ui-icon-pencil" action="#{requerimientoAreaBean.abrirPopupAgregarRequerimientoUsuariosDesdeEncargadoAlmacen(posicion)}"
+						update="@([id$=frmAgregarRequerimientoUsuariosAprobados])">		
+							<p:ajax update="@([id$=frmAgregarRequerimientoUsuariosAprobados])" resetValues="true"></p:ajax>															
+						</p:commandButton>
+						<p:tooltip for="btnDetalle" value="Detalles"></p:tooltip>
+						
+						<p:commandButton id="btnEntrega" icon="ui-icon-entregaReporte" action="#{requerimientoAreaBean.abrirDialogoConfirmacionEntrega(posicion)}">
+												
+						</p:commandButton>
+						<p:tooltip for="btnEntrega" value="Entrega de reporte al encargado de área"/>
+																		
+
+					</p:column>								
+    	</p:dataTable>
+	
+	</h:form>
+	
+	<p:dialog id="dialogoConfirmarDerivacionAlEncargadoDelArea" widgetVar="dialogoConfirmarDerivacionAlEncargadoDelArea"
+		closable="false" resizable="false"
+		header="#{rbgpaUI['gpa.ui.general.titulo.consolidar.aviso']}"
+		width="350px" height="80px" modal="true" appendTo="@(body)">
+		<p:growl id="growl4" showDetail="true" sticky="true" />
+		<h:panelGrid columns="2" style="width:100%; height:60%">
+			<p:graphicImage value="/recursos/images/warning.png" width="20px"
+				style="padding-right: 10px" height="20px" />					
+			<p:outputLabel value="#{rbgpaUI['gpa.ui.general.mensaje.alerta.derivarAlEncargadoAlmacen.label']}" />
+		</h:panelGrid>
+
+		<h:panelGrid columns="2" style="width:100%;" height="20px">
+			<h:panelGroup style="display:block;text-align:center;">
+				<p:commandButton style="margin-right: 5px;"
+					value="#{rbgpaUI['gpa.ui.general.boton.aceptar.label']}"
+					icon="ui-icon-check" 
+					actionListener="#{requerimientoAreaBean.verificarRequerimientoAreaProgrVSRequAprob()}"				
+					update="@([id$=dtListaRequerimientosArea]) growl4"
+					onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+	
+				<p:commandButton style="margin-left: 5px;"
+					onstart="PF('statusDialog').show();"
+					onsuccess="PF('statusDialog').hide();"
+					value="#{rbgpaUI['gpa.ui.general.boton.cancelar.label']}"
+					onclick="PF('dialogoConfirmarDerivacionAlEncargadoDelArea').hide();" icon="ui-icon-cancel" />
+			</h:panelGroup>
+
+		</h:panelGrid>
+
+	</p:dialog>
+
+
+	<p:dialog id="dialogoAbrirConfirmacionEntrega" widgetVar="dialogoAbrirConfirmacionEntrega"
+		closable="false" resizable="false"
+		header="#{rbgpaUI['gpa.ui.general.titulo.entregaItems.aviso']}"
+		width="350px" height="80px" modal="true" appendTo="@(body)">
+		<p:growl id="growl5" showDetail="true" sticky="true" />
+		<h:panelGrid columns="2" style="width:100%; height:60%">
+			<p:graphicImage value="/recursos/images/warning.png" width="20px"
+				style="padding-right: 10px" height="20px" />					
+			<p:outputLabel value="#{rbgpaUI['gpa.ui.general.mensaje.alerta.entregarItemsAlEncargadoArea.label']}" />
+		</h:panelGrid>
+
+<!-- 					 -->
+		<h:panelGrid columns="2" style="width:100%;" height="20px">
+			<h:panelGroup style="display:block;text-align:center;">
+				<p:commandButton style="margin-right: 5px;"
+					value="#{rbgpaUI['gpa.ui.general.boton.aceptar.label']}"
+					icon="ui-icon-check" 
+					actionListener="#{requerimientoAreaBean.buscarRequerimientoAreaEnDetalleEncargadoAlmacen()}"
+					update="@([id$=dtListaRequerimientosArea]) growl5"
+					onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+	
+				<p:commandButton style="margin-left: 5px;"
+					onstart="PF('statusDialog').show();"
+					onsuccess="PF('statusDialog').hide();"
+					value="#{rbgpaUI['gpa.ui.general.boton.cancelar.label']}"
+					onclick="PF('dialogoAbrirConfirmacionEntrega').hide();" icon="ui-icon-cancel" />
+			</h:panelGroup>
+
+		</h:panelGrid>
+
+	</p:dialog>
+		
+	
+	
+				
+</h:body>
+
+</html>

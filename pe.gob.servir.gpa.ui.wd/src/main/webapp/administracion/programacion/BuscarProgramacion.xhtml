@@ -9,18 +9,18 @@
 <ui:composition template="/template/layout.xhtml">
 	<ui:define name="content">
 		<h:body>
-			<h:form id="FrmBuscarProgramacion" styleClass="columnaOcultar">
+			<h:form id="FrmBuscarProgramacion" styleClass="columnaOcultar formulario" > 
 				<p:panelGrid style="width:100%;" styleClass="columnaOcultar" layout="grid">
 					<p:row>
-						<p:column colspan="4">
+						<p:column colspan="4" style="background:#e2e8f0;">
 							<p:outputLabel value="Administración de Programación" style="font-size:18px !important"/>
 							<p:separator />
 						</p:column>
 					</p:row>
 					<p:row>
-						<p:column>
+						<p:column style="background:#e2e8f0;">
 							<p:fieldset legend="Criterios de Búsqueda">
-								<p:panelGrid style="width:100%">
+								<p:panelGrid style="width:100%;">
 									<p:row>
 										<p:column>
 											<p:outputLabel value="Año"/>
@@ -77,10 +77,11 @@
 						</p:column>
 					</p:row>									
 				</p:panelGrid>
-				<p:panelGrid style="width:100%;" styleClass="columnaOcultar">
+				<br></br>				
+				<p:panelGrid style="width:100%;" styleClass="columnaOcultar formulario">
 					<p:row>
-						<p:column style="text-align:right;">
-							<p:commandButton id="btnNuevo" value="Nuevo" action="#{programacionBean.abrirPopupNuevaProgramacion()}" update=":dialogoNuevoProgramacion" style="font-size:15px !important" styleClass="search" >
+						<p:column style="text-align:right;background:#e2e8f0;">
+							<p:commandButton id="btnNuevo" value="Nuevo" 	action="#{programacionBean.abrirPopupNuevaProgramacion()}" update=":dialogoNuevoProgramacion" style="font-size:15px !important" styleClass="search" >
 								<p:ajax resetValues="true" update=":dialogoNuevoProgramacion"/>
 							</p:commandButton>							
 							<p:tooltip for="btnNuevo" value="Nuevo"/>
@@ -93,9 +94,10 @@
 						</p:column>
 					</p:row>
 				</p:panelGrid>
-				<p:panelGrid>
+				<br></br>				
+				<p:panelGrid style="background:#e2e8f0;">
 					<p:row>
-						<p:column>
+						<p:column style="background:#e2e8f0;">
 							<p:dataTable id="dtListaProgramacion" value="#{programacionBean.listaProgramacion}"  paginator="true"
 								rows="8" paginatorPosition="bottom" rowIndexVar="posicion" var="valor"
 								currentPageReportTemplate="Mostrando de {startRecord} a {endRecord} | Total Registros : {totalRecords}"
@@ -146,20 +148,29 @@
 			
 			<p:dialog id="dialogoNuevoProgramacion"
 				widgetVar="dialogoNuevoProgramacion" closable="true"
-				resizable="false" showEffect="puff" modal="true" width="90%" 				
+				resizable="false" showEffect="puff" modal="true" width="80%" 				
 				styleClass="ui-dialog-medium">
 				<ui:include src="popupNuevoProgramacion.xhtml" />
-			</p:dialog>							
+				<p:ajax event="close" listener="#{programacionBean.resetSeleccionProductoAreaProducto()}"
+				update=":FrmNuevaProgramacion"/>
+			</p:dialog>		
 			
 			<p:dialog id="dialogoAreaProducto" 
 				widgetVar="dialogoAreaProducto" closable="false"   
 				resizable="false" showEffect="puff" modal="true" width="60%"  				
 				styleClass="ui-dialog-medium"> 
-				<ui:include src="popupAgregarAreaProducto.xhtml" />
+					<ui:include src="popupAgregarAreaProducto.xhtml" />
 				<p:ajax event="close" listener="#{programacionBean.resetSeleccionProducto()}"
 				update=":FrmNuevaProgramacion"/>
 			</p:dialog>					
 			
+			<p:dialog id="dialogoAreaProductoDetalles" 
+				widgetVar="dialogoAreaProductoDetalles" closable="false"   
+				resizable="false" showEffect="puff" modal="true" width="60%"  				
+				styleClass="ui-dialog-medium"> 
+				<ui:include src="popupAgregarAreaProductoDetalles.xhtml" />				
+			</p:dialog>					
+								
 		</h:body>
 	</ui:define>
 </ui:composition>

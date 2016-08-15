@@ -29,13 +29,15 @@ public class ConstanteWeb {
 	public static final Integer VALOR_SELECCIONE=0;
 	public static final Integer VALOR_SELECCIONE_UNO=1;
 	public static final Integer VALOR_REGISTRADO=1;
-	public static final String CAMPO_REGISTRADO="Registrado";
+	public static final String CAMPO_REGISTRADO="REGISTRADO";
+	public static final Integer VALOR_PROGR_ENVIADO =6;
+	public static final String CAMPO_PROGR_ENVIADO= "ENVIADO";
 	public static final Integer VALOR_ACTIVO=3;
 	public static final Integer VALOR_INACTIVO=4;
 	public static final String CAMPO_SI="Si";
 	public static final String CAMPO_NO="No";
 	public static final Integer VALOR_NO=0;
-	public static final Integer VALOR_SI=1;
+	public static final Integer VALOR_SI=1;	
 	public static final Integer INDICADRO_INACTIVO=0;
 	public static final Integer INDICADRO_ACTIVO=1;
 	
@@ -169,6 +171,46 @@ public class ConstanteWeb {
 	public static final Integer VALOR_NOVIEMBRE=11;
 	public static final Integer VALOR_DICIEMBRE=12;
 	
+	//RequerimientoUsuario	
+	public static final Integer VALOR_NO_ENVIADO=0;
+	public static final Integer VALOR_ENVIADO=1;
+	public static final Integer VALOR_RECHAZADO=2;	
+	public static final Integer VALOR_NO_RECIBIDO=0;
+	public static final Integer VALOR_RECIBIDO=1;
+	public static final String  CAMPO_NO_ENVIADO="NO ENVIADO";
+	public static final String  CAMPO_ENVIADO="ENVIADO";
+	public static final String  CAMPO_RECHAZADO="RECHAZADO";
+	public static final String  CAMPO_NO_RECIBIDO="NO RECIBIDO";
+	public static final String  CAMPO_RECIBIDO="RECIBIDO";
+	
+
+	//RequerimientoArea
+	public static final Integer REQ_AREA_VALOR_NO_ENVIADO = 0;
+	public static final Integer REQ_AREA_VALOR_ENVIADO = 1;
+	public static final String  REQ_AREA_CAMPO_NO_ENVIADO="NO ENVIADO";
+	public static final String  REQ_AREA_CAMPO_ENVIADO="ENVIADO";
+	public static final Integer REQ_AREA_VALOR_NO_RECEPCIONADO = 0;
+	public static final Integer REQ_AREA_VALOR_RECEPCIONADO = 1;
+	public static final Integer REQ_AREA_VALOR_RECHAZADO= 2;
+	public static final String  REQ_AREA_CAMPO_NO_RECEPCIONADO="NO RECEPCIONADO";
+	public static final String  REQ_AREA_CAMPO_RECEPCIONADO="RECEPCIONADO";
+	public static final String  REQ_AREA_CAMPO_RECHAZADO="RECHAZADO";
+	public static final Integer REQ_AREA_VALOR_APROBADO = 3;
+	public static final String REQ_AREA_CAMPO_APROBADO = "APROBADO";
+	
+	
+	//Aprobacion Jefe
+	public static final Integer REQ_APROBACION_JEFE_VALOR_NO_RECEPCIONADO= 0;
+	public static final String  REQ_APROBACION_JEFE_CAMPO_NO_RECEPCIONADO="NO RECEPCIONADO";
+	public static final Integer REQ_APROBACION_JEFE_VALOR_RECEPCIONADO = 1;
+	public static final String  REQ_APROBACION_JEFE_CAMPO_RECEPCIONADO="RECEPCIONADO";
+	public static final Integer REQ_APROBACION_JEFE_VALOR_NO_ENVIADO= 0;
+	public static final String  REQ_APROBACION_JEFE_CAMPO_NO_ENVIADO="NO ENVIADO";
+	public static final Integer REQ_APROBACION_JEFE_VALOR_ENVIADO= 1;
+	public static final String  REQ_APROBACION_JEFE_CAMPO_ENVIADO="ENVIADO";
+	
+	
+	//
 	public static final String DESCRIPCION_NUMERO_DOCUMENTO="gpa.ui.reporte.numero.documento.label";
 	public static final String DESCRIPCION_NUMERO="gpa.ui.reporte.numero.label";
 	/** descripciones de reportes excel y jasper */

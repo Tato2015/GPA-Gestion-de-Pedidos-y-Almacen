@@ -33,7 +33,7 @@ public class SistemaContextBean extends UBaseManage implements Serializable {
 	public static final String VISTA_REQUERIMIENTO_USUARIO_S = "VistaUsuarioSuministro";
 	public static final String VISTA_REQUERIMIENTO_USUARIO_E = "VistaUsuarioExtraordinario";
 	public static final String VISTA_REQUERIMIENTO_AREA_C = "VistaAreaComestible";
-	public static final String VISTA_REQUERIMIENTO_AREA_S = "VistaAreaSuministro";
+	public static final String VISTA_REQUERIMIENTO_AREA_S = "VistaArea";
 	public static final String VISTA_PRODUCTO = "VistaProducto";
 	public static final String VISTA_TIPO = "VistaTipo";
 	public static final String VISTA_PROGRAMACION = "VistaProgramacion";
@@ -44,7 +44,14 @@ public class SistemaContextBean extends UBaseManage implements Serializable {
 	public static final String VISTA_ALERTAS= "VistaAlertas";
 	public static final String VISTA_REPORTES= "VistaReportes";
 	public static final String VISTA_CONSULTA_REQUERIMIENTOS_USUARIO= "VistaConsultaRequerimientosUsuario";
-
+	public static final String VISTA_ALMACEN= "VistaAlmacen";
+	public static final String VISTA_ENCARGADO_ALMACEN= "VistaEncargadoAlmacen";
+	
+	
+	
+	public static String VistaEncargadoAlmacen() {
+		return VISTA_ENCARGADO_ALMACEN;
+	}
 	
 	
 	public static String getVistaTipo() {
@@ -95,13 +102,17 @@ public class SistemaContextBean extends UBaseManage implements Serializable {
 	public static String VistaAprobacionJefe() {
 		return VISTA_APROBACION_JEFE;
 	}
+		
+	public static String VistaAlmacen() {
+		return VISTA_ALMACEN;
+	}
 	
 	
 	public static String VistaUsuarioExtraordinario() {
 		return VISTA_REQUERIMIENTO_USUARIO_E;
 	}
 	
-	public static String VistaAreaSuministro() {
+	public static String VistaArea() {
 		return VISTA_REQUERIMIENTO_AREA_S;
 	}
 

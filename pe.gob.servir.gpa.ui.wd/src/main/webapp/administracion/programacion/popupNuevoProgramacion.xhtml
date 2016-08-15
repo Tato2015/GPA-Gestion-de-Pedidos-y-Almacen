@@ -110,7 +110,7 @@
 					</p:panelGrid>
 				</p:column>
 			</p:row>
-			<p:row>
+			<p:row rendered="#{programacionBean.verAreaProductos}">
 				<p:column style="width:100%;">
 					<p:panelGrid id="pnlAreasProductos" style="width:100%;">
 						<p:row>
@@ -144,14 +144,10 @@
 																	<p:outputLabel value="#{valor.indicadorActivo==2?'INACTIVO':'ACTIVO'}"/>
 																</p:column>
 																<p:column headerText="Seleccione" width="20%" style="text-align:center;">
-																	<p:selectBooleanCheckbox id="sbcSeleccion" value="#{programacionBean.seleccionProducto}" > 
-																		<p:ajax event="change" listener="#{programacionBean.obtenerProductoSeleccionado(posicion,programacionBean.seleccionProducto)}" />																																																						
+																	<p:selectBooleanCheckbox id="sbcSeleccion" value="#{programacionBean.seleccionProductoArray[posicion]}" > 
+																		<p:ajax event="change" listener="#{programacionBean.obtenerProductoSeleccionado(posicion,programacionBean.seleccionProductoArray[posicion])}" />																																																						
 																	</p:selectBooleanCheckbox>
-																</p:column>												
-<!-- 																<p:column headerText="Cantidad" style="text-align:left;" width="20%" > -->
-<!-- 																	 <p:spinner id="minMax"  min="0" max="#{valor.stockMaximo}" size="10" disabled="#{!programacionBean.seleccionProducto}"/> -->
-<!-- 																</p:column>					 -->
-																										
+																</p:column>																																						
 											</p:dataTable>
 										</p:column>
 									</p:row>
@@ -162,9 +158,10 @@
 				</p:column>
 			</p:row>	
 			<p:row>				
-				<p:column style="text-align:center;">			
-					<p:commandButton id="btnSiguiente" value="Siguiente" 
-					action="#{programacionBean.abriPopupAgregarAreaProducto()}" update="FrmNuevaProgramacion :dialogoAreaProducto"
+				<p:column style="text-align:center;">
+<!-- 				action="#{programacionBean.prueba()}"			 -->
+					<p:commandButton id="btnSiguiente" value="Siguiente" rendered="#{programacionBean.verAreaProductos}"
+					 action="#{programacionBean.abriPopupAgregarAreaProducto()}" update="FrmNuevaProgramacion :dialogoAreaProducto"
 					styleClass="search" >					 
 						<p:ajax resetValues="true" update=":dialogoAreaProducto :FrmPopupAgregarProducto"/>
 					</p:commandButton>				
@@ -174,21 +171,16 @@
 						action="#{programacionBean.mensajeConfirmacion()}"
 						update="FrmNuevaProgramacion" styleClass="search"/>
 						<p:tooltip for="btnRegistrar" value="Registrar"/>
-					<p:commandButton
-						id="btnModificar"  rendered="#{programacionBean.paraModificar}" 
-						value="Actualizar"  
-						action="#{programacionBean.mensajeConfirmacion()}" 
-						update="FrmNuevaProgramacion" styleClass="search"/>
-						<p:tooltip for="btnModificar" value="Actualizar"/>																											 			
 					<p:commandButton id="btnCancelar" value="Cancelar" styleClass="search"
-						onclick="PF('dialogoNuevoProgramacion').hide();" >
-						<p:ajax update="smcAreas" resetValues="true"/>	
+						onclick="PF('dialogoNuevoProgramacion').hide();">
+						<p:ajax update="smcAreas" resetValues="true" />	
 					</p:commandButton>
 						<p:tooltip for="btnCancelar" value="Cancelar"/>
 				</p:column>													
 			</p:row>		
 		</p:panelGrid>		
 	</h:form>	
+	
 	
 	<p:dialog id="popupConfirmar" widgetVar="popupConfirmar"
 		closable="false" resizable="false"
@@ -233,7 +225,6 @@
 
 	</p:dialog>
 	
-		
 
 </div>	
 

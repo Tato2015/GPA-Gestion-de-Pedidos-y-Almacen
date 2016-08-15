@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	>
+	<div class="div_formulario" id="id1div_formulario_deta" onscroll="true">
+		<h:form id="FrmPopupAgregarProductoDetalles" class="div_formulario">
+			<p:panelGrid styleClass="columnaOcultar">
+				<p:row>
+					<p:column>
+						<p:dataTable var="rowName" value="#{programacionBean.rowNames}" rowIndexVar="rowIdx" >
+    						<p:column headerText="" styleClass="ui-widget-header">
+        						<h:outputText value="#{rowName}" style="text-align:center;"/>
+    						</p:column>
+																														
+					    	<p:columns var="columnName" value="#{programacionBean.colNames}" headerText="#{columnName}"
+               						columnIndexVar="colIdx" style="text-align:center;">
+										<p:outputLabel value="#{programacionBean.listaValores[rowIdx][colIdx][0]}"/>
+               						               													               						                											
+    						</p:columns>
+    						<p:column headerText="Total" styleClass="ui-widget-header" style="text-align:center;">
+    							<p:outputLabel value="#{programacionBean.listaValores[rowIdx][colIdx+1][0]}"/>
+    						</p:column>
+						</p:dataTable>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="text-align:center;">
+						<p:commandButton
+						id="btnModificar"  rendered="#{programacionBean.paraModificar}" 
+						value="Actualizar"  
+						action="#{programacionBean.mensajeConfirmacion()}" 
+						update=":FrmNuevaProgramacion" styleClass="search"/>
+						<p:tooltip for="btnModificar" value="Actualizar"/>
+																	
+						<p:commandButton id="btnCancelar" value="Cancelar" styleClass="search"	action="#{programacionBean.resetearSumaCantidadXArea()}"					
+						oncomplete="PF('dialogoAreaProductoDetalles').hide();">
+							<p:ajax update=":FrmPopupAgregarProducto" listener="#{programacionBean.eliminarFilaTotal()}"/>
+						</p:commandButton>		
+						
+					</p:column>
+				</p:row>
+			</p:panelGrid>	
+		</h:form>		
+	</div>	
+</html>

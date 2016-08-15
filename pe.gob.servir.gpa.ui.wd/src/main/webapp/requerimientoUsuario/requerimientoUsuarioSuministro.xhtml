@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/template/layout.xhtml">
+	<ui:define name="content">
+		<h:body>			
+			<h:form id="idRequerimientoUsuario" styleClass="columnaOcultar">
+				<p:panelGrid styleClass="columnaOcultar" style="width:100%" layout="grid">
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Administración de Requerimientos de Usuarios" 
+							style="font-size:18px !important"/>
+							<p:separator></p:separator>
+						</p:column>						
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:fieldset legend="Criterios de Búsqueda">
+								<p:panelGrid style="width:100%">
+									<p:row>
+										<p:column>
+											<p:outputLabel value="Id del Requerimiento : " style="width:100px;"/>
+										</p:column>
+										<p:column>
+											<p:inputText value="#{requerimientoUsuarioBean.identificadorRequerimientoUsuario}" />
+										</p:column>									
+										<p:column>
+											<p:outputLabel value="Id del Estado: "></p:outputLabel>
+										</p:column>
+										<p:column>
+											<p:selectOneMenu id="somEstado" style="width:200px;"
+											value="#{requerimientoUsuarioBean.identificadorEstado}">
+												<f:selectItems value="#{requerimientoUsuarioBean.listaEstado}"/>											
+											</p:selectOneMenu>
+										</p:column>
+									</p:row>
+								
+								</p:panelGrid>							
+							</p:fieldset>
+						</p:column>
+					</p:row>				
+				</p:panelGrid>
+				<p:messages for ="Message2" showDetail="true" autoUpdate="true" closable="true" />
+				<p:panelGrid style="width:100%;" styleClass="columnaOcultar" >
+					<p:row >
+						<p:column style="text-align:right;">
+							<p:commandButton id="btnNuevo" value="Nuevo" action="#{requerimientoUsuarioBean.nuevoRequerimientoUsuario()}" styleClass="search" style="font-size:15px !important"
+							update=":frmNuevoRequerimientoUsuario" resetValues="true">
+							<p:messages for ="Message1" showDetail="true" autoUpdate="true" closable="true" />
+							</p:commandButton>
+							<p:tooltip for="btnNuevo" value="Nuevo"></p:tooltip>
+							
+							<p:commandButton id="btnBuscar" value="Buscar" action="#{requerimientoUsuarioBean.buscarRequerimientoSuministro()}" 
+							styleClass="search" style="font-size:15px !important" update="dtListaRequerimientosUsuarios">								
+							</p:commandButton>
+							<p:tooltip for="btnBuscar" value="Buscar"></p:tooltip>
+																	
+							<p:commandButton id="btnLimpiar" value="Limpiar" action="#{requerimientoUsuarioBean.limpiarRequerimientoSuministro()}" styleClass="search" style="font-size:15px !important"
+							update="idRequerimientoUsuario">
+							</p:commandButton>
+							<p:tooltip for="btnLimpiar" value="Limpiar"></p:tooltip>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				
+				
+				<p:dataTable id="dtListaRequerimientosUsuarios" value="#{requerimientoUsuarioBean.listaRequerimientoUsuario}"  paginator="true"
+								rows="8" paginatorPosition="bottom" rowIndexVar="posicion" var="valor"
+								currentPageReportTemplate="Mostrando de {startRecord} a {endRecord} | Total Registros : {totalRecords}"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+								emptyMessage="Campos vacios">
+					<p:column headerText="Id" style="text-align:center;">
+						<p:outputLabel value="#{valor.id}"></p:outputLabel>
+					</p:column>	
+					<p:column headerText="Programacion" style="text-align:center;">
+						<p:outputLabel value="#{valor.programacionAreas.programacion.descripcionProgramacion}"></p:outputLabel>
+					</p:column>
+					<p:column headerText="Tipo de Requerimiento" style="text-align:center;">
+						<p:outputLabel value="#{valor.programacionAreas.programacion.tipoPedido.descripcionTipo}"></p:outputLabel>
+					</p:column>
+					<p:column headerText="Fecha Registro" style="text-align:center;">
+						<p:outputLabel value="#{valor.fechaRegistro}"></p:outputLabel>
+					</p:column>
+					<p:column headerText="Acciones" style="text-align:center;">
+						<p:commandButton id="btnDetalle" action="#{requerimientoUsuarioBean.abrirPopupDetallesRequerimiento(posicion)}" icon="ui-icon-pencil"						
+						update=":frmDetalleRequerimientoUsuario">
+							<p:ajax update=":frmDetalleRequerimientoUsuario" resetValues="true"></p:ajax>												
+						</p:commandButton>
+						<p:tooltip for="btnDetalle" value="Detalles"></p:tooltip>
+						
+						<p:commandButton id="btnActualizar" icon="ui-icon-document" action="#{requerimientoUsuarioBean.actualizarRequerimientoUsuario(posicion)}"
+						update=":frmActualizarRequerimientoUsuario :idRequerimientoUsuario">																						
+						</p:commandButton>						
+						<p:tooltip for="btnActualizar" value="Actualizar"></p:tooltip>
+						
+					</p:column>
+				
+				</p:dataTable>				
+			</h:form>			
+			
+			<p:dialog id="dialogoDetalleRequerimientoUsuario" width="90%" 
+				widgetVar="dialogoDetalleRequerimientoUsuario" closable="true"
+				resizable="false" showEffect="puff" modal="true"  				
+				styleClass="ui-dialog-medium">
+				<ui:include src="popupDetalleRequerimientoUsuario.xhtml" />
+			</p:dialog>			
+			
+			
+			<p:dialog id="dialogoNuevoRequerimientoUsuario" width="90%" 
+				widgetVar="dialogoNuevoRequerimientoUsuario" closable="true"
+				resizable="false" showEffect="puff" modal="true"  				
+				styleClass="ui-dialog-medium">
+				<ui:include src="popupNuevoRequerimientoUsuario.xhtml" />
+				<p:ajax event="close" listener="#{requerimientoUsuarioBean.limpiarCabecerasTabla()}"
+				update=":frmNuevoRequerimientoUsuario"/>
+			</p:dialog>
+			
+			
+			<p:dialog id="dialogoActualizarRequerimientoUsuario" width="90%" 
+				widgetVar="dialogoActualizarRequerimientoUsuario" closable="true"
+				resizable="false" showEffect="puff" modal="true"  				
+				styleClass="ui-dialog-medium">
+				<ui:include src="popupActualizarRequerimientoUsuario.xhtml" />
+				<p:ajax event="close" listener="#{requerimientoUsuarioBean.limpiarCabecerasTabla()}"
+				update=":frmActualizarRequerimientoUsuario"/>
+			</p:dialog>						
+			
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>

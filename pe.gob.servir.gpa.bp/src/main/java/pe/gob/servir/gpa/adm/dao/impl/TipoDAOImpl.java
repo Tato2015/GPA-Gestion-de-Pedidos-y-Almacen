@@ -1,36 +1,16 @@
-/**
- * <ul>
- * <li>Copyright 2015 Organismo Supervisor de las Contrataciones del Estado -
- * OSCE. Todos los derechos reservados.</li></ul>
- * Objeto		: UsuarioRolDAOImpl.java
- * Descripcion	: Clase tipo interfaces de UsuarioRol que 
- * 				  persiste con la base de datos.
- * Autor		: Consultora  - P & P BMS (P & P Business Management Solutions)
- * ----------------------------------------------------------------------------
- * Modificaciones
- * Codigo	Fecha		Nombre			Descripcion
- * ----------------------------------------------------------------------------
- * 
- */
-
 package pe.gob.servir.gpa.adm.dao.impl;
-
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javax.ejb.Stateless;
 import javax.naming.InitialContext;
 import javax.persistence.NoResultException;
 import javax.sql.DataSource;
-
 import oracle.jdbc.OracleTypes;
-
 import org.apache.log4j.Logger;
-
 import pe.gob.servir.gpa.adm.dao.TipoDAOLocal;
 import pe.gob.servir.gpa.model.dto.EstadoDTO;
 import pe.gob.servir.gpa.model.dto.TipoDTO;
@@ -50,7 +30,8 @@ public class TipoDAOImpl implements TipoDAOLocal {
 	final static Logger log = Logger.getLogger(TipoDAOImpl.class);
 
 	public List<TipoDTO> buscarTipo(Integer identificadorTipoPadre,
-			Integer identificadorEstado) throws Exception {
+			Integer identificadorEstado) throws Exception 
+	{
 		List<TipoDTO> listaTipo = null;
 		TipoDTO tipoDTO = null;		
 		Connection conn = null;
@@ -205,15 +186,24 @@ public class TipoDAOImpl implements TipoDAOLocal {
 				listaTipo.add(tipoDTO);
 			}
 			rs.close();
-		} catch (NoResultException nre) {
+		}
+		catch (NoResultException nre) 
+		{
 			listaTipo = null;
 			log.error(nre.getMessage(), nre);
-		} catch (Exception e) {
+		}
+		catch (Exception e) 
+		{
 			log.error(e.getMessage(), e);
-		} finally {
-			try {
+		}
+		finally 
+		{
+			try 
+			{
 				conn.close();
-			} catch (Exception e) {
+			}
+			catch (Exception e) 
+			{
 				log.error(e.getMessage(), e);
 			}
 		}
@@ -224,7 +214,8 @@ public class TipoDAOImpl implements TipoDAOLocal {
 	//Método que recibe como parámetro un objeto de la clase TipoDTO, el objeto tipoDTO tienes 
 	// los valores seteados para enviarlos como parámetro al store procedure  PKG_TIPO.SP_REGISTRAR_TIPO()
 //	
-	public TipoDTO registrarTipo(TipoDTO tipoDTO) throws Exception {
+	public TipoDTO registrarTipo(TipoDTO tipoDTO) throws Exception 
+	{
 		Connection conn = null;
 		CallableStatement call = null;
 
@@ -277,22 +268,34 @@ public class TipoDAOImpl implements TipoDAOLocal {
 			call.registerOutParameter(7, OracleTypes.INTEGER);
 			call.execute();
 			Integer identificador=(Integer)call.getObject(7);
-				try {
+				try 
+				{
 					tipoDTO.setId(identificador.intValue());
-				} catch (Exception e) {
+				}
+				catch (Exception e) 
+				{
 					log.error(e.getMessage(), e);
 				}
 			
-		} catch (NoResultException nre) {
+		}
+		catch (NoResultException nre) 
+		{
 			tipoDTO = null;
 			log.error(nre.getMessage(), nre);
 
-		} catch (Exception e) {
+		}
+		catch (Exception e) 
+		{
 			log.error(e.getMessage(), e);
-		} finally {
-			try {
+		}
+		finally 
+		{
+			try 
+			{
 				conn.close();
-			} catch (Exception e) {
+			}
+			catch (Exception e) 
+			{
 				log.error(e.getMessage(), e);
 			}
 		}
@@ -301,7 +304,8 @@ public class TipoDAOImpl implements TipoDAOLocal {
 	}
 
 
-	public Boolean actualizarTipo(TipoDTO tipoDTO) throws Exception {
+	public Boolean actualizarTipo(TipoDTO tipoDTO) throws Exception 
+	{
 		
 		Connection conn = null;
 		CallableStatement call = null;
@@ -370,16 +374,25 @@ public class TipoDAOImpl implements TipoDAOLocal {
 			call.execute();
 			//Integer identificador=(Integer)call.getObject(9);
 			
-		} catch (NoResultException nre) {
+		} 
+		catch (NoResultException nre) 
+		{
 			tipoDTO = null;
 			log.error(nre.getMessage(), nre);
 
-		} catch (Exception e) {
+		}
+		catch (Exception e) 
+		{
 			log.error(e.getMessage(), e);
-		} finally {
-			try {
+		}
+		finally 
+		{
+			try 
+			{				
 				conn.close();
-			} catch (Exception e) {
+			}
+			catch (Exception e) 
+			{
 				log.error(e.getMessage(), e);
 			}
 		}
@@ -387,12 +400,6 @@ public class TipoDAOImpl implements TipoDAOLocal {
 	}
 
 
-	// @Override
-	// public List<TipoDTO> buscarTipoPadre() throws Exception {
-	// // TODO Auto-generated method stub
-	// return null;
-	// }
-	
 	
 
 }

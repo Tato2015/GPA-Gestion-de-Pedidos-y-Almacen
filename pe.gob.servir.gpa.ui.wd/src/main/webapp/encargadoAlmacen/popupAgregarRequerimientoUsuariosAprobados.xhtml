@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<h:form id="frmAgregarRequerimientoUsuariosAprobados" class="div_formulario">
+		<p:panelGrid styleClass="columnaOcultar" style="width:100%">
+			<p:row>
+				<p:column>
+					<p:outputLabel value="AGREGAR REQUERIMIENTOS DE USUARIOS" style="font-size:15px !important"/>
+					<p:separator></p:separator>				
+				</p:column>			
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:panelGrid styleClass="columnaOcultar" style="width:100%">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Indicador de Envío al Jefe : "/>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="somIndicadorEnviadoAlJefe" style="width:152px;" disabled="true"
+								value="#{requerimientoAreaBean.requerimientoAreaDTO.indicadorEnviadoAlJefe}">
+									<f:selectItems value="#{requerimientoAreaBean.listaIndicadorEnviadoAlJefe}" var="valor"
+									 itemValue="#{valor.value}" itemLabel="#{valor.description}"/>
+								</p:selectOneMenu>						
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Fecha de Envío al Jefe : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoAreaDTO.fechaEnviadoAlJefe}" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Indicador de Recepción del Jefe : "/>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="somIndicadorRecepcionDelJefe" value="#{requerimientoAreaBean.requerimientoAreaDTO.indicadorRequerimientoRecepcionDelJefe}" style="width:152px;" disabled="true">
+									<f:selectItems value="#{requerimientoAreaBean.listaIndicadorRecepcionDelJefe}" var="valor"
+									itemValue="#{valor.value}" itemLabel="#{valor.description}"/>
+								</p:selectOneMenu>
+							</p:column>										
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Fecha de Recepción del Jefe : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoAreaDTO.fechaRequerimientoRecepcionDelJefe}" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Estado"/>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="somEstado" value="#{requerimientoAreaBean.requerimientoAreaDTO.estado.id}" style="width:152px;" disabled="true">
+									<f:selectItems value="#{requerimientoAreaBean.listaEstado}" var="valor"
+									itemValue="#{valor.value}" itemLabel="#{valor.description}"/>
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Programación : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoAreaDTO.programacion.descripcionProgramacion}" disabled="true"/>
+							</p:column>							
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Área : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoAreaDTO.area.descripcionArea}" style="width:200px;" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Tipo de Pedido de Requerimiento : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoAreaDTO.programacion.tipoPedido.descripcionTipo}" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Tipo de Periodo de Requerimiento : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoAreaDTO.programacion.tipoPeriodo.descripcionTipo}" disabled="true"/>
+							</p:column>
+						</p:row>					
+					</p:panelGrid>					
+				</p:column>
+			</p:row>
+<!-- 			icon="ui-icon-myPdf"  -->
+			<p:row>
+				<p:column style="text-align:center;">		
+					
+					<p:commandButton id="btnIconPdf" image="ui-icon-myPdf" actionListener="#{requerimientoAreaBean.exportarPDF}" ajax="false"
+									 update="buscarRequerimientoEncargadoAlmacen">
+						<p:tooltip for="btnIconPdf" value="Exportar a Pdf"/>
+					</p:commandButton>			
+					<p:commandButton id="btnExportarAPdf" value="Exportar a PDF" actionListener="#{requerimientoAreaBean.exportarPDF}" ajax="false" update="buscarRequerimientoEncargadoAlmacen" styleClass="search">
+						<p:tooltip for="btnExportarAPdf" value="Exportar a Pdf"/>
+					</p:commandButton>
+					
+					<p:commandButton id="btnIconExcel" image="ui-icon-myExcel" actionListener="#{requerimientoAreaBean.exportarAExcel}" ajax="false"
+									 update="buscarRequerimientoEncargadoAlmacen">
+						<p:tooltip for="btnIconExcel" value="Exportar a Excel"/>
+					</p:commandButton>
+					<p:commandButton id="btnExportarAExcel" value="Exportar a Excel" actionListener="#{requerimientoAreaBean.exportarAExcel}" ajax="false" update="buscarRequerimientoEncargadoAlmacen" styleClass="search">
+						<p:tooltip for="btnExportarAExcel" value="Exportar a Excel"/>
+					</p:commandButton>										
+				</p:column>
+			</p:row>	
+			<p:row>
+				<p:column>
+					<p:outputLabel value="LISTA PRODUCTOS DISPONIBLES"/>
+					<p:separator></p:separator>
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+		<p:panelGrid style="width:100%" styleClass="columnaOcultar">
+			<p:row>
+				<p:column>
+					<p:dataTable id="dtRequerimientoUsuario" value="#{requerimientoAreaBean.rowNames}" var="rowName" rowIndexVar="rowIdx">									
+		    						<p:column headerText="">
+			    						<p:outputLabel value="#{rowName}"/>
+			    					</p:column>
+			    					<p:columns var="columnName" value="#{requerimientoAreaBean.colNames}" headerText="#{columnName}" columnIndexVar="colIdx" style="text-align:center;">
+			    						<p:spinner id="minMax"  min="0" max="5" size="1"  maxlength="5" 
+			    								   value="#{requerimientoAreaBean.arregloValoresAreaProducto[0][colIdx]}" disabled="true">																		
+										</p:spinner>									
+			    					</p:columns>			    					
+					</p:dataTable>			
+				</p:column>			
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:outputLabel value="LISTA REQUERIMIENTOS DE LOS USUARIOS"/>
+					<p:separator></p:separator>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:dataTable id="dtRequerimientoUsuarios" value="#{requerimientoAreaBean.rowUsuarios}" var="rowName" rowIndexVar="rowIdx"
+					rows="8" paginator="true" paginatorPosition="bottom" 
+					currentPageReportTemplate="Mostrando de {startRecord} a {endRecord} | Total Registros : {totalRecords}"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+					emptyMessage="Campos vacios"
+					>									
+		    						<p:column headerText="">
+			    						<p:outputLabel value="#{rowName}"/>
+			    					</p:column>
+			    					<p:columns var="columnName" value="#{requerimientoAreaBean.colNames}" headerText="#{columnName}" columnIndexVar="colIdx" style="text-align:center;">
+			    						<p:spinner id="minMaxUsuario"  min="0" max="5" size="1"  maxlength="5" 
+			    								   value="#{requerimientoAreaBean.arregloValoresRequerimientoUsuarios[rowIdx][colIdx]}" disabled="true">																		
+										</p:spinner>									
+			    					</p:columns>			    					
+					</p:dataTable>
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+		
+						
+	</h:form>
+
+
+	
+	
+	
+
+</h:body>
+
+</html>

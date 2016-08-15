@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      > 
+
+<h:head>
+	<link type="text/css" rel="stylesheet" href="#{request.contextPath}/recursos/css/estilos.css"/>
+</h:head> 
+<body id="bodyLogin">
+<!-- 	<p:toolbar style="width:100%;"> -->
+<!-- 			<f:facet name="center" > -->
+<!-- 				<p:graphicImage value="/recursos/images/logo_servir.png" -->
+<!-- 					style="padding-left:50%;" /> -->
+<!-- 			</f:facet> -->
+
+<!-- 			<f:facet name="left"> -->
+<!-- 				<br /> -->
+<!-- 				<h:outputText value="GESTION DE PEDIDOS Y ALMACEN" -->
+<!-- 					style="font-size:15px !important" /> -->
+<!-- 				<br /> -->
+<!-- 			</f:facet> -->
+<!-- 	</p:toolbar> -->
+		
+	<div class="banner">
+		<div class="logo" aria-label="Google">
+			<img src="./recursos/images/logo_servir.png" alt="Logo" />
+		</div>
+	</div>
+	
+
+
+<!--      <p:growl id="growl" life="5000" autoUpdate="true"  escape="false"/> -->
+
+        <h:form id="formPrincipal">    
+            <p:dialog id="idDialog" header="Login" footer="..." width="500" widgetVar="dlg" visible="true" closable="false" showEffect="clip" draggable="false" resizable="false">
+            <p:messages for ="ErrorUsuario" showDetail="true" autoUpdate="true" closable="true" />
+            <p:messages for ="ErrorContrasenia" showDetail="true"  autoUpdate="true" closable="true" />
+            <p:messages for ="ErrorUsuarioContrasenia" showDetail="true"  autoUpdate="true" closable="true" />
+            
+             
+                    <p:panelGrid id="pnlLogin" style="margin: 0 auto" styleClass="columnaOcultar">
+                    	<p:row>
+                    		<p:column>
+                    			<p:outputLabel value="Usuario : " style="font-size:18px !important"/>	
+                    		</p:column>
+                    		<p:column>
+                    			<p:inputText id="txtUsuario" value="#{loginUsuarioBean.usuario}" placeholder="Ingrese su usuario" >                    			
+                    			</p:inputText>	
+                    		</p:column>
+                    	</p:row>
+                    	<p:row>
+                    		<p:column>
+                    			<p:outputLabel value="Contraseña : " style="font-size:18px !important"/>		
+                    		</p:column>
+                    		<p:column>
+                    			<p:password id="txtContrasenia" value="#{loginUsuarioBean.contrasenia}" placeholder="Ingrese su contraseña" />
+                    		</p:column>
+                    	</p:row>
+                        <p:row>
+                        	<p:column style="text-align:center">
+                        		<p:commandButton id="btnLimpiar" value="Limpiar" styleClass="limpiarLogin" style="color:white;font-weight:bold;"
+                        			actionListener="#{loginUsuarioBean.limpiar()}"  update="formPrincipal"/>
+                        		<p:tooltip for="btnLimpiar" value="Limpiar cajas de texto"/>                        		
+                        	</p:column>
+                        	<p:column style="text-align:center">
+                        		<p:commandButton id="btnIniciarSesion" value="Iniciar Sesión" styleClass="limpiarLogin" style="color:white;font-weight:bold;"
+                        			actionListener="#{loginUsuarioBean.getProgress()}" onsuccess="PF('pbAjax').start();PF('startButton1').disable();" widgetVar="startButton1"/> 
+                        		<p:tooltip for="btnIniciarSesion" value="Iniciar sesión"/>
+                        	</p:column>
+                        </p:row>
+                                                                                                                           
+                    </p:panelGrid>
+                    <p:progressBar widgetVar="pbAjax" ajax="true" value="#{loginUsuarioBean.progress}" style="width:460px">
+                    	<p:ajax event="complete" listener="#{loginUsuarioBean.validarUsuario()}" oncomplete="PF('startButton1').enable();"/>
+                    </p:progressBar>            
+					<p:commandLink id="ajax" update="idDialog" style="float:right;text-decoration:none;">
+						<h:outputText value="¿Olvidaste tu contraseña?" style="font-weight:bold;color:skyblue;"/>
+					</p:commandLink>
+            </p:dialog>
+        </h:form>                              
+</body> 
+</html>

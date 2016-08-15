@@ -1,6 +1,5 @@
 pe\gob\servir\gpa\model\dto\DetalleProductoUsuarioDTO.class
 pe\gob\servir\gpa\model\dto\ProgramacionDTO.class
-pe\gob\servir\gpa\model\dto\PadreDTO.class
 pe\gob\servir\gpa\model\dto\AuditoriaDTO.class
 pe\gob\servir\gpa\model\dto\TipoDTO.class
 pe\gob\servir\gpa\model\dto\DetalleRequerimientoUsuarioDTO.class

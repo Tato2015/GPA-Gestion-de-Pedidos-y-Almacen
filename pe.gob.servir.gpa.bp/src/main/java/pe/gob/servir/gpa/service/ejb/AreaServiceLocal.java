@@ -8,3 +8,4 @@ public interface AreaServiceLocal {
 //	public AreaDTO obtenerArea(Integer identificadorArea) throws Exception;
 
 }
+

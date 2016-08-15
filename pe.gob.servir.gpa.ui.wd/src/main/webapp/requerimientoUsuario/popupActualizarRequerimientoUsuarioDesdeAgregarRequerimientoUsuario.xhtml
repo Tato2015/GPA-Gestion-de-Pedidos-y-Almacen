@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<h:form id="frmActualizarRequerimientoUsuarioDesdeAgregarRequerimientoUsuario" class="div_formulario">
+		<p:panelGrid styleClass="columnaOcultar" style="width:100%">
+			<p:row>
+				<p:column>
+					<p:outputLabel value="DETALLES DEL REQUERIMIENTO DE USUARIO" style="font-size:18px !important"/>
+					<p:separator></p:separator>				
+				</p:column>				
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:panelGrid styleClass="columnaOcultar" style="width:100%">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Programación : "/>							
+							</p:column>
+							<p:column>							
+							<p:inputText value="#{requerimientoUsuarioBean.programacionDTO.descripcionProgramacion}" disabled="true"/>
+							</p:column>
+							<p:column style="width:200px">
+								<p:outputLabel value="Tipo de Pedido : "/>
+							</p:column>	
+							<p:column>
+								<p:inputText value="#{requerimientoUsuarioBean.programacionDTO.tipoPedido.descripcionTipo}" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Tipo de Periodo : "/>
+							</p:column>	
+							<p:column>
+								<p:inputText value="#{requerimientoUsuarioBean.programacionDTO.tipoPeriodo.descripcionTipo}" disabled="true"/>
+							</p:column>						
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Usuario : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoUsuarioBean.requerimientoUsuarioDTO.usuario.descripcionUsuario}" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Area : "/>
+							</p:column>
+							<p:column style="width:400px">
+								<p:inputText style="width:400px" value="#{requerimientoUsuarioBean.usuarioDTO.area.descripcionArea}" disabled="true"/>
+							</p:column>							
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Id Requerimiento : " />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoUsuarioBean.requerimientoUsuarioDTO.id}" disabled="true"/>
+							</p:column>
+						
+							<p:column>
+								<p:outputLabel value="Fecha de Envío al Encargado : "/>
+							</p:column>
+							<p:column>							
+								<p:calendar id="calFechaInicio" showOn="button" disabled="true"  								
+								pattern="dd/MM/yyyy" required="true" value="#{requerimientoUsuarioBean.requerimientoUsuarioDTO.fechaEnviadoAlEncargado}">																	
+								</p:calendar>								
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Fecha de Recepción del Encargado : "/>								
+							</p:column>
+							<p:column>								
+								<p:calendar id="calFechaFin" showOn="button" disabled="true"  								
+								pattern="dd/MM/yyyy" required="true" value="#{requerimientoUsuarioBean.requerimientoUsuarioDTO.fechaRequerimientoRecibidoDelEncargado}">																	
+								</p:calendar>								
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+					
+					<br></br>
+					<p:outputLabel value="Area / Productos Disponibles" style="font-size:15px !important"/>
+					<p:separator></p:separator>
+					
+					<p:panelGrid style="text-align:center;" styleClass="columnaOcultar">
+						<p:row>
+							<p:column>
+								<p:dataTable id="dtRequerimientoUsuario" value="#{requerimientoUsuarioBean.rowNames}" var="rowName" rowIndexVar="rowIdx">									
+		    						<p:column headerText="">
+			    						<p:outputLabel value="#{rowName}"/>
+			    					</p:column>
+			    					<p:columns var="columnName" value="#{requerimientoUsuarioBean.colNames}" headerText="#{columnName}" columnIndexVar="colIdx" >
+			    						<p:spinner id="minMax"  min="0" max="5" size="1"  maxlength="5" disabled="true" 
+			    								   value="#{requerimientoUsuarioBean.arregloValoresAreaProducto[0][colIdx]}">																		
+										</p:spinner>									
+			    					</p:columns>
+								</p:dataTable>
+							</p:column>
+						</p:row>
+					</p:panelGrid>					
+				</p:column>								
+			</p:row>
+		</p:panelGrid>
+	</h:form>		
+	
+
+</h:body>
+
+</html>

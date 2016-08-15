@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/template/layout.xhtml">
+	<ui:define name="content">
+		<h:body>			
+			<h:form id="idBuscarAprobacionJefe" styleClass="columnaOcultar">
+				<p:panelGrid style="width:100%">
+				<p:row>
+					<p:column>
+						<p:outputLabel value="APROBACIÓN DEL JEFE" style="font-size:18px!important"/>
+						<p:separator></p:separator>
+					</p:column>								
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:fieldset legend="Criterios de Búsqueda">
+							<p:panelGrid style="width:100%" styleClass="columnaOcultar">
+								<p:row>
+									<p:column>
+										<p:outputLabel value="Id del Requerimiento del Área :"/>
+									</p:column>
+									<p:column>
+										<p:inputText value="#{requerimientoAreaBean.requerimientoAreaId}"/>
+									</p:column>
+									<p:column>
+										<p:outputLabel value="Indicador de Enviado al Jefe : "/>
+									</p:column>
+									<p:column>
+										<p:inputText value="#{requerimientoAreaBean.indicadorEnvioAlJefe}"/>
+									</p:column>									
+								</p:row>								
+								<p:row>
+									<p:column>
+										<p:outputLabel value="Id del Área : "/>
+									</p:column>
+									<p:column>
+										<p:inputText value="#{requerimientoAreaBean.areaId}"/>
+									</p:column>
+									<p:column>
+										<p:outputLabel value="Indicador de Recepción del Jefe :"/>
+									</p:column>
+									<p:column>
+										<p:inputText value="#{requerimientoAreaBean.indicadorRecepcionDelJefe}"/>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:outputLabel value="Id de la Programación : "/>
+									</p:column>
+									<p:column>
+										<p:inputText value="#{requerimientoAreaBean.programacionId}"/>
+									</p:column>
+								</p:row>
+							</p:panelGrid>																			
+						</p:fieldset>					
+					</p:column>				
+				</p:row>				
+			</p:panelGrid>
+			
+			<p:messages for ="ErrorDevolucionRequerimientoArea" showDetail="true" autoUpdate="true" closable="true" />						
+			<p:messages for ="ErrorDetalleAprobacionRequerimientoJefe" showDetail="true" autoUpdate="true" closable="true" />
+			<p:messages for ="ErrorDetalleAprobacionRequerimientoJefeNulo" showDetail="true" autoUpdate="true" closable="true" />
+			
+<!-- 			<p:messages for ="RequerimientoAreaEnviadoAlJefe" showDetail="true" autoUpdate="true" closable="true" /> -->
+<!-- 			<p:messages for ="RequerimientoAreaEnviadoAlJefeDesdeActualizar" showDetail="true" autoUpdate="true" closable="true" /> -->
+			
+			
+			
+			<p:panelGrid style="width:100%">
+				<p:row>
+					<p:column style="text-align:right;">
+						<p:commandButton id="btnBuscar" value="BUSCAR" styleClass="search" action="#{requerimientoAreaBean.buscarRequerimientoAreaJefe()}"
+						update="dtListaRequerimientosArea"/>
+						<p:tooltip for="btnBuscar" value="Buscar"/>
+						<p:commandButton id="btnLimpiar" value="LIMPIAR" styleClass="search" action="#{requerimientoAreaBean.limpiar()}" 
+						update="idBuscarAprobacionJefe"/>
+						<p:tooltip for="btnLimpiar" value="Limpiar"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:dataTable id="dtListaRequerimientosArea" value="#{requerimientoAreaBean.listaRequerimientoAreaJefe}"  paginator="true"
+								rows="8" paginatorPosition="bottom" rowIndexVar="posicion" var="valor" 
+								currentPageReportTemplate="Mostrando de {startRecord} a {endRecord} | Total Registros : {totalRecords}"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+								emptyMessage="Campos vacios">
+					<p:column headerText="Id" style="text-align:center;">
+						<p:outputLabel value="#{valor.id}"></p:outputLabel>
+					</p:column>
+					<p:column headerText="Descripción del Área" style="text-align:center;">
+						<p:outputLabel value="#{valor.area.descripcionArea}"></p:outputLabel>
+					</p:column>
+					<p:column headerText="Programación" style="text-align:center;">
+						<p:outputLabel value="#{valor.programacion.descripcionProgramacion}"></p:outputLabel>
+					</p:column>
+					<p:column headerText="Fecha de Envío al Jefe" style="text-align:center;">
+						<p:outputLabel value="#{valor.fechaEnviadoAlJefe}"/>
+					</p:column>
+					<p:column headerText="Enviado al Jefe" style="text-align:center;">
+						<p:outputLabel value="#{requerimientoAreaBean.obtenerStringIndicadorEnviadoAlJefe(valor.indicadorEnviadoAlJefe)}"/>											
+					</p:column>
+					<p:column headerText="Recepción del Jefe" style="text-align:center;">
+						<p:outputLabel value="#{requerimientoAreaBean.obtenerStringIndicadorRecepcionDelJefe(valor.indicadorRequerimientoRecepcionDelJefe)}"/>						
+					</p:column>
+					<p:column headerText="Acciones" style="text-align:center;">
+						<p:commandButton id="btnDetalle" icon="ui-icon-pencil" action="#{requerimientoAreaBean.abrirPopupDetallesRequerimientoAreaDesdeAprobacionJefe(posicion)}"
+						update="@([id$=frmDetalleRequerimientoArea])">		
+							<p:ajax update="@([id$=frmDetalleRequerimientoArea])" resetValues="true"></p:ajax>															
+						</p:commandButton>
+						<p:tooltip for="btnDetalle" value="Detalles"></p:tooltip>
+												
+						<p:commandButton id="btnAgregarRequerimientoUsuario" icon="ui-icon-gear" action="#{requerimientoAreaBean.abrirPopupAgregarRequerimientoUsuariosDesdeAprobacionJefe(posicion)}"
+						update=":frmAgregarRequerimientoUsuariosDesdeAprobacionJefe">
+						</p:commandButton>
+						<p:tooltip for="btnAgregarRequerimientoUsuario" value="Agregar Requerimiento de Usuario"></p:tooltip>
+
+						<p:commandButton id="btnDetalleAprobacionJefe" icon="ui-icon-info" action="#{requerimientoAreaBean.abrirDialogoDetalleAprobacionJefe(posicion)}"
+						update=" :idBuscarAprobacionJefe :frmDetalleRequerimientoAprobacionJefe"/>
+						<p:tooltip for="btnDetalleAprobacionJefe" value="Detalles de Aprobación del Jefe" />
+					</p:column>								
+				</p:dataTable>
+				
+				
+			</h:form>
+			
+			<p:dialog id="dialogoDetalleRequerimientoUsuarioDesdeAprobacionJefe" width="90%" 
+				widgetVar="dialogoDetalleRequerimientoUsuarioDesdeAprobacionJefe" closable="true"
+				resizable="false" showEffect="puff" modal="true"  				
+				styleClass="ui-dialog-medium">
+				<ui:include src="/requerimientoArea/popupDetalleRequerimientoArea.xhtml" />
+			</p:dialog>
+			
+			<p:dialog id="dialogoAgregarRequerimientoUsuariosDesdeAprobacionJefe" width="90%" 
+				widgetVar="dialogoAgregarRequerimientoUsuariosDesdeAprobacionJefe" closable="true"
+				resizable="false" showEffect="puff" modal="true"  				
+				styleClass="ui-dialog-medium">
+				<ui:include src="popupAgregarRequerimientoUsuariosAprobacionJefe.xhtml" />
+				<p:ajax event="close" listener="#{requerimientoAreaBean.limpiarAgregarRequerimientoUsuarios()}"
+				update=":frmAgregarRequerimientoUsuariosDesdeAprobacionJefe"/>
+			</p:dialog>
+			
+			<p:dialog id="dialogoActualizarRequerimientoUsuarioDesdeAprobacionJefe" width="90%" 
+				widgetVar="dialogoActualizarRequerimientoUsuarioDesdeAprobacionJefe" closable="true"
+				resizable="false" showEffect="puff" modal="true"  				
+				styleClass="ui-dialog-medium">
+				<ui:include src="/requerimientoUsuario/popupActualizarRequerimientoUsuarioDesdeAgregarRequerimientoUsuario.xhtml" />
+				<p:ajax event="close" listener="#{requerimientoUsuarioBean.limpiarCabecerasTabla()}"
+				update=":frmActualizarRequerimientoUsuarioDesdeAgregarRequerimientoUsuario"/>
+			</p:dialog>		
+			
+	
+			<p:dialog id="dialogoDetalleAprobacionJefe" width="90%" 
+				widgetVar="dialogoDetalleAprobacionJefe" closable="true"
+				resizable="false" showEffect="puff" modal="true"  				
+				styleClass="ui-dialog-medium">
+				<ui:include src="popupDetalleRequerimientoAprobacionJefe.xhtml" />
+			</p:dialog>			
+			
+			
+			
+			
+			
+			
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>

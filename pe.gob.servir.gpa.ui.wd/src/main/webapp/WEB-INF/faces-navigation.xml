@@ -8,9 +8,23 @@
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>Inicio</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		
+<!-- 		<from-outcome>Inicio</from-outcome> -->
+		<navigation-case>
+			<from-outcome>VistaMenu</from-outcome>
 			<to-view-id>/template/bandejaPrincipal.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>		
+		
+		<navigation-case>
+			<from-outcome>VistaArea</from-outcome>
+			<to-view-id>/requerimientoArea/requerimientoArea.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
 		
 		<navigation-case>
 			<from-outcome>VistaPersona</from-outcome>
@@ -25,15 +39,13 @@
 		</navigation-case>
 		
 		<navigation-case>
-			<from-outcome>VistaUsuarioSuministro
-		</from-outcome>
+			<from-outcome>VistaUsuarioSuministro</from-outcome>
 			<to-view-id>/requerimientoUsuario/requerimientoUsuarioSuministro.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		
 		<navigation-case>
-			<from-outcome>VistaUsuarioExtraordinario
-		</from-outcome>
+			<from-outcome>VistaUsuarioExtraordinario</from-outcome>
 			<to-view-id>/requerimientoUsuario/requerimientoUsuarioExtraordinario.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
@@ -41,43 +53,54 @@
 		
 		
 		<navigation-case>
-			<from-outcome>VistaAreaSuministro
-		</from-outcome>
+			<from-outcome>VistaAreaSuministro</from-outcome>
 			<to-view-id>/requerimientoArea/requerimientoAreaSuministro.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	
 		<navigation-case>
-			<from-outcome>VistaAreaComestible
-		</from-outcome>
+			<from-outcome>VistaAreaComestible</from-outcome>
 			<to-view-id>/requerimientoUsuario/requerimientoAreaComestible.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	<navigation-case>
-			<from-outcome>VistaAprobacionJefe
-		</from-outcome>
-			<to-view-id>/aprobacionJefe/aprobacionJefeBuscar.xhtml</to-view-id>
+			<from-outcome>VistaAprobacionJefe</from-outcome>
+			<to-view-id>/aprobacionJefe/buscarAprobacionJefe.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	
 	<navigation-case>
-			<from-outcome>VistaProgramacion
-		</from-outcome>
+			<from-outcome>VistaProgramacion</from-outcome>
 			<to-view-id>/administracion/programacion/BuscarProgramacion.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	<navigation-case>
-			<from-outcome>VistaProducto
-		</from-outcome>
+			<from-outcome>VistaProducto</from-outcome>
 			<to-view-id>/administracion/producto/BuscarProducto.xhtml</to-view-id>
 			<redirect />
 	</navigation-case>
+	
 	<navigation-case>
-			<from-outcome>VistaTipo
-		</from-outcome>
+			<from-outcome>VistaTipo</from-outcome>
 			<to-view-id>/administracion/tipo/BuscarTipo.xhtml</to-view-id>
 			<redirect />
 	</navigation-case>
+	
+	<navigation-case>
+			<from-outcome>VistaAlmacen</from-outcome>
+			<to-view-id>/almacen/BuscarRequerimientoJefeAlmacen.xhtml</to-view-id>
+			<redirect />
+	</navigation-case>
+	
+	<navigation-case>
+			<from-outcome>VistaEncargadoAlmacen</from-outcome>
+			<to-view-id>/encargadoAlmacen/BuscarRequerimientoEncargadoAlmacen.xhtml</to-view-id>
+			<redirect />
+	</navigation-case>
+	
+
+	
+	
 	
 	</navigation-rule>
 </faces-config>

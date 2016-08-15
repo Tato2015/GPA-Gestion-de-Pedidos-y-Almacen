@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<h:form id="frmNuevoRequerimientoUsuario" class="div_formulario">
+		<p:panelGrid styleClass="columnaOcultar" style="width:100%">
+			<p:row>
+				<p:column>
+					<p:outputLabel value="NUEVO REQUERIMIENTO DE USUARIO" style="font-size:18px !important"/>
+					<p:separator></p:separator>				
+				</p:column>				
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:panelGrid styleClass="columnaOcultar" style="width:100%">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Programación : "/>							
+							</p:column>
+							<p:column>							
+							<p:inputText value="#{requerimientoUsuarioBean.programacionDTO.descripcionProgramacion}" disabled="true"/>
+							</p:column>
+							<p:column style="width:200px">
+								<p:outputLabel value="Tipo de Pedido : "/>
+							</p:column>	
+							<p:column>
+								<p:inputText value="#{requerimientoUsuarioBean.programacionDTO.tipoPedido.descripcionTipo}" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Tipo de Periodo : "/>
+							</p:column>	
+							<p:column>
+								<p:inputText value="#{requerimientoUsuarioBean.programacionDTO.tipoPeriodo.descripcionTipo}" disabled="true"/>
+							</p:column>						
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Usuario : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoUsuarioBean.usuarioDTO.descripcionUsuario}" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Area : "/>
+							</p:column>
+							<p:column style="width:400px">
+								<p:inputText style="width:400px" value="#{requerimientoUsuarioBean.usuarioDTO.area.descripcionArea}" disabled="true"/>
+							</p:column>							
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Fecha de Inicio : "/>
+							</p:column>
+							<p:column>							
+								<p:calendar id="calFechaInicio" showOn="button" disabled="true"  								
+								pattern="dd/MM/yyyy" required="true" value="#{requerimientoUsuarioBean.programacionDTO.fechaInicioRegistro}">																	
+								</p:calendar>								
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Fecha de Fin : "/>								
+							</p:column>
+							<p:column>								
+								<p:calendar id="calFechaFin" showOn="button" disabled="true"  								
+								pattern="dd/MM/yyyy" required="true" value="#{requerimientoUsuarioBean.programacionDTO.fechaFinRegistro}">																	
+								</p:calendar>								
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+					
+					<br></br>
+					<p:outputLabel value="Area / Productos Disponibles" style="font-size:15px !important"/>
+					<p:separator></p:separator>
+					
+					<p:panelGrid style="text-align:center;" styleClass="columnaOcultar">
+						<p:row>
+							<p:column>
+								<p:dataTable id="dtRequerimientoUsuario" value="#{requerimientoUsuarioBean.rowNames}" var="rowName" rowIndexVar="rowIdx">									
+		    						<p:column headerText="">
+			    						<p:outputLabel value="#{rowName}"/>
+			    					</p:column>
+			    					<p:columns var="columnName" value="#{requerimientoUsuarioBean.colNames}" headerText="#{columnName}" columnIndexVar="colIdx" >
+			    						<p:spinner id="minMax"  min="0" max="5" size="1"  maxlength="5" 
+			    								   value="#{requerimientoUsuarioBean.arregloValoresAreaProducto[0][colIdx]}">																		
+										</p:spinner>									
+			    					</p:columns>
+								</p:dataTable>
+							</p:column>
+						</p:row>
+					</p:panelGrid>					
+				</p:column>								
+			</p:row>
+		</p:panelGrid>
+		
+		<br></br>
+		<p:separator></p:separator>
+		<br></br>
+		<p:panelGrid styleClass="columnaOcultar" style="width:100%">
+			<p:row>
+				<p:column style="text-align:center;">
+					<p:commandButton id="btnGuardar" value="Guardar" styleClass="search" style="font-size:12px !important"
+					action="#{requerimientoUsuarioBean.mensajeConfirmacionNuevoGuardar()}"/>
+					<p:tooltip for="btnGuardar" value="Almacena el requerimiento pero no lo envía al encargado de área"></p:tooltip>					
+					<p:commandButton id="btnRegistrar" value="Registrar" styleClass="search" style="font-size:12px !important"
+					action="#{requerimientoUsuarioBean.mensajeConfirmacionNuevoRegistrar()}" update="frmNuevoRequerimientoUsuario"					
+					/>
+					<p:tooltip for="btnRegistrar" value="Almacena el requerimiento y envía al encargado de área."></p:tooltip>
+					<p:commandButton id="btnCancelar" value="Cancelar" onclick="PF('dialogoNuevoRequerimientoUsuario').hide();"  
+						styleClass="search" style="font-size:12px !important"/>
+					<p:tooltip for="btnCancelar" value="Cancelar"></p:tooltip>
+					
+				</p:column>
+			</p:row>
+		</p:panelGrid>			
+	</h:form>
+	
+	<p:dialog id="popupConfirmarNuevoGuardar" widgetVar="popupConfirmarNuevoGuardar"
+		closable="false" resizable="false"
+		header="#{rbgpaUI['gpa.ui.general.titulo.mensaje.aviso']}"
+		width="350px" height="80px" modal="true" appendTo="@(body)">
+		<p:growl id="growl1" showDetail="true" sticky="true" />
+		<h:panelGrid columns="2" style="width:100%; height:60%">
+			<p:graphicImage value="/recursos/images/warning.png" width="20px"
+				style="padding-right: 10px" height="20px" />					
+			<p:outputLabel value="#{rbgpaUI['gpa.ui.general.mensaje.alerta.registrar.label']}" />
+		</h:panelGrid>
+
+		<h:panelGrid columns="2" style="width:100%;" height="20px">
+			<h:panelGroup style="display:block;text-align:center;">
+				<p:commandButton style="margin-right: 5px;"
+					value="#{rbgpaUI['gpa.ui.general.boton.aceptar.label']}"
+					icon="ui-icon-check" 
+					actionListener="#{requerimientoUsuarioBean.registrarRequerimientoUsuarioProducto(0)}"
+					update="@([id$=dtRequerimientoUsuario]) growl1"
+					onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+
+				<p:commandButton style="margin-left: 5px;"
+					onstart="PF('statusDialog').show();"
+					onsuccess="PF('statusDialog').hide();"
+					value="#{rbgpaUI['gpa.ui.general.boton.cancelar.label']}"
+					onclick="PF('popupConfirmarNuevoGuardar').hide();" icon="ui-icon-cancel" />
+			</h:panelGroup>
+
+		</h:panelGrid>
+
+	</p:dialog>
+	
+	
+	<p:dialog id="popupConfirmarNuevoRegistrar" widgetVar="popupConfirmarNuevoRegistrar"
+		closable="false" resizable="false"
+		header="#{rbgpaUI['gpa.ui.general.titulo.mensaje.aviso']}"
+		width="350px" height="80px" modal="true" appendTo="@(body)">
+		<p:growl id="growl2" showDetail="true" sticky="true" />
+		<h:panelGrid columns="2" style="width:100%; height:60%">
+			<p:graphicImage value="/recursos/images/warning.png" width="20px"
+				style="padding-right: 10px" height="20px" />					
+			<p:outputLabel value="#{rbgpaUI['gpa.ui.general.mensaje.alerta.registrar.label']}" />
+		</h:panelGrid>
+
+		<h:panelGrid columns="2" style="width:100%;" height="20px">
+			<h:panelGroup style="display:block;text-align:center;">
+				<p:commandButton style="margin-right: 5px;"
+					value="#{rbgpaUI['gpa.ui.general.boton.aceptar.label']}"
+					icon="ui-icon-check" 
+					actionListener="#{requerimientoUsuarioBean.registrarRequerimientoUsuarioProducto(1)}"
+					update="@([id$=dtRequerimientoUsuario]) growl2"
+					onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+
+				<p:commandButton style="margin-left: 5px;"
+					onstart="PF('statusDialog').show();"
+					onsuccess="PF('statusDialog').hide();"
+					value="#{rbgpaUI['gpa.ui.general.boton.cancelar.label']}"
+					onclick="PF('popupConfirmarNuevoRegistrar').hide();" icon="ui-icon-cancel" />
+			</h:panelGroup>
+
+		</h:panelGrid>
+
+	</p:dialog>
+	
+	
+
+</h:body>
+
+</html>

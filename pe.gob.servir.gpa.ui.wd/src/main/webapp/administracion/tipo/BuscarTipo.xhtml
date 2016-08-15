@@ -9,7 +9,7 @@
 <ui:composition template="/template/layout.xhtml">
 	<ui:define name="content">
 		<h:body>
-			<h:form id="buscarTipo" styleClass="columnaOcultar">
+			<h:form id="buscarTipo" styleClass="columnaOcultar formulario">
 				<p:panelGrid id="pnlGeneral" layout="grid" 
 				styleclass="columnaOcultar" 
 				style="border: hidden;width:100%" >
@@ -53,8 +53,7 @@
 								</p:panelGrid>	
 							</p:fieldset>									
 						</p:column>					
-					</p:row>
-					
+					</p:row>					
 					<p:row>
 						<p:column colspan="2" style="text-align:right;"> 
 							<p:commandButton id="btnBuscar" value="BUSCAR" action="#{tipoBean.buscarTipo()}" update="dtListaTipo" style="font-size:15px !important;" styleClass="search" />
@@ -70,7 +69,7 @@
 					<p:row>
 						<p:column colspna="6">
 							<p:dataTable value="#{tipoBean.listaTipo}" id="dtListaTipo" styleClass="columnaOcultar"
-								paginator="true" rows="8" paginatorPosition="bottom"
+								paginator="true" rows="5" paginatorPosition="bottom"
 								rowIndexVar="posicion" var="valor"  
 								currentPageReportTemplate="Mostrando de {startRecord} a {endRecord} | Total Registros : {totalRecords}"
 								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "

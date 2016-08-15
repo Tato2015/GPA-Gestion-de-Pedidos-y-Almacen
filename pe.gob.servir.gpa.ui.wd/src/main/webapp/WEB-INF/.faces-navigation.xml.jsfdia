@@ -2,64 +2,71 @@
 <PROCESS model-entity="JSFProcess">
  <PROCESS-ITEM NAME="rules:*" PATH="*" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:*:0" NAME="item" PATH="*" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="Inicio::#template#bandejaPrincipal.xhtml"
-    NAME="output" PATH="/template/bandejaPrincipal.xhtml"
-    TARGET="rules:#template#bandejaPrincipal.xhtml" TITLE="Inicio" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="Inicio::#index.xhtml" NAME="output"
+    PATH="/index.xhtml" TARGET="rules:#index.xhtml" TITLE="Inicio" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="VistaMenu::#template#bandejaPrincipal.xhtml"
+    NAME="output1" PATH="/template/bandejaPrincipal.xhtml"
+    TARGET="rules:#template#bandejaPrincipal.xhtml" TITLE="VistaMenu" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="VistaPersona::#mantenimiento#Administracion_Persona.xhtml"
-    NAME="output1" PATH="/mantenimiento/Administracion_Persona.xhtml"
+    NAME="output2" PATH="/mantenimiento/Administracion_Persona.xhtml"
     TARGET="rules:#mantenimiento#Administracion_Persona.xhtml"
     TITLE="VistaPersona" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="VistaAdministrarUsuario::#mantenimiento#Administracion_Usuario.xhtml"
-    NAME="output2" PATH="/mantenimiento/Administracion_Usuario.xhtml"
+    NAME="output3" PATH="/mantenimiento/Administracion_Usuario.xhtml"
     TARGET="rules:#mantenimiento#Administracion_Usuario.xhtml"
     TITLE="VistaAdministrarUsuario" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="VistaUsuarioSuministro::#requerimientoUsuario#requerimientoUsuarioSuministro.xhtml"
-    NAME="output3"
+    NAME="output4"
     PATH="/requerimientoUsuario/requerimientoUsuarioSuministro.xhtml"
     TARGET="rules:#requerimientoUsuario#requerimientoUsuarioSuministro.xhtml"
     TITLE="VistaUsuarioSuministro" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="VistaUsuarioExtraordinario::#requerimientoUsuario#requerimientoUsuarioExtraordinario.xhtml"
-    NAME="output4"
+    NAME="output5"
     PATH="/requerimientoUsuario/requerimientoUsuarioExtraordinario.xhtml"
     TARGET="rules:#requerimientoUsuario#requerimientoUsuarioExtraordinario.xhtml"
     TITLE="VistaUsuarioExtraordinario" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="VistaAreaSuministro::#requerimientoArea#requerimientoAreaSuministro.xhtml"
-    NAME="output5"
+    NAME="output6"
     PATH="/requerimientoArea/requerimientoAreaSuministro.xhtml"
     TARGET="rules:#requerimientoArea#requerimientoAreaSuministro.xhtml"
     TITLE="VistaAreaSuministro" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="VistaAreaComestible::#requerimientoUsuario#requerimientoAreaComestible.xhtml"
-    NAME="output6"
+    NAME="output7"
     PATH="/requerimientoUsuario/requerimientoAreaComestible.xhtml"
     TARGET="rules:#requerimientoUsuario#requerimientoAreaComestible.xhtml"
     TITLE="VistaAreaComestible" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="VistaAprobacionJefe::#aprobacionJefe#aprobacionJefeBuscar.xhtml"
-    NAME="output7" PATH="/aprobacionJefe/aprobacionJefeBuscar.xhtml"
-    TARGET="rules:#aprobacionJefe#aprobacionJefeBuscar.xhtml"
+    ID="VistaAprobacionJefe::#aprobacionJefe#buscarAprobacionJefe.xhtml"
+    NAME="output8" PATH="/aprobacionJefe/buscarAprobacionJefe.xhtml"
+    TARGET="rules:#aprobacionJefe#buscarAprobacionJefe.xhtml"
     TITLE="VistaAprobacionJefe" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="VistaProgramacion::#administracion#programacion#BuscarProgramacion.xhtml"
-    NAME="output8"
+    NAME="output9"
     PATH="/administracion/programacion/BuscarProgramacion.xhtml"
     TARGET="rules:#administracion#programacion#BuscarProgramacion.xhtml"
     TITLE="VistaProgramacion" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="VistaProducto::#administracion#producto#BuscarProducto.xhtml"
-    NAME="output9" PATH="/administracion/producto/BuscarProducto.xhtml"
+    NAME="output10" PATH="/administracion/producto/BuscarProducto.xhtml"
     TARGET="rules:#administracion#producto#BuscarProducto.xhtml"
     TITLE="VistaProducto" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="VistaTipo::#administracion#tipo#BuscarTipo.xhtml"
-    NAME="output10" PATH="/administracion/tipo/BuscarTipo.xhtml"
+    NAME="output11" PATH="/administracion/tipo/BuscarTipo.xhtml"
     TARGET="rules:#administracion#tipo#BuscarTipo.xhtml"
     TITLE="VistaTipo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="VistaAlmacen::#almacen#BuscarRequerimientoJefeAlmacen.xhtml"
+    NAME="output12" PATH="/almacen/BuscarRequerimientoJefeAlmacen.xhtml"
+    TARGET="rules:#almacen#BuscarRequerimientoJefeAlmacen.xhtml"
+    TITLE="VistaAlmacen" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#template#bandejaPrincipal.xhtml"
@@ -84,8 +91,6 @@
   NAME="rules:#requerimientoUsuario#requerimientoAreaComestible.xhtml"
   PATH="/requerimientoUsuario/requerimientoAreaComestible.xhtml"
   SHAPE="304,401,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#aprobacionJefe#aprobacionJefeBuscar.xhtml"
-  PATH="/aprobacionJefe/aprobacionJefeBuscar.xhtml" SHAPE="304,433,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#administracion#tipo#BuscarTipo.xhtml"
   PATH="/administracion/tipo/BuscarTipo.xhtml" SHAPE="304,465,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM
@@ -96,4 +101,18 @@
   NAME="rules:#administracion#programacion#BuscarProgramacion.xhtml"
   PATH="/administracion/programacion/BuscarProgramacion.xhtml"
   SHAPE="304,465,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#requerimientoArea#requerimientoArea.xhtml"
+  PATH="/requerimientoArea/requerimientoArea.xhtml" SHAPE="304,465,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#aprobacionJefe#buscarAprobacionJefe.xhtml"
+  PATH="/aprobacionJefe/buscarAprobacionJefe.xhtml" SHAPE="304,465,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#almacen#BuscarRequerimientoJefeAlmacen.xhtml"
+  PATH="/almacen/BuscarRequerimientoJefeAlmacen.xhtml"
+  SHAPE="304,497,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#encargadoAlmacen#BuscarRequerimientoEncargadoAlmacen.xhtml"
+  PATH="/encargadoAlmacen/BuscarRequerimientoEncargadoAlmacen.xhtml"
+  SHAPE="304,529,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#index.xhtml" PATH="/index.xhtml"
+  SHAPE="304,529,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

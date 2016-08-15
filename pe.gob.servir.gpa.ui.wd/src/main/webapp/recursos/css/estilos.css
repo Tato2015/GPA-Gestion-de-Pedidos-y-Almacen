@@ -50,11 +50,11 @@ form {
 }
 
 #left {
-	position: absolute;
+	position: block;
 	left: 10px;
 	top: 134px;
 	width: 180px;
-	background-color: #FFFFFF;
+	background-color: black;
 	border: 2px none #666666;
 }
 
@@ -84,16 +84,17 @@ form {
 }
 
 #right {
-	position: absolute;
+	position: block;
 	right: 10px;
 	top: 134px;
 	width: 200px;
 	border: 2px solid #666666;
 	background-color: #FFFFCC;
 	padding-right: 5px;
-	padding-left: 5px;
+	padding-left: 10px;
 	padding-bottom: 10px;
-	padding-top: 5px;
+	padding-top: 5px;	
+	text-align:right;
 }
 
 #footer {
@@ -155,7 +156,7 @@ form {
 
 #menu .ui-widget-content {
 	color: black;
-	background: white;
+	background: red;
 	font-size: 13px;
 }
 
@@ -290,12 +291,12 @@ form {
 }
 
 .ui-widget,.ui-widget .ui-widget {
-	font-size: 10px !important;
+	/*font-size: 10px !important;*/
 }
 
 .ui-widget .ui-calendar {
 	background: yellow;
-	background-image: url(#{               resource [                      
+	background-image: url(#{resource [                      
 		      'images:country_flag.gif' ]
 }
 
@@ -477,3 +478,219 @@ padding-bottom: 10px;
 
 /* CONTROLES DE FORMULARIOS: INICIO */
 
+/*ICONOS//background-position: center !important;*/
+.ui-icon-myPdf{
+    background-image: url('../../Icons/pdf_64x64.png') !important;
+    background-size:cover;   
+}
+
+.ui-icon-myExcel{
+    background-image: url('../../Icons/excel_64x64.png') !important;
+    background-size:cover;   
+}
+
+.ui-icon-myWord{
+    background-image: url('../../Icons/word_64x64.png') !important;
+    background-size:cover;   
+}
+
+.ui-icon-entregaReporte{
+    background-image: url('../../Icons/entregaReporte_64x64.png') !important;
+    background-size:cover;   
+}
+
+
+.pnlLoginUsuario
+{
+	margin :0 auto;	
+}
+
+
+.ui-dialog .ui-dialog-content
+{
+	padding-top :20px;
+}
+
+.ui-widget, .ui-widget .ui-widget
+{
+	
+}
+
+#frmLogin
+{
+	background-color: red;	
+}
+
+#bodyLogin
+{
+	background-color: #CBC9B2;	
+}
+
+
+.ui-widget-content .ui-panelgrid-cell .ui-button  
+{
+	background: #F81A43;
+	background: -webkit-linear-gradient(20deg, #B31633 2%,#EE002C 98%);
+   	background: -moz-linear-gradient(20deg, #B31633 2%,#EE002C 98%);
+    background: -o-linear-gradient(20deg, #B31633 2%,#EE002C 98%);
+}
+
+
+.ui-widget-content .ui-panelgrid-cell .ui-button:hover  
+{
+	background: #F81A43;
+	background: -webkit-linear-gradient(20deg,#EE002C 98%, #B31633 2%);
+   	background: -moz-linear-gradient(20deg,#EE002C 98%, #B31633 2%);
+    background: -o-linear-gradient(20deg,#EE002C 98%, #B31633 2%);
+}
+
+
+#bodyLogin
+{
+	
+/*	background-image: url("../images/logo_servir.png");*/
+}
+
+
+.banner .logo
+{
+	text-align:center;
+	padding-top:130px;
+}
+
+.banner .logo img
+{
+	width: 200px;
+}
+
+
+.formulario
+{
+background: #e2e8f0;	
+}
+
+.ui-icon-facebook{
+    background-image: url('../../Icons/facebook_32x32.png') !important;
+    background-size:cover;   
+}
+
+.ui-toolbar-group-right
+{
+	float:none;
+}
+
+.redes-sociales
+{
+	text-align : right;
+}
+
+.redes-sociales a
+{
+	padding: 5px;
+	padding-right: 3px;
+	margin-right: 10px;
+}
+
+.ui-icon-detalles{
+    background-image: url('../../Icons/detalles_32x32.png') !important;
+    background-size:cover;   
+}
+
+.ui-icon-actualizar{
+    background-image: url('../../Icons/actualizar_32x32.png') !important;
+    background-size:cover;   
+}
+
+
+#content button.detalles:hover
+{
+	background: #2166f0;
+	width: 50px;
+	height: 30px;
+}
+
+#content button.detalles:hover
+{
+	transition:background 0.8s linear 0.2s,
+			   width 0.8s linear 0.1s,
+			   height 0.8s linear 0.1s;
+	 
+}
+
+
+#content button.actualizar:hover
+{
+	background: #36df09;
+	width: 50px;
+	height: 30px;	
+}
+
+
+#content button.actualizar:hover
+{
+	transition:background 0.8s linear 0.2s,
+			   width 0.8s linear 0.1s,
+			   height 0.8s linear 0.1s;
+}
+
+
+#FrmBuscarProducto\:dtListaProducto_data tr
+{
+	height: 40px;
+}
+
+.ui-icon-catalogo
+{
+    background-image: url('../../Icons/catalogo_white_24x24.png') !important;
+    background-size:cover;   
+}
+
+#content .ui-panelgrid .catalogo.ui-button
+{
+	background: black;	
+}
+
+#content .ui-panelgrid .catalogo.ui-button:hover
+{
+	background: white;	
+	background-image: url('../../Icons/catalogo_black_24x24.png') !important;
+    background-size:cover;   
+}
+
+
+.ui-icon-buscar-productos
+{
+    background-image: url('../../Icons/buscar_white_24x24.png') !important;
+    background-size:cover;   
+}
+
+#content .ui-panelgrid .buscarProductos.ui-button
+{
+	background: black;	
+}
+
+#content .ui-panelgrid .buscarProductos.ui-button:hover
+{
+	background: white;	
+	background-image: url('../../Icons/buscar_black_24x24.png') !important;
+    background-size:cover;   
+}
+
+
+.ui-icon-buscar-limpiar
+{
+    background-image: url('../../Icons/limpiar_white_24x24.png') !important;
+    background-size:cover;   
+}
+
+#content .ui-panelgrid .limpiarTablaProductos.ui-button
+{
+	background: black;	
+}
+
+#content .ui-panelgrid .limpiarTablaProductos.ui-button:hover
+{
+	background: white;	
+	background-image: url('../../Icons/limpiar_black_24x24.png') !important;
+    background-size:cover;  
+}

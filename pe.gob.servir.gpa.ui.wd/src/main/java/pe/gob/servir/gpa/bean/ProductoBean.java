@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+
 import org.apache.log4j.Logger;
 import org.primefaces.context.RequestContext;
 
@@ -72,7 +73,6 @@ public class ProductoBean extends UBaseManage implements Serializable
 		generarTipoCategoria();
 		generarListaEstado();
 		buscarProducto();
-			
 	}
 	
 	//Método que lista los productos que están activados, es decir indicador activo = 1.
@@ -470,10 +470,6 @@ public class ProductoBean extends UBaseManage implements Serializable
 		this.paraModificar = paraModificar;
 	}
 
-	
-	
-
-	
 	
 	
 	

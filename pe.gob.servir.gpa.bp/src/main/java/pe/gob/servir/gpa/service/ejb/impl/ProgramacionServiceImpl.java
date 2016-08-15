@@ -1,6 +1,7 @@
 package pe.gob.servir.gpa.service.ejb.impl;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import org.apache.log4j.Logger;
@@ -73,6 +74,23 @@ public class ProgramacionServiceImpl implements ProgramacionServiceLocal{
 		}
 		return false;			
 	}
+
+
+	public List<ProgramacionDTO> buscarProgramacionXMesActual(Integer mesActual) 
+	{
+		List<ProgramacionDTO> listaProgramacion=null;				
+		try 
+		{
+			listaProgramacion=programacionDAOLocal.buscarProgramacionXMesActual(mesActual);
+		} catch (Exception e) 
+		{
+			log.error(e.getMessage(), e);
+		}
+		return listaProgramacion;
+		
+	}
+	
+	
 	
 
 }

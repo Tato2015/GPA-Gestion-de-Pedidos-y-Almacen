@@ -3,6 +3,7 @@
 package pe.gob.servir.gpa.model.dto;
 
 import java.io.Serializable;
+
 public class EstadoDTO extends PadreDTO implements Serializable{
 
 

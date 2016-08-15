@@ -1,23 +1,10 @@
-/**
- * <ul>
- * <li>Copyright 2015 Organismo Supervisor de las Contrataciones del Estado -
- * OSCE. Todos los derechos reservados.</li>
- * </ul>
- * Objeto: TipoDTO.java
- * Descripcion: Clase que transporta datos de la Entidad TipoDTO hacia la Capa de presentacion
- * @Autor 		            : Consultora  - P & P BMS (P & P Business Management Solutions)
- * @version                 : 1.0
- * @sinse 					: 2015
- * ----------------------------------------------------------------------------
- * Modificaciones
- * Codigo	Fecha		Nombre			Descripcion
- * ----------------------------------------------------------------------------
- * 
- */
 package pe.gob.servir.gpa.model.dto;
 import java.io.Serializable;
+import java.util.Comparator;
 
-public class ProductoDTO extends PadreDTO implements Serializable{
+@SuppressWarnings("rawtypes")
+public class ProductoDTO extends PadreDTO implements Serializable,Comparator
+{
 
   /** Atributo que debe ser distinto para cada version compilada que tengamos de esta clase */
 	private static final long serialVersionUID = -7196989429647129614L;
@@ -117,4 +104,31 @@ public class ProductoDTO extends PadreDTO implements Serializable{
 		this.estado = estado;
 	}
 
+	@Override
+	public int compare(Object o1, Object o2) 
+	{
+		ProductoDTO producto1 =  (ProductoDTO)o1;
+		ProductoDTO producto2 =  (ProductoDTO)o2;		
+		return producto1.getId().compareTo(producto2.getId());		
+	}
+
+	@Override
+	public String toString() 
+	{
+		return "ProductoDTO [codigoProducto=" + codigoProducto
+				+ ", id ="+ this.id
+				+ ", descripcionProducto=" + descripcionProducto
+				+ ", tipoFamilia=" + tipoFamilia 
+				+ ", tipoCategoria=" + tipoCategoria 
+				+ ", tipoUnidadMedida=" + tipoUnidadMedida
+				+ ", stockMinimo=" + stockMinimo 
+				+ ", stockMaximo=" + stockMaximo 
+				+ ", habilitado=" + habilitado
+				+ ", indicadorActivo=" + indicadorActivo 
+				+ ", estado=" + estado
+				+ "]";
+	}
+
+	
+	
 }

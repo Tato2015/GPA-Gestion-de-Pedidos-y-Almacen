@@ -15,11 +15,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
-
 import oracle.jdbc.OracleTypes;
-
 import org.apache.log4j.Logger;
-
 import pe.gob.servir.gpa.adm.dao.ProductoDAOLocal;
 import pe.gob.servir.gpa.model.dto.EstadoDTO;
 import pe.gob.servir.gpa.model.dto.ProductoDTO;

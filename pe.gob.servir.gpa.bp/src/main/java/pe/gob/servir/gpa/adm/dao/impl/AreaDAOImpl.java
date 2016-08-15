@@ -1,17 +1,3 @@
-/**
- * <ul>
- * <li>Copyright 2015 Organismo Supervisor de las Contrataciones del Estado -
- * OSCE. Todos los derechos reservados.</li></ul>
- * Objeto		: UsuarioRolDAOImpl.java
- * Descripcion	: Clase tipo interfaces de UsuarioRol que 
- * 				  persiste con la base de datos.
- * Autor		: Consultora  - P & P BMS (P & P Business Management Solutions)
- * ----------------------------------------------------------------------------
- * Modificaciones
- * Codigo	Fecha		Nombre			Descripcion
- * ----------------------------------------------------------------------------
- * 
- */
 
 package pe.gob.servir.gpa.adm.dao.impl;
 

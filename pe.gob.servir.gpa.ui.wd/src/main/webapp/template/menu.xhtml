@@ -8,66 +8,80 @@
 
 	<h:form id="idFormMenu" prependId="false">
 
-		<p:menu toggleable="true" style="width:100%">
-			<p:submenu icon="ui-icon-grip-solid-horizontal" label="Aprobación Jefe"
+		<p:menu toggleable="true" style="width:100%;background:#e2e8f0;" >
+			<p:submenu icon="ui-icon-grip-solid-horizontal" label="Aprobación de Jefe" rendered="#{loginUsuarioBean.mostrarAprobacionJefe}"
 				style="width:95%;height:95%; ">
-				<p:menuitem value="Aprobación de Jefe"
-				action="#{sistemaContextBean.VistaAprobacionJefe}" ajax="false" />
+				
+				<p:menuitem value="Aprobación de Jefe" rendered="#{loginUsuarioBean.mostrarAprobacionJefe}"
+				action="#{sistemaContextBean.VistaAprobacionJefe}" ajax="false" style="font-family:Montserrat;" />
+				
 			</p:submenu>
 			
-			<p:submenu icon="ui-icon-grip-solid-horizontal" label="Requerimiento Usuario"
+			<p:submenu icon="ui-icon-grip-solid-horizontal" label="Almacén" rendered="#{loginUsuarioBean.mostrarJefeAlmacen}"
+			   style="width:95%;height:95%; ">
+					<p:menuitem value="Jefe de Almacén" rendered="#{loginUsuarioBean.mostrarJefeAlmacen}"
+					action="#{sistemaContextBean.VistaAlmacen}" ajax="false"/>
+			</p:submenu>
+			
+			<p:submenu icon="ui-icon-grip-solid-horizontal" label="Encargado de Almacén" rendered="#{loginUsuarioBean.mostrarEncargadoAlmacen}"
+			   style="width:95%;height:95%; ">
+					<p:menuitem value="Encargado de Almacén" rendered="#{loginUsuarioBean.mostrarEncargadoAlmacen}"
+					action="#{sistemaContextBean.VistaEncargadoAlmacen()}" ajax="false"/>
+			</p:submenu>
+			
+			<p:submenu icon="ui-icon-grip-solid-horizontal" label="Requerimiento de Usuario" rendered="#{loginUsuarioBean.mostrarRequerimientoUsuario}"
 				style="width:95%;height:95%; ">
 
-				<p:menuitem value="Requerimiento Suministro"
+				<p:menuitem value="Requerimiento de Suministro" rendered="#{loginUsuarioBean.mostrarRequerimientoUsuario}"
 					action="#{sistemaContextBean.VistaUsuarioSuministro}" ajax="false" />
 				<p:separator />
 
-				<p:menuitem value="Requerimiento Extraordinario"
-					action="#{sistemaContextBean.VistaUsuarioExtraordinario}" ajax="false" />
-				<p:separator />
+<!-- 				<p:menuitem value="Requerimiento Extraordinario" -->
+<!-- 					action="#{sistemaContextBean.VistaUsuarioExtraordinario}" ajax="false" /> -->
+<!-- 				<p:separator /> -->
 			</p:submenu>
 			
-			<p:submenu icon="ui-icon-grip-solid-horizontal" label="Requerimiento Área"
+			<p:submenu icon="ui-icon-grip-solid-horizontal" label="Requerimiento de Área" rendered="#{loginUsuarioBean.mostrarRequerimientoArea}"
 				style="width:95%;height:95%; ">
 
-				<p:menuitem value="Requerimiento de Suministro"
-					action="#{sistemaContextBean.VistaAreaSuministro}" ajax="false" />
+				<p:menuitem value="Requerimiento de Área" rendered="#{loginUsuarioBean.mostrarRequerimientoArea}"
+					action="#{sistemaContextBean.VistaArea}" ajax="false" />
 				<p:separator />
-				<p:menuitem value="Requerimiento de Comestible"
-					action="#{sistemaContextBean.VistaAreaComestible}" ajax="false" />
-				<p:separator />
-				<p:menuitem value="Requerimiento Extraordinario"
-					action="#{sistemaContextBean.VistaUsuarioExtraordinario}" ajax="false" />
-				<p:separator />
+<!-- 				<p:menuitem value="Requerimiento de Comestible" -->
+<!-- 					action="#{sistemaContextBean.VistaAreaComestible}" ajax="false" /> -->
+<!-- 				<p:separator /> -->
+<!-- 				<p:menuitem value="Requerimiento Extraordinario" -->
+<!-- 					action="#{sistemaContextBean.VistaUsuarioExtraordinario}" ajax="false" /> -->
+<!-- 				<p:separator /> -->
 			</p:submenu>
 			
-			<p:submenu icon="ui-icon-grip-solid-horizontal" label="Mantenimiento"
+			<p:submenu icon="ui-icon-grip-solid-horizontal" label="Mantenimiento" rendered="#{loginUsuarioBean.mostrarMantenimiento}"
 				style="width:95%;height:95%; ">
 
-				<p:menuitem value="Administración de Personas"
-					action="#{sistemaContextBean.VistaPersona}" ajax="false" />
+<!-- 				<p:menuitem value="Administración de Personas" -->
+<!-- 					action="#{sistemaContextBean.VistaPersona}" ajax="false" /> -->
 
-				<p:menuitem value="Administración de Usuarios"
-					action="#{sistemaContextBean.VistaAdministrarUsuario}" ajax="false" />
+<!-- 				<p:menuitem value="Administración de Usuarios" -->
+<!-- 					action="#{sistemaContextBean.VistaAdministrarUsuario}" ajax="false" /> -->
 
-				<p:separator />
+<!-- 				<p:separator /> -->
 			</p:submenu>
 
-			<p:submenu icon="ui-icon-grip-solid-horizontal"
-				label="Administración" style="width:95%;height:95%; ">
+			<p:submenu icon="ui-icon-grip-solid-horizontal" rendered="#{loginUsuarioBean.mostrarAdministracion}"
+				label="Administración" style="width:95%;height:95%;font-family:Montserrat;font-weight:bold;font-size:13px; ">
 
-				<p:menuitem value="Productos"
-					action="#{sistemaContextBean.VistaProducto}" ajax="false" />
+				<p:menuitem value="Productos" rendered="#{loginUsuarioBean.mostrarAdministracion}"
+					action="#{sistemaContextBean.VistaProducto}" ajax="false" style="font-family:Montserrat;"/>
 				<p:separator />
-				<p:menuitem value="Tipo"
-					action="#{sistemaContextBean.VistaTipo}" ajax="false" />
+				<p:menuitem value="Tipo" rendered="#{loginUsuarioBean.mostrarAdministracion}"
+					action="#{sistemaContextBean.VistaTipo}" ajax="false" style="font-family:Montserrat;"/>
 				<p:separator />
-				
-				
+								
+				<p:menuitem value="Programación" rendered="#{loginUsuarioBean.mostrarProgramacion}"
+				action="#{sistemaContextBean.VistaProgramacion}" ajax="false" style="font-family:Montserrat;"/>
 			</p:submenu>
 
-			<p:menuitem value="Programación"
-				action="#{sistemaContextBean.VistaProgramacion}" ajax="false" />
+			
 
 		</p:menu>
 	</h:form>

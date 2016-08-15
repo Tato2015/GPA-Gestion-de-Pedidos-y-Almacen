@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<h:form id="frmDetalleRequerimientoUsuario" class="div_formulario">
+		<p:panelGrid style="width:100%" styleClass="columnaOcultar">
+			<p:row>
+				<p:column>
+					<p:outputLabel value="DETALLES DEL REQUERIMIENTO DE USUARIO"
+					style="font-size:18px !important"/>
+					<p:separator></p:separator>
+				</p:column>			
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:panelGrid style="width:100%" styleClass="columnaOcultar">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Id del Requerimiento: " />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoUsuarioBean.requerimientoUsuarioDTO.id}" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Id del Usuario : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoUsuarioBean.requerimientoUsuarioDTO.usuario.id}" disabled="true"/>
+							</p:column>			
+							<p:column>
+								<p:outputLabel value="Usuario : "/>							
+							</p:column>			
+							<p:column>
+								<p:inputText value="#{requerimientoUsuarioBean.requerimientoUsuarioDTO.usuario.descripcionUsuario}" disabled="true"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Indicador de Envío al Encargado :"/>
+							</p:column>
+							<p:column>								
+								<p:selectOneMenu id="somIndicadorEnvioAlEncargado" style="width:150px;"
+								value="#{requerimientoUsuarioBean.requerimientoUsuarioDTO.indicadorEnviadoAlEncargado}" disabled="true">
+									<f:selectItems value="#{requerimientoUsuarioBean.listaIndicadorEnvioAlEncargado}" var="valor"
+									itemValue="#{valor.value}" itemLabel="#{valor.description}"/>											
+								</p:selectOneMenu>									
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Fecha de Envío al Encargado :"/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoUsuarioBean.requerimientoUsuarioDTO.fechaEnviadoAlEncargado}" disabled="true"/>								
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Programación : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoUsuarioBean.requerimientoUsuarioDTO.programacionAreas.programacion.descripcionProgramacion}" disabled="true"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Indicador Recibido del Encargado : "/>
+							</p:column>
+							<p:column>								
+								<p:selectOneMenu id="somIndicadorRecibidoDelEncargado" style="width:150px;"
+								value="#{requerimientoUsuarioBean.requerimientoUsuarioDTO.indicadorRequerimientoRecibidoDelEncargado}" disabled="true">
+									<f:selectItems value="#{requerimientoUsuarioBean.listaIndicadorRecibidoDelEncargado}" var="valor"
+									itemValue="#{valor.value}" itemLabel="#{valor.description}"/>											
+								</p:selectOneMenu>									
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Fecha Recibido del Encargado : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoUsuarioBean.requerimientoUsuarioDTO.fechaRequerimientoRecibidoDelEncargado}" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Tipo de Pedido : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoUsuarioBean.requerimientoUsuarioDTO.programacionAreas.programacion.tipoPedido.descripcionTipo}" disabled="true"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Indicador Activo :"/>
+							</p:column>
+							<p:column>								
+								<p:selectOneMenu id="somIndicadorDetalleRequerimientoUsuario" style="width:150px;"
+								value="#{requerimientoUsuarioBean.requerimientoUsuarioDTO.indicadorActivo}" disabled="true">
+									<f:selectItems value="#{requerimientoUsuarioBean.listaIndicadorDetalleRequerimiento}" var="valor"
+									itemValue="#{valor.value}" itemLabel="#{valor.description}"/>											
+								</p:selectOneMenu>									
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Fecha de Registro : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoUsuarioBean.requerimientoUsuarioDTO.fechaRegistro}" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Area :"/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoUsuarioBean.requerimientoUsuarioDTO.programacionAreas.area.descripcionArea}" style="width:200px;" disabled="true"/>
+							</p:column>
+						</p:row>	
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Estado :"/>
+							</p:column>
+							<p:column>								
+								<p:selectOneMenu id="somEstado" style="width:150px;"
+								value="#{requerimientoUsuarioBean.requerimientoUsuarioDTO.estado.id}" disabled="true">
+									<f:selectItems value="#{requerimientoUsuarioBean.listaEstadoDetalleRequerimiento}" var="valor"
+									itemValue="#{valor.value}" itemLabel="#{valor.description}"/>											
+								</p:selectOneMenu>																			
+																
+							</p:column>							
+						</p:row>
+						
+					
+					
+					</p:panelGrid>				
+				
+				
+				</p:column>
+			
+			
+			
+			</p:row>
+		
+		
+		
+		
+		
+		
+		
+		
+		</p:panelGrid>
+		
+		
+		
+		
+		
+		
+		
+		
+
+	</h:form>
+
+
+
+<!-- 	<p:dialog id="popupConfirmar" widgetVar="popupConfirmar" -->
+<!-- 		closable="false" resizable="false" -->
+<!-- 		header="#{rbgpaUI['gpa.ui.general.titulo.mensaje.aviso']}" -->
+<!-- 		width="350px" height="80px" modal="true" appendTo="@(body)"> -->
+<!-- 		<p:growl id="growl" showDetail="true" sticky="true" /> -->
+<!-- 		<h:panelGrid columns="2" style="width:100%; height:60%"> -->
+<!-- 			<p:graphicImage value="/recursos/images/warning.png" width="20px" -->
+<!-- 				style="padding-right: 10px" height="20px" /> -->
+<!-- 			<p:outputLabel rendered="#{!tipoBean.isEditar}" -->
+<!-- 				value="#{rbgpaUI['gpa.ui.general.mensaje.alerta.registrar.label']}" />			 -->
+<!-- 			<p:outputLabel rendered="#{tipoBean.isEditar}" -->
+<!-- 				value="#{rbgpaUI['gpa.ui.general.mensaje.alerta.actualizar.label']}" /> -->
+<!-- 		</h:panelGrid> -->
+
+<!-- 		<h:panelGrid columns="2" style="width:100%;" height="20px"> -->
+<!-- 			<h:panelGroup style="display:block;text-align:center;"> -->
+<!-- 				<p:commandButton style="margin-right: 5px;" -->
+<!-- 					value="#{rbgpaUI['gpa.ui.general.boton.aceptar.label']}" -->
+<!-- 					icon="ui-icon-check" rendered="#{!tipoBean.isEditar}" -->
+<!-- 					actionListener="#{tipoBean.registrarTipo()}" -->
+<!-- 					update="@([id$=dtListaTipo]) growl" -->
+<!-- 					onstart="PF('statusDialog').show()" -->
+<!-- 					onsuccess="PF('statusDialog').hide()" /> -->
+
+<!-- 				<p:commandButton style="margin-right: 5px;" -->
+<!-- 					value="#{rbgpaUI['gpa.ui.general.boton.aceptar.label']}" -->
+<!-- 					icon="ui-icon-check" rendered="#{tipoBean.isEditar}" -->
+<!-- 					actionListener="#{tipoBean.actualizarTipo()}" -->
+<!-- 					update="@([id$=dtListaTipo]) growl" -->
+<!-- 					onstart="PF('statusDialog').show()" -->
+<!-- 					onsuccess="PF('statusDialog').hide()" /> -->
+
+<!-- 				<p:commandButton style="margin-left: 5px;" -->
+<!-- 					onstart="PF('statusDialog').show();" -->
+<!-- 					onsuccess="PF('statusDialog').hide();" -->
+<!-- 					value="#{rbgpaUI['gpa.ui.general.boton.cancelar.label']}" -->
+<!-- 					onclick="PF('popupConfirmar').hide();" icon="ui-icon-cancel" /> -->
+<!-- 			</h:panelGroup> -->
+
+<!-- 		</h:panelGrid> -->
+
+<!-- 	</p:dialog> -->
+
+
+</h:body>
+
+</html>

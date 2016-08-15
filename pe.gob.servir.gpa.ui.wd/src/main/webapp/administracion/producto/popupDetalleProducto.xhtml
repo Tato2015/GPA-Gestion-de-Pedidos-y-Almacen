@@ -31,7 +31,7 @@
 						<p:outputLabel value="Stock Mínimo" />
 					</p:column>
 					<p:column>
-						<p:inputText id="itStockMinimo" value="#{productoBean.productoDTO.stockMinimo}" style="width:50px;margin-left:78px;" disabled="true" 
+						<p:inputText id="itStockMinimo" value="#{productoBean.productoDTO.stockMinimo}" style="width:50px;margin-left:78px;" disabled="#{!productoBean.paraModificar}" 
 						required="true" validatorMessage="El stock mínimo no puede exceder al sotck actual.">							
 							<f:validateDoubleRange minimum="0" maximum="#{productoBean.productoDTO.stockMaximo}"/>
 						</p:inputText>
@@ -93,7 +93,7 @@
 						<p:outputLabel value="Stock Actual" />
 					</p:column>
 					<p:column>
-						<p:inputText value="#{productoBean.productoDTO.stockMaximo}" style="width:50px;margin-left:81px;" disabled="true"/>
+						<p:inputText value="#{productoBean.productoDTO.stockMaximo}" style="width:50px;margin-left:81px;" disabled="#{!productoBean.paraModificar}"/>
 					</p:column>
 				</p:column>				
 			</p:row>			
@@ -111,7 +111,7 @@
 						<p:outputLabel value="Indicador Activo" />
 					</p:column>
 					<p:column>
-						<p:selectOneMenu value="#{productoBean.productoDTO.indicadorActivo}" disabled="true" style="width:250px;margin-left:58px;">
+						<p:selectOneMenu value="#{productoBean.productoDTO.indicadorActivo}" disabled="#{!productoBean.paraModificar}" style="width:250px;margin-left:58px;">
 							<f:selectItem itemValue="1" itemLabel="ACTIVO"/>
 							<f:selectItem itemValue="2" itemLabel="INACTIVO"/>							
 						</p:selectOneMenu>						
@@ -135,7 +135,7 @@
 						</p:row>
 					</p:panelGrid>
 				</p:column>
-			</p:row>				
+			</p:row>	
 		</p:panelGrid>
 	</h:form>
 

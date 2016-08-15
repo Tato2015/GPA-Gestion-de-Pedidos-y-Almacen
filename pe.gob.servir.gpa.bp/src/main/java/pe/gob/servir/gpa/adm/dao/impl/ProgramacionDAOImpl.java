@@ -1,37 +1,16 @@
-/**
- * <ul>
- * <li>Copyright 2015 Organismo Supervisor de las Contrataciones del Estado -
- * OSCE. Todos los derechos reservados.</li></ul>
- * Objeto		: UsuarioRolDAOImpl.java
- * Descripcion	: Clase tipo interfaces de UsuarioRol que 
- * 				  persiste con la base de datos.
- * Autor		: Consultora  - P & P BMS (P & P Business Management Solutions)
- * ----------------------------------------------------------------------------
- * Modificaciones
- * Codigo	Fecha		Nombre			Descripcion
- * ----------------------------------------------------------------------------
- * 
- */
-
 package pe.gob.servir.gpa.adm.dao.impl;
-
-
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javax.ejb.Stateless;
 import javax.naming.InitialContext;
 import javax.persistence.NoResultException;
 import javax.sql.DataSource;
-
 import oracle.jdbc.OracleTypes;
-
 import org.apache.log4j.Logger;
-
 import pe.gob.servir.gpa.adm.dao.ProgramacionDAOLocal;
 import pe.gob.servir.gpa.model.dto.EstadoDTO;
 import pe.gob.servir.gpa.model.dto.ProgramacionDTO;
@@ -66,7 +45,7 @@ public class ProgramacionDAOImpl implements ProgramacionDAOLocal{
 			conn = ds.getConnection();
 			String sql = "begin PKG_PROGRAMACION.SP_BUSCAR_PROGRAMACION(?,?,?,?,?,?); end;";
 			call = conn.prepareCall(sql);
-			
+						
 			if (anio != null && anio!=0) 
 			{
 			call.setInt(1,anio);
@@ -548,6 +527,126 @@ public class ProgramacionDAOImpl implements ProgramacionDAOLocal{
 			}
 		}
 		return true;				
+	}
+
+	public List<ProgramacionDTO> buscarProgramacionXMesActual(Integer mesActual) 
+	{
+		List<ProgramacionDTO> listaProgramacion=null;
+		ProgramacionDTO programacion=null;
+		Connection conn = null;
+		CallableStatement call = null;
+		try {
+			InitialContext ic = new InitialContext();			
+			DataSource ds = (DataSource) ic.lookup(propGPA.getString(ConstanteEJB.CONEXION_SERVIR));
+			conn = ds.getConnection();
+			String sql = "begin PKG_PROGRAMACION.SP_BUSCAR_PROGR_XMESACTUAL(?,?); end;";
+			call = conn.prepareCall(sql);
+						
+			if (mesActual!= null && mesActual>=0) 
+			{
+			call.setInt(1,mesActual);
+			} else 
+			{
+				call.setNull(1, OracleTypes.NULL);
+			}			
+			call.registerOutParameter(2, OracleTypes.CURSOR);
+			call.execute();
+			ResultSet rs = (ResultSet) call.getObject(2);
+			listaProgramacion=new ArrayList<ProgramacionDTO>();
+			
+			while (rs.next()) 
+			{
+				programacion = new ProgramacionDTO();				
+				try 
+				{
+					programacion.setId(rs.getInt(1));
+				} catch (Exception e) 
+				{
+					log.error(e.getMessage(), e);
+				}
+				
+				try 
+				{
+					programacion.setDescripcionProgramacion(rs.getString(2));
+				} catch (Exception e) 
+				{
+					log.error(e.getMessage(), e);
+				}
+				
+				programacion.setTipoPedido(new TipoDTO());
+				try 
+				{
+					programacion.getTipoPedido().setId(rs.getInt(3));
+				} catch (Exception e) 
+				{
+					log.error(e.getMessage(), e);
+				}
+				
+				programacion.setTipoPeriodo(new TipoDTO());
+				try 
+				{
+					programacion.getTipoPeriodo().setId(rs.getInt(4));
+				} catch (Exception e) 
+				{
+					log.error(e.getMessage(), e);
+				}
+				
+				try 
+				{
+					programacion.setFechaInicioRegistro(rs.getDate(5));
+				} catch (Exception e) 
+				{
+					log.error(e.getMessage(), e);
+				}
+				
+				try 
+				{
+					programacion.setFechaFinRegistro(rs.getDate(6));
+				} catch (Exception e) 
+				{
+					log.error(e.getMessage(), e);
+				}
+				
+								
+				try 
+				{
+					programacion.getTipoPedido().setDescripcionTipo(rs.getString(18));
+				} catch (Exception e) 
+				{
+					log.error(e.getMessage(), e);
+				}
+				
+				try 
+				{
+					programacion.getTipoPeriodo().setDescripcionTipo(rs.getString(19));
+				} catch (Exception e) 
+				{
+					log.error(e.getMessage(), e);
+				}						
+				listaProgramacion.add(programacion);				
+			}
+			rs.close();
+			
+		} catch (NoResultException nre) 
+		{
+			listaProgramacion = null;
+			log.error(nre.getMessage(), nre);
+
+		} catch (Exception e) 
+		{
+			log.error(e.getMessage(), e);
+		} finally 
+		{
+			try 
+			{
+				conn.close();
+			} catch (Exception e) 
+			{
+				log.error(e.getMessage(), e);
+			}
+		}
+		return listaProgramacion;
+
 	}
 
 	

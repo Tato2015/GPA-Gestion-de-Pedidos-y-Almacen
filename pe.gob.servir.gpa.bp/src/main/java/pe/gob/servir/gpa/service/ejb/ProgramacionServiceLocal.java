@@ -10,4 +10,6 @@ public interface ProgramacionServiceLocal {
 	
 	public Boolean actualizarProgramacion(ProgramacionDTO programacionDTO) throws Exception;
 	
+	public List<ProgramacionDTO>buscarProgramacionXMesActual(Integer mesActual);
+	
 }

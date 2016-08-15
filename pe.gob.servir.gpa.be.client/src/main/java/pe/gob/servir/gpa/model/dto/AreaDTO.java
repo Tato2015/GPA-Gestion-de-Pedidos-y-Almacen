@@ -1,13 +1,10 @@
-
- 
 package pe.gob.servir.gpa.model.dto;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
-
-
-
-public class AreaDTO extends PadreDTO implements Serializable{
+@SuppressWarnings("rawtypes")
+public class AreaDTO  extends PadreDTO implements Serializable,Comparator{
 
 	private static final long serialVersionUID = 5985800496105048881L;
 	
@@ -45,6 +42,28 @@ public class AreaDTO extends PadreDTO implements Serializable{
 	}
 	public void setEstado(EstadoDTO estado) {
 		this.estado = estado;
+	}
+	
+	//Prueba para ordenar lista de menor a mayor por ID.	
+	@Override
+	public int compare(Object o1, Object o2) 
+	{
+		AreaDTO area1 = (AreaDTO)o1;
+		AreaDTO area2 = (AreaDTO)o2;		
+		return area1.getId().compareTo(area2.getId());
+	}
+	
+	@Override
+	public String toString() 
+	{
+		return "AreaDTO [areaPadre=" + areaPadre
+				+ ", id"+this.id
+				+ ", codigoArea=" + codigoArea
+				+ ", descripcionArea=" + descripcionArea 
+				+ ", abreviaturaArea="+ abreviaturaArea 
+				+ ", estado=" + estado + "]";
 	}	  
+
+	
 	
 }

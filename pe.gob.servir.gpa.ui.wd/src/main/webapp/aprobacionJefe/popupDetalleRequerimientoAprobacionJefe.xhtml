@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<h:form id="frmDetalleRequerimientoAprobacionJefe" class="div_formulario">
+		<p:panelGrid style="width:100%" styleClass="columnaOcultar">
+			<p:row>
+				<p:column>
+					<p:outputLabel value="DETALLES DE LA APROBACIÓN DEL ÁREA"
+					style="font-size:18px !important"/>
+					<p:separator></p:separator>
+				</p:column>			
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:panelGrid style="width:100%" styleClass="columnaOcultar">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Id del Requerimiento : " />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoAreaDTO.id}" disabled="true"/>
+							</p:column>										
+							<p:column>
+								<p:outputLabel value="Id del Requerimiento del Jefe :"/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoJefeAprobacionDTO.id}" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Id del Jefe : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.usuarioDTO.id}" disabled="true"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Indicador de Recepción Encargado de Área : "/>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="somIndicadorRecepcionEncargadoDeArea" style="width:152px;" disabled="true"	
+								value="#{requerimientoAreaBean.requerimientoJefeAprobacionDTO.indicadorRecibioEncargadoArea}">
+									<f:selectItems value="#{requerimientoAreaBean.listaIndicadorRecepcionEncargadoDelArea}" var="valor"
+									 itemValue="#{valor.value}" itemLabel="#{valor.description}"/>
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Fecha de Recepción Encargado de Área : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoJefeAprobacionDTO.fechaRecibioEncargadoArea}" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Descripción del Jefe : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.usuarioDTO.descripcionUsuario}" disabled="true"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Indicador de Enviado al Jefe de Almacén : "/>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="somIndicadorEnviadoAlJefeDelAlmacen" style="width:152px;" disabled="true"	
+								value="#{requerimientoAreaBean.requerimientoJefeAprobacionDTO.indicadorEnviadoJefeAlmacen}">
+									<f:selectItems value="#{requerimientoAreaBean.listaIndicadorEnviadoAlJefeDelAlmacen}" var="valor"
+									 itemValue="#{valor.value}" itemLabel="#{valor.description}"/>
+								</p:selectOneMenu>								
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Fecha de Enviado al Jefe de Almacén : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoJefeAprobacionDTO.fechaEnviadoJefeAlmacen}" disabled="true"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Indicador de Recepción del Jefe de Almacén : "/>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="somIndicadorRecepcionJefeDelAlmacen" style="width:152px;" disabled="true"	
+								value="#{requerimientoAreaBean.requerimientoJefeAprobacionDTO.indicadorRecibioJefeAlmacen}">
+									<f:selectItems value="#{requerimientoAreaBean.listaIndicadorRecepcionDelJefeDelAlmacen}" var="valor"
+									 itemValue="#{valor.value}" itemLabel="#{valor.description}"/>
+								</p:selectOneMenu>															
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Fecha de Recepción del Jefe de Almacén : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoJefeAprobacionDTO.fechaRecibioJefeAlmacen}" disabled="true"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Indicador de Envío al Encargado de Almacén : "/>
+							</p:column>													
+							<p:column>
+								<p:selectOneMenu id="somIndicadorEnvioAlEncargadoDelAlmacen" style="width:152px;" disabled="true"	
+								value="#{requerimientoAreaBean.requerimientoJefeAprobacionDTO.indicadorEnviadoEncargadoAlmacen}">
+									<f:selectItems value="#{requerimientoAreaBean.listaIndicadorEnvioAlEncargadoDelAlmacen}" var="valor"
+									 itemValue="#{valor.value}" itemLabel="#{valor.description}"/>
+								</p:selectOneMenu>																					
+							</p:column>						
+							<p:column>
+								<p:outputLabel value="Fecha de Envío al Encargado de Almacén : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoJefeAprobacionDTO.fechaEnviadoEncargadoAlmacen}" disabled="true"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Código de Usuario de Registro :"/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoJefeAprobacionDTO.codigoUsuarioRegistro}" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Fecha de Registro : "/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoJefeAprobacionDTO.fechaRegistro}" disabled="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Estado :"/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{requerimientoAreaBean.requerimientoJefeAprobacionDTO.estado.id}" disabled="true"/>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+					
+					
+					
+															
+				</p:column>
+
+
+			</p:row>
+		</p:panelGrid>	
+		
+	</h:form>
+</h:body>
+
+</html>

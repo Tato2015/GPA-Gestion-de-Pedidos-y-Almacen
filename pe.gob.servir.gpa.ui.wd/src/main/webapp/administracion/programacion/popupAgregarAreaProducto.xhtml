@@ -8,7 +8,7 @@
 	>
 	<div class="div_formulario" id="id1div_formulario" onscroll="true">
 		<h:form id="FrmPopupAgregarProducto" class="div_formulario">
-			<h:panelGrid>
+			<p:panelGrid style="text-align:center;" styleClass="columnaOcultar">
 				<p:row>
 					<p:column>
 						<p:dataTable var="rowName" value="#{programacionBean.rowNames}" rowIndexVar="rowIdx">
@@ -17,33 +17,32 @@
     						</p:column>
 																														
 					    	<p:columns var="columnName" value="#{programacionBean.colNames}" headerText="#{columnName}"
-               						columnIndexVar="colIdx">							
-               						                					
-<!-- 									<p:spinner id="minMax"  min="0" max="200" size="5"  required="true" maxlength="5" placeholder="Ingrese cantidad" -->
-<!-- 										value="#{programacionBean.valorAreaProducto}"> -->
-<!-- 									<p:ajax event="change" listener="#{programacionBean.obtenerValoresAreaProducto(rowIdx,colIdx,programacionBean.valorAreaProducto)}"/> -->
-<!-- 									</p:spinner>  																										 -->
+               						columnIndexVar="colIdx" >
+               							<p:spinner id="minMax"  min="0" max="200" size="5"  required="true" maxlength="5" 
+											 value="#{programacionBean.listaValores[rowIdx][colIdx][0]}">																		
+										</p:spinner>									
     						</p:columns>
 						</p:dataTable>
 					</p:column>
 				</p:row>
+				<br/><br/>
 				<p:row>
-					<p:column>
-						<p:commandButton id="btnVerDetalles" value="Ver Detalles" styleClass="search" action="#{programacionBean.prueba()}">						
+					<p:column style="text-align:center;">
+						<p:commandButton id="btnVerDetalles" value="Ver Detalles" styleClass="search" 
+						action="#{programacionBean.abrirPopupAgregarAreaProductoDetalles()}"
+						update="FrmPopupAgregarProducto :dialogoAreaProductoDetalles">
+
 						</p:commandButton>
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column>
-						<p:commandButton id="btnCancelar" value="Cancelar" styleClass="search"						
+					
+						<p:commandButton id="btnCancelar" value="Cancelar" styleClass="search"	action="#{programacionBean.resetearValoresTablaDinamica()}"					
 						oncomplete="PF('dialogoAreaProducto').hide();" resetValues="true" 
 						update=":FrmNuevaProgramacion">
-							<p:ajax update=":FrmNuevaProgramacion" resetValues="true" listener="#{programacionBean.resetSeleccionProducto()}"/>
+
 						</p:commandButton>							
 						<p:tooltip for="btnCancelar" value="Cancelar"/>
 					</p:column>
 				</p:row>
-			</h:panelGrid>
+			</p:panelGrid>
 	
 	
 	
