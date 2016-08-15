@@ -1,0 +1,240 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<div class="div_formulario" id="iddiv_formulario" onscroll="true">
+	<h:form id="FrmNuevaProgramacion" class="div_formulario">
+ 		<p:panelGrid id="pnlPrincipal" style="width:100%" styleClass="columnaOcultar">
+			<p:row>
+				<p:column>
+					<p:outputLabel value="Registrar Programación" rendered="#{programacionBean.paraCrear}" style="font-size:18px !important" />
+					<p:outputLabel  value="Ver Detalles" rendered="#{programacionBean.paraVerDetalles}" style="font-size:18px !important" />
+					<p:outputLabel  value="Modificar Detalles" rendered="#{programacionBean.paraModificar}" style="font-size:18px !important" />
+					<p:separator></p:separator>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column colspan="6">
+					<p:panelGrid>
+						<p:row>
+							<p:column>
+								<p:outputLabel for="itDescripcionProgramacion" value="Descripción de Programación" style="margin-right:20px;"/>
+							</p:column>
+							<p:column>
+								<p:inputText id="itDescripcionProgramacion" value="#{programacionBean.programacionDTO.descripcionProgramacion}" style="margin-right:20px;"
+								disabled="#{programacionBean.paraVerDetalles}" required="true"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel for="somTipoPedido" value="Tipo de Pedido" style="margin-right:20px;"/>								
+							</p:column>																				
+							<p:column>
+								<p:selectOneMenu id="somTipoPedido" value="#{programacionBean.programacionDTO.tipoPedido.id}" style="width:150px" required="true" 
+								disabled="#{programacionBean.paraVerDetalles}">
+					                <p:ajax listener="#{programacionBean.enCambioPedido()}" update="somTipoPeriodo" />
+					                <p:ajax listener="#{programacionBean.obtenerDuracionMeses()}" update="itCantidadMeses"/>
+					                <f:selectItem itemLabel="Seleccione Pedido" itemValue="" noSelectionOption="true" />
+					                <f:selectItems value="#{programacionBean.pedidos.entrySet()}" var="valor" itemLabel="#{valor.value}" itemValue="#{valor.key}"/>
+            					</p:selectOneMenu>
+							</p:column>
+							<p:column>								
+								<p:outputLabel for="somTipoPeriodo" value="Tipo de Periodo" />
+							</p:column>							
+							<p:column>
+								<p:selectOneMenu id="somTipoPeriodo" value="#{programacionBean.programacionDTO.tipoPeriodo.id}" style="width:150px" required="true" 
+								disabled="#{programacionBean.paraVerDetalles}">
+					                <f:selectItem itemLabel="Seleccione Periodo" itemValue="" />
+					                <f:selectItems value="#{programacionBean.periodos.entrySet()}" var="valor" itemLabel="#{valor.value}" itemValue="#{valor.key}"/>
+            					</p:selectOneMenu>
+							</p:column>						
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="F.Inicio de Registro" for="calFechaInicio"/>
+							</p:column>
+							<p:column>
+								<p:calendar id="calFechaInicio" showOn="button" disabled="#{programacionBean.paraVerDetalles}"  
+								mindate="#{programacionBean.obtenerFechaActual()}" maxdate="#{programacionBean.programacionDTO.fechaFinRegistro}"
+								pattern="dd/MM/yyyy" required="true" value="#{programacionBean.programacionDTO.fechaInicioRegistro}">								
+									<p:ajax event="dateSelect"	update="calFechaFin" />								
+								</p:calendar>								
+							</p:column>
+							<p:column>
+								<p:outputLabel value="F.Fin de Registro" for="calFechaFin"/>
+							</p:column>
+							<p:column>
+								<p:calendar id="calFechaFin" style="margin-right:20px;" showOn="button" disabled="#{programacionBean.paraVerDetalles}" 
+								mindate="#{programacionBean.programacionDTO.fechaInicioRegistro}" pattern="dd/MM/yyyy" required="true"
+								value="#{programacionBean.programacionDTO.fechaFinRegistro}"> 
+									<p:ajax event="dateSelect"	update="calFechaInicio" />
+								</p:calendar>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Indicador de Aprobación" style="margin-right:20px;" for="somIndicadorAprobacion"/>
+							</p:column>							
+							<p:column>
+								<p:selectOneMenu id="somIndicadorAprobacion" value="#{programacionBean.programacionDTO.indicadorAprobacion}" required="true" 
+								disabled="#{programacionBean.paraVerDetalles}">
+									<f:selectItems value="#{programacionBean.listaAprobacion}"/>
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Indicador Activo" for="somIndicadorActivo"/>
+							</p:column>							
+							<p:column>
+								<p:selectOneMenu id="somIndicadorActivo" value="#{programacionBean.programacionDTO.indicadorActivo}" required="true" 
+								disabled="#{programacionBean.paraVerDetalles}">
+									<f:selectItem itemLabel="Seleccione"/>
+									<f:selectItem itemLabel="Activo" itemValue="1"/>									
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Estado" for="somEstado"/>
+							</p:column>							
+							<p:column>
+								<p:selectOneMenu id="somEstado" value="#{programacionBean.programacionDTO.estado.id}" required="true" 
+								disabled="#{programacionBean.paraVerDetalles}">								
+									<f:selectItems value="#{programacionBean.listaEstado}"/>
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Meses Duracion"/>
+							</p:column>
+							<p:column>
+								<p:inputText id="itCantidadMeses" value="#{programacionBean.programacionDTO.mesesDuracionPeriodo}" disabled="true"/>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column style="width:100%;">
+					<p:panelGrid id="pnlAreasProductos" style="width:100%;">
+						<p:row>
+							<p:column style="width:300px;">
+								<p:outputLabel value="Seleccione las Áreas" for="smcAreas"></p:outputLabel>
+    								<p:selectManyCheckbox id="smcAreas" value="#{programacionBean.seleccionAreas}" layout="pageDirection" columns="1" required="true">
+        								<f:selectItems value="#{programacionBean.listaArea}" var="valor" itemLabel="#{valor.descripcionArea}"
+        								itemValue="#{valor.id}"/>        					        								
+    								</p:selectManyCheckbox>
+							</p:column>
+							<p:column style="width:800px;">
+								<p:panelGrid>
+									<p:row>
+										<p:column>
+											<p:dataTable var="valor" id="dtSeleccionProductos" rows="5" value="#{productoBean.listaProducto}" 
+																widgetVar="filtrar" paginator="true" paginatorPosition="bottom" rowIndexVar="posicion"
+																currentPageReportTemplate="Mostrando de {startRecord} a {endRecord} | Total De Productos Asignados  : {totalRecords}"
+																paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+																emptyMessage="#{rbgpaUI['gpa.ui.general.sin.registros.label']}">
+																																
+																<p:column headerText="Id" width="3%" style="text-align:center;">
+																	<p:outputLabel value="#{valor.id}" />
+																</p:column>
+																<p:column headerText="#{rbgpaUI['gpa.producto.busqueda.descripcion.producto']}" width="17%" >
+																	<p:outputLabel value="#{valor.descripcionProducto}" />
+																</p:column>
+																<p:column headerText="Stock Actual" width="20%" style="text-align:center;">
+																	<p:outputLabel value="#{valor.stockMaximo}" />
+																</p:column>
+																<p:column headerText="Indicador Activo" width="20%" style="text-align:center;">
+																	<p:outputLabel value="#{valor.indicadorActivo==2?'INACTIVO':'ACTIVO'}"/>
+																</p:column>
+																<p:column headerText="Seleccione" width="20%" style="text-align:center;">
+																	<p:selectBooleanCheckbox id="sbcSeleccion" value="#{programacionBean.seleccionProducto}" > 
+																		<p:ajax event="change" listener="#{programacionBean.obtenerProductoSeleccionado(posicion,programacionBean.seleccionProducto)}" />																																																						
+																	</p:selectBooleanCheckbox>
+																</p:column>												
+<!-- 																<p:column headerText="Cantidad" style="text-align:left;" width="20%" > -->
+<!-- 																	 <p:spinner id="minMax"  min="0" max="#{valor.stockMaximo}" size="10" disabled="#{!programacionBean.seleccionProducto}"/> -->
+<!-- 																</p:column>					 -->
+																										
+											</p:dataTable>
+										</p:column>
+									</p:row>
+								</p:panelGrid>
+							</p:column>	
+						</p:row>
+					</p:panelGrid>										
+				</p:column>
+			</p:row>	
+			<p:row>				
+				<p:column style="text-align:center;">			
+					<p:commandButton id="btnSiguiente" value="Siguiente" 
+					action="#{programacionBean.abriPopupAgregarAreaProducto()}" update="FrmNuevaProgramacion :dialogoAreaProducto"
+					styleClass="search" >					 
+						<p:ajax resetValues="true" update=":dialogoAreaProducto :FrmPopupAgregarProducto"/>
+					</p:commandButton>				
+					<p:commandButton 
+						id="btnRegistrar" rendered="#{programacionBean.paraCrear}"
+						value="Registrar" 
+						action="#{programacionBean.mensajeConfirmacion()}"
+						update="FrmNuevaProgramacion" styleClass="search"/>
+						<p:tooltip for="btnRegistrar" value="Registrar"/>
+					<p:commandButton
+						id="btnModificar"  rendered="#{programacionBean.paraModificar}" 
+						value="Actualizar"  
+						action="#{programacionBean.mensajeConfirmacion()}" 
+						update="FrmNuevaProgramacion" styleClass="search"/>
+						<p:tooltip for="btnModificar" value="Actualizar"/>																											 			
+					<p:commandButton id="btnCancelar" value="Cancelar" styleClass="search"
+						onclick="PF('dialogoNuevoProgramacion').hide();" >
+						<p:ajax update="smcAreas" resetValues="true"/>	
+					</p:commandButton>
+						<p:tooltip for="btnCancelar" value="Cancelar"/>
+				</p:column>													
+			</p:row>		
+		</p:panelGrid>		
+	</h:form>	
+	
+	<p:dialog id="popupConfirmar" widgetVar="popupConfirmar"
+		closable="false" resizable="false"
+		header="#{rbgpaUI['gpa.ui.general.titulo.mensaje.aviso']}"
+		width="350px" height="80px" modal="true" appendTo="@(body)">
+		<p:growl id="growl" showDetail="true" sticky="true" />
+		<h:panelGrid columns="2" style="width:100%; height:60%">
+			<p:graphicImage value="/recursos/images/warning.png" width="20px"
+				style="padding-right: 10px" height="20px" />
+			<p:outputLabel 
+				value="#{rbgpaUI['gpa.ui.general.mensaje.alerta.registrar.label']}" rendered="#{programacionBean.paraCrear}"/>							
+			<p:outputLabel rendered="#{programacionBean.paraModificar}"
+				value="#{rbgpaUI['gpa.ui.general.mensaje.alerta.actualizar.label']}" />
+		</h:panelGrid>
+
+		<h:panelGrid columns="2" style="width:100%;" height="20px">
+			<h:panelGroup style="display:block;text-align:center;">
+				<p:commandButton style="margin-right: 5px;"
+					value="#{rbgpaUI['gpa.ui.general.boton.aceptar.label']}"
+					icon="ui-icon-check" rendered="#{programacionBean.paraCrear}" 
+					actionListener="#{programacionBean.registrarProgramacion()}"
+					update="@([id$=dtListaProgramacion]) growl"
+					onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+
+				<p:commandButton style="margin-right: 5px;"
+					value="#{rbgpaUI['gpa.ui.general.boton.aceptar.label']}"
+					icon="ui-icon-check" rendered="#{programacionBean.paraModificar}"
+					actionListener="#{programacionBean.actualizarProgramacion()}"
+					update="@([id$=dtListaProgramacion]) growl"
+					onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+
+				<p:commandButton style="margin-left: 5px;"
+					onstart="PF('statusDialog').show();"
+					onsuccess="PF('statusDialog').hide();"
+					value="#{rbgpaUI['gpa.ui.general.boton.cancelar.label']}"
+					onclick="PF('popupConfirmar').hide();" icon="ui-icon-cancel" />
+			</h:panelGroup>
+
+		</h:panelGrid>
+
+	</p:dialog>
+	
+		
+
+</div>	
+
+</html>

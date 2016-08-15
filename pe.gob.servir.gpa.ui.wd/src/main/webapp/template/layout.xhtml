@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<f:view contentType="text/html" contracts="#{param.contract}">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title value="#{rbSicanUI['sican.ui.general.title.sican']}"></title>
+<link type="text/css" rel="stylesheet" href="#{request.contextPath}/recursos/css/estilos.css"/>
+		<script type="text/javascript"
+			value="#{request.contextPath}/recursos/js/calendar_es.js"></script>
+		<script type="text/javascript"
+			value="#{request.contextPath}/recursos/js/jshashtable-2-1.js"></script>
+		<script type="text/javascript"
+			value="#{request.contextPath}/recursos/js/jquery_numberformatter-1-2-3.js"></script>
+		<script type="text/javascript"
+			value="#{request.contextPath}/recursos/js/date.js"></script>
+		<script type="text/javascript" 
+			src="/recursos/js/funciones.js"></script>
+		<title>SERVIR</title>
+	</h:head>
+	<h:body style="width: auto; height:auto; z-index: 100;">
+		<h:panelGroup layout="block" style="width:100%; height:auto;">
+			<div id="header">
+				<ui:insert name="top">
+					<ui:include src="header.xhtml" />
+				</ui:insert>
+			</div>
+		</h:panelGroup>
+		<center>
+			<h:panelGroup layout="block" style="width:90%; height:auto;  background: white;">
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+					closable="false" resizable="false" showHeader="false">
+					<p:graphicImage value="/recursos/images/ajax-loader-red.gif" />
+				</p:dialog>
+				<div id="header">
+					<ui:insert name="top">
+						<ui:include src="cabecera.xhtml" />
+					</ui:insert>
+				</div>
+				<div id="content" style="width: 100%;">
+					<div id="menu" style="float: left; width: 15%;">
+						<ui:insert name="menu">
+							<ui:include src="menu.xhtml" />
+						</ui:insert>
+					</div>
+					<div style="width: 82%; float: left; margin-left: 20px;">
+						<ui:insert name="content" style="width:100%;float:left;">
+						</ui:insert>
+					</div>
+				</div>
+
+			</h:panelGroup>
+		</center>
+		<h:panelGroup layout="block" style="width:100%" styleClass="footer-a">
+			<div id="footer">
+				<ui:insert name="bottom">
+					<ui:include src="footer.xhtml" />
+				</ui:insert>
+			</div>
+		</h:panelGroup>
+		<h:panelGroup layout="block" style="width:100%;" styleClass="footer-b">
+			<div id="footerred">
+				<ui:insert name="top">
+					<ui:include src="footerred.xhtml" />
+				</ui:insert>
+			</div>
+		</h:panelGroup>
+	</h:body>
+</f:view>
+</html>

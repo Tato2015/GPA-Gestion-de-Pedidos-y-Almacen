@@ -1,0 +1,437 @@
+@CHARSET "ISO-8859-1";
+
+img{
+	
+}
+
+div.img
+  {
+	
+		background-color: #CCCCCC;
+	    display: block;
+	    float: left;
+	    height: auto;
+	    margin: 0.5px;
+	    padding: 1px 0;
+	    text-align: center;
+	    text-decoration: none;
+	    width: auto;
+  }
+div.img img
+  {
+	  display:inline;
+	  margin:1px;
+  }
+  
+  div.img a:hover img
+  {
+  	background-color: #666666;
+  	color: #FFFFFF;
+	height: auto;
+	width: auto;
+  }
+  
+  div.desc
+  {
+	  text-align:center;
+	  font-weight:normal;
+	  width:120px;
+	  margin:5px;
+  }
+  
+  .botonera{
+  	padding: 6px;
+  	right: 20px;
+  	text-align: right;
+  }
+  
+  /***/
+  #menucentral ul li {
+    border-bottom: 1px solid #FFFFFF;
+    border-right: 1px solid #FFFFFF;
+    float: left;
+    list-style-type: none;
+    margin: 0;
+    vertical-align: middle;
+	}
+	#menucentral li a {
+	    background-color: #CCCCCC;
+	    color: #000000;
+	    display: block;
+	    padding: 4px 0 5px 10px;
+	    text-decoration: none;
+	    width: 180px;
+	}
+	#menucentral li a:hover {
+	    background-color: #666666;
+	    color: #FFFFFF;
+	}
+  /***/
+
+.imgHead{
+	box-shadow: 2px 2px 2px #696969;
+   -webkit-box-shadow: 2px 2px 2px #696969;
+   -moz-box-shadow: 2px 2px 2px #696969;
+}
+
+body{
+	margin:0px;
+    background:#ff00;
+    font: 12px "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    background-color: #ffff;
+}
+
+/*body {
+    background: url("../img/bg.png") repeat scroll left top #454545;
+    color: #555555;
+    font: 13px "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+}*/
+
+.background {
+    /*background: url("http://www.foncodes.gob.pe/portal/templates/phoneapps-tg/css/../images/fondo.jpg") no-repeat fixed center center #E1E1E1;*/
+    background-color: #E1E1E1;
+    position: absolute;
+    width: 100%;
+}
+
+.module-body {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    box-shadow: 0 0 3px #B9B9B9;
+    color: #555555;
+    margin: 0;
+    padding: 0;
+}
+
+#footer { 
+	position: relative;
+	margin-top: -50px; /* altura en px del footer con valor negativo */ 
+	height: 55px; /* Altura del Footer en px*/ 
+	clear: both; 
+	background-color: #2D2D2F; 
+	border-bottom: 0 solid #2D2D2F;
+	border-top: 0 solid #2D2D2F;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
+	text-align: center; 
+	color: #FFFFFF; 
+	font-size:11px;
+	} 
+
+#contentFoot {
+	margin: 0 0 0 450px;
+    text-align: center;
+    width: 900px;
+}
+
+.header-cont {
+    width:100%;
+    position:fixed;
+    top:0px;
+}
+.default, .osce {
+    height:35px;
+    background: #ffaf4b; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffaf4b 0%, #ff920a 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffaf4b), color-stop(100%,#ff920a)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffaf4b 0%,#ff920a 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffaf4b 0%,#ff920a 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffaf4b 0%,#ff920a 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffaf4b 0%,#ff920a 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4b', endColorstr='#ff920a',GradientType=0 ); /* IE6-9 */
+    
+    
+    border:1px solid #CCC;
+    width:100%;
+    margin:0px auto;
+}
+
+
+.ongei{
+	height:35px;
+	background: #a7c7dc; /* Old browsers */
+	background: -moz-linear-gradient(top,  #a7c7dc 0%, #85b2d3 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a7c7dc), color-stop(100%,#85b2d3)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #a7c7dc 0%,#85b2d3 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #a7c7dc 0%,#85b2d3 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #a7c7dc 0%,#85b2d3 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #a7c7dc 0%,#85b2d3 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a7c7dc', endColorstr='#85b2d3',GradientType=0 ); /* IE6-9 */
+
+	border:1px solid #CCC;
+    width:100%;
+    margin:0px auto;
+	
+}
+
+.alternativo{
+	
+	background: #cc0000; /* Old browsers */
+	background: -moz-linear-gradient(top,  #cc0000 0%, #cc0000 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cc0000), color-stop(100%,#cc0000)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #cc0000 0%,#cc0000 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #cc0000 0%,#cc0000 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #cc0000 0%,#cc0000 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #cc0000 0%,#cc0000 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', endColorstr='#cc0000',GradientType=0 ); /* IE6-9 */
+	
+	
+}
+
+.content {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #BAB9B9;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    box-shadow: 0 0 5px #B9B9B9;
+    clear: both;
+    color: #555555;
+    width:95%;
+    height: 100%;
+    margin: 50px auto;
+	
+}
+
+#SubContent{
+	margin: 5px;
+}
+
+.hdRight
+{
+	/*position:absolute;
+	padding: 37px 0 0  0;
+	right: 150px;
+    width: 700px;*/
+    float: right;
+    width: 50%;
+    height: 10px;
+    position:relative;
+	/*background-color:#b0e0e6;*/
+}
+
+.hdLeft
+{
+	position:absolute;
+	/*position:relative;*/
+	left:30px;
+	width: 10%;
+	float: left;
+	/*background-color:#b0e0e6;*/
+}
+
+
+/*** Ficha Selección **/
+.tableInformationFicha{
+	border: 1px solid #ABABAB;	
+	width: 100%;	
+}
+
+.tableInformationFicha td{
+	background-color: #FFFFFF;
+	width: 70%;
+}
+
+.tableInformationFicha > thead > tr > th, 
+.tableInformationFicha > tbody > tr > th, 
+.tableInformationFicha > tfoot > tr > th, 
+.tableInformationFicha > thead > tr > td, 
+.tableInformationFicha > tbody > tr > td, 
+.tableInformationFicha > tfoot > tr > td {
+    border-top: 1px solid #DDDDDD;
+    line-height: 1;
+    padding: 8px;
+    vertical-align: top;
+}
+
+/** Fin Ficha Selección */
+fieldset { border:1px solid #E78F08 }
+legend {
+  padding: 0.2em 0.5em;
+  border:1px solid #E78F08;
+  background-color: #FFFFFF;
+  color:#E78F08;
+  font-size:90%;
+  font-weight: bold;
+  text-align:right;
+  }
+  
+.dvConvocatoria{
+	position: relative;
+	float: inherit;
+	width: 50%;
+	height: auto;
+	
+}
+
+.divCronograma{
+	/*position: relative;
+	float: inherit;
+	width: 45%;
+	height: 180px;*/
+	height: 180px;
+    left: 60%;
+    margin: -34.4% 0 0 -10%;
+    position: absolute;
+    width: 50%;
+}
+
+.divDocumentos{
+	/*position: relative;
+	float: left;
+	width: 100%;
+	height: 80px;*/
+	float: inherit;
+    height: auto;
+    position: relative;
+    width: 100%;
+    height: 450px;
+}
+
+.divOpciones{
+	float: inherit;
+    height: auto;
+    position: relative;
+    width: 100%;
+    height: 100px;
+}
+
+.tableSeace {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+.tableSeace > thead > tr > th, 
+.tableSeace > tbody > tr > th, 
+.tableSeace > tfoot > tr > th, 
+.tableSeace > thead > tr > td, 
+.tableSeace > tbody > tr > td, 
+.tableSeace > tfoot > tr > td {
+    border-top: 1px solid #DDDDDD;
+    line-height: 1.42857;
+    padding: 8px;
+    vertical-align: top;
+}
+
+
+.tableSeace > thead > tr > th, 
+.tableSeace > tbody > tr > th, 
+.tableSeace > tfoot > tr > th,
+.tableSeace > tfoot > tr > td {
+
+	background: url("../development-bundle/themes/ui-lightness/images/ui-bg_gloss-wave_35_f6a828_500x100.png") repeat-x scroll 50% 50% #F6A828;
+    border: 1px solid #E78F08;
+    color: #FFFFFF;
+    font-weight: bold;
+	
+}
+
+.tableSeace > tbody > tr > td{
+	text-align: left;
+}
+
+.ui-widget {
+    font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
+    font-size: 0.9em;
+}
+
+.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td {
+    white-space: inherit;
+}
+
+#mytab1{
+	background-image: url("../img/1392068049_guarantee.png");
+	
+}
+
+.fechaCronogramaActiva{
+	background-color: #AADDFF !important;
+}
+
+tr.active {
+   background-image: none;
+   background-color: #EAF701;
+   color: #3D3D3D;
+      
+}
+
+a:link {text-decoration:none;}
+a:visited {text-decoration:none;}
+a:hover {text-decoration:underline;}
+a:active {text-decoration:underline;}
+
+a img { border:none; }
+
+.subElements{
+	border: none !important;
+	width:100% !important;
+}
+
+/*.ui-selectonemenu-label{
+    width:85% !important;
+}*/
+
+.ui-selectonemenu{
+   width:85% !important;
+}
+
+.ui-selectonemenu-label{
+	width:100% !important;
+}
+
+.button_cursos{
+	background: url('../img2/1404178387_book.png') 3px 5px no-repeat;
+	padding-left: 35px;
+	padding-right: 15px;
+}
+
+
+.ui-fieldset, .ui-fieldset .ui-fieldset-legend {text-align: left;
+    position: relative;
+    top: 0px;}
+/*.ui-fieldset-toggleable .ui-fieldset-legend {padding-left:2em;position:relative;cursor:pointer;}
+.ui-fieldset .ui-fieldset-toggler {position:absolute;top:0.5em;left:0.5em;}*/
+                
+.centerPanelFicha {
+    vertical-align: top;
+    /*position: absolute;
+	height: 100px;
+	top: 0;
+	bottom: 0;
+	margin:auto;*/
+}
+
+.textoNegrita {
+	font-weight: bold;
+}
+
+.hide-column-names table thead tr {
+    display: none;
+}
+
+.label1 {
+	width:15% !important;
+}
+.value1 {
+	width:35% !important;
+}
+.label2 {
+	width:15% !important;
+}
+.value2 {
+	width:35% !important;
+}
+.ocultarTag {
+	display: none;
+}
+.float_center {
+  float: right;
+
+  position: relative;
+  left: -50%; /* or right 50% */
+  text-align: left;
+}
+.float_center > .child {
+  position: relative;
+  left: 50%;
+}

@@ -1,0 +1,479 @@
+/* SECCION DISTRIBUCION : INICIO */
+body {
+	font-size: 10px;
+	font-family: Arial, "Arial CE", Verdana, "Verdana CE",
+		"Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+	color: #000000;
+	margin: 10px;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 0;
+	padding-right: 0;
+	background-color: #E7E7E7;
+	margin: 0px;
+	height: 100%;
+}
+
+html {
+	min-width: 990px;
+}
+
+form {
+	border: 0px;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+	margin-right: 0;
+	padding-right: 0px;
+	padding-left: 0px;
+	padding-bottom: 0px;
+	padding-top: 0px;
+}
+
+#header {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-right: 0px;
+}
+
+#header .ui-toolbar {
+	color: white;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-right: 0px;
+	background: #5F1F1F;
+	border: none;
+}
+
+#left {
+	position: absolute;
+	left: 10px;
+	top: 134px;
+	width: 180px;
+	background-color: #FFFFFF;
+	border: 2px none #666666;
+}
+
+#center {
+	top: 115px;
+	min-height: 540px;
+	background: #FFFFFF;
+	margin-left: 20px;
+}
+
+*>#center {
+	height: auto;
+}
+
+#center_more {
+	top: 0;
+	margin-left: 200px;
+	margin-right: 10px;
+	height: 400px;
+	min-height: 400px;
+	text-align: left;
+	background: #FFFFFF;
+}
+
+*>#center_more {
+	height: auto;
+}
+
+#right {
+	position: absolute;
+	right: 10px;
+	top: 134px;
+	width: 200px;
+	border: 2px solid #666666;
+	background-color: #FFFFCC;
+	padding-right: 5px;
+	padding-left: 5px;
+	padding-bottom: 10px;
+	padding-top: 5px;
+}
+
+#footer {
+	background-color: #5F1F1F; /* #A87C4F Color de fondo del footer*/
+	text-align: left;
+	vertical-align: text-top;
+	font-size: 10px; /*tamaño de la letra*/
+}
+
+#footer-a,#footer-b
+{
+	padding: 0px;
+	margin: 0px;
+}
+
+#footer table {
+	width: 95%;
+	border:none;
+}
+
+#footer tr {
+	color: white; /* Color de letra del footer */
+	height: 20px;
+	border: white;
+	border-right: #5F1F1F;
+	background: #5F1F1F;
+	border:0px;
+}
+
+#footer td {
+	text-align: left;
+	vertical-align: top;
+	padding-left: 5%;
+	padding-right: 5%;
+	border:0px;
+	padding-top: 0px;
+	padding-bottom:0px;
+}
+
+#footerred td
+{
+	
+}
+/* SECCION DISTRIBUCION : TERMINO */
+
+/* SECCION PRIMEFACES-SOBREESCRIBIR: INICIO */
+#menu {
+	position: relative;
+	z-index: 100;
+	background-color: #E7E7E7;
+	margin: 0px 0px 0px 0px;
+	padding-bottom: 0px;
+	padding-top: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	color: black;
+	font-size: 13px;
+}
+
+#menu .ui-widget-content {
+	color: black;
+	background: white;
+	font-size: 13px;
+}
+
+#menu .ui-toolbar {
+	color: black;
+	border-color: black;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	font-size: 13px;
+}
+
+#content {
+	min-height: 650px;
+	margin-left: 10px;
+	margin-top: 5px;
+	margin-bottom: 0px;
+	margin-right: 10px;
+	font-size: 13px;
+}
+
+#content table.tablaDatos {
+	border-color: black;
+}
+
+#content th.ui-state-default {
+	background: #5F1F1F;
+	color: white;
+	height: 8px;
+	font-size: 10px;
+}
+
+#content table tr.ui-datatable-even td {
+	background-color: #ffffff;
+}
+
+#content table tr.ui-datatable-odd td {
+	
+}
+
+#content .ui-panel-titlebar {
+	color: black;
+	background: #E7E7E7;
+	font-size: 13px;
+}
+
+#content .ui-dialog-titlebar {
+	color: black;
+	background: #E7E7E7;
+	font-size: 10px;
+}
+
+#content fieldset {
+	border-color: #E7E7E7;
+	font-size: 10px;
+}
+
+#content fieldset legend {
+	color: black;
+	border-color: #E7E7E7;
+	background: white;
+	font-size: 10px;
+}
+
+#content table td {
+	color: #000000;
+	vertical-align: top;
+	border-style: 5px;
+	white-space: inherit width;
+	height: 100%;
+	font-size: 10px;
+}
+
+#content td.tableCenter {
+	text-align: center;
+}
+
+#content td.tableLeft {
+	text-align: left;
+}
+
+#content td.tableRight {
+	text-align: left;
+}
+
+#content input[type=text] {
+	color: #4F4F4F;
+	background-color: white;
+	font-size: 10px; /* tamaño de la letra  */
+}
+
+#content textarea {
+	color: #4F4F4F;
+	background-color: white;
+	font-size: 10px; /* tamaño de la letra  */
+}
+
+#content button {
+	background: #E7E7E7;
+	color: white;
+}
+
+#content input[type=text].textDesactivado {
+	background-color: silver;
+	font-size: 10px; /* tamaño de la letra  */
+}
+
+#columnaFechaValor input[type=text] {
+	width: 80px;
+}
+
+#content input[type=text].columnaChicoValor {
+	width: 50px;
+}
+
+#content input[type=text].columnaMedioValor {
+	width: 100px;
+}
+
+#content input[type=text].columnaGrandeValor {
+	width: 200px;
+}
+
+.grid {
+	width: 98%;
+}
+
+.ui-datatable table {
+	width: 100%;
+	margin-left: 0%;
+	margin-right: 0%;
+	margin-top: 5px;
+}
+
+.ui-widget,.ui-widget .ui-widget {
+	font-size: 10px !important;
+}
+
+.ui-widget .ui-calendar {
+	background: yellow;
+	background-image: url(#{               resource [                      
+		      'images:country_flag.gif' ]
+}
+
+);
+}
+.ui-widget .ui-icon-print {
+	/*background-image: url('../../../resources/system/app/images/framework/cancel.png');*/
+	
+}
+
+.ui-messages-error {
+	width: 100%;
+	padding: 0px;
+	padding-top: 4px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	min-height: 20px;
+}
+
+.tablaPanelGrid table table,th,td {
+	text-align: left;
+	vertical-align: top;
+}
+
+#content .ui-toolbar {
+	/*   background: #F9B858; */
+	height: 32px;
+}
+
+#content .ui-panel-titlebar {
+	color: black;
+	background: blue;
+}
+
+#content .ui-dialog-titlebar {
+	color: black;
+	background: #E7E7E7;
+}
+
+.ui-datatable th {
+	white-space: normal !important;
+}
+
+#panelGrid-a
+{
+	border:0px;
+}
+
+/* SECCION PRIMEFACES-SOBRESCRIBIR : TERMINO */
+
+/* CONTROLES DE FORMULARIOS: INICIO */
+.tituloPagina {
+	color: white;
+	font-size: 13px;
+	width: 100%;
+	text-align: center;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.textoEtiqueta,.columnaEtiqueta {
+	text-align: left;
+	vertical-align: top;
+	padding-top: 4px;
+	color: #424242;
+	font-size: 10px;
+}
+
+.columnaTitulo {
+	color: #000000;
+	font-size: 1.5em;
+	font-weight: bold;
+	font-size: 10px;
+}
+
+.columnaEtiqueta {
+	display: inline-block;
+	white-space: normal !important;
+}
+
+.columnaEtiquetaDesactivada {
+	vertical-align: top;
+	color: #000;
+	/*background:#ccc;*/
+	border: 1px #ccc solid;
+	border-top: 3px outset #cccccc;
+	border-left: 1px outset #cccccc;
+	height: 20px;
+	display: inline-block;
+}
+
+.columnaValor {
+	vertical-align: top;
+	text-align: left;
+	padding: 0;
+	marging: 0;
+}
+
+.columnaFecha input[type=text] {
+	width: 80px;
+}
+
+.columnaMensaje {
+	color: red;
+	width: 80%;
+	padding-top: 4px;
+}
+
+.tablaContenedor {
+	padding: 0;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+.columnaOcultar tr,.columnaOcultar tr td {
+	border: hidden !important;
+}
+
+.buttonColorRed {
+	background: #D00000 !important;
+}
+
+.buttonColorBlack {
+	background: black !important;
+}
+
+.formOcultar {
+	border: hidden;
+}
+
+#content .ui-panelgrid .search.ui-button
+{
+	background: #5F1F1F;	
+}
+
+
+#content .ui-panelgrid .search.ui-button:hover
+{
+	background-color:white;
+	color:#5F1F1F;	
+}
+
+#content .columnaOcultar .ui-datatable-data tr
+{
+	background: #E5E5E5;
+}
+
+#content .ui-datatable-data .detalle.ui-button:hover
+{
+	background: #5AA8CF;
+}
+
+#content .ui-datatable-data .detalle.ui-button
+{
+	width: 30px;
+	height: 30px;
+}
+
+#content .ui-datatable-data .prueba.ui-button:hover
+{
+	background: #5AA8CF;
+}
+
+
+#content td.ui-panelgrid-cell
+{
+padding-left: 0px;
+padding-right: 0px;
+padding-top: 10;
+padding-bottom: 10px;
+}
+#content td.ui-panelgrid-cell label.ui-outputlabel
+{
+	
+}
+
+
+
+/* CONTROLES DE FORMULARIOS: INICIO */
+

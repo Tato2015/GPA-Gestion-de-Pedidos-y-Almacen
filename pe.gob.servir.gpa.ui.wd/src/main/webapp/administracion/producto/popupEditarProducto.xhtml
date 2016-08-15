@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<h:form id="EDITAR_PRODUCTO_MNT" class="div_formulario">
+
+		<p:panelGrid layout="grid" styleClass="ui-panelgrid columnaOcultar">
+				<p:row>
+					<p:column colspan="2">
+					<p:outputLabel styleClass="resaltar" style="font-size: 12px !important;"
+							value="#{productoBean.titulo}"
+							 />
+							<p:separator />
+					</p:column>
+				</p:row>
+			<p:row>
+				<p:column >
+					<p:outputLabel value="#{rbgpaUI['gpa.producto.busqueda.codigo.producto.bien.label']}" />
+				</p:column>
+				<p:column >
+					<p:outputLabel value="#{productoBean.productoDTO.codigoProducto}" />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column >
+					<p:outputLabel value="#{rbgpaUI['gpa.producto.busqueda.descripcion.producto']}" />
+				</p:column>
+				<p:column >
+					<p:outputLabel value="#{productoBean.productoDTO.descripcionProducto}" />
+				</p:column>
+			</p:row>
+			 <p:row>
+				<p:column >
+					<p:outputLabel value="#{rbgpaUI['gpa.producto.busqueda.unidad.medida.producto.abreviatura']}" />
+				</p:column>
+				<p:column >
+					<p:outputLabel value="#{productoBean.productoDTO.unidadMedida.abreviaturaTipo}" />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column >
+					<p:outputLabel value="#{rbgpaUI['gpa.producto.minimo.stock.producto']}" />
+				</p:column>
+				<p:column >
+					<p:inputText value="#{productoBean.productoDTO.stockMinimo}" required="true" 
+					requiredMessage="#{rbgpaUI['gpa.producto.minimo.stock.producto']}" id="inpStock"
+					size="6" maxlength="6" disabled="#{productoBean.isDetalle}"/> 
+					<p:message for="inpStock" />
+				</p:column>
+			</p:row>
+				
+			<p:row>
+				<p:column >
+					<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.producto.busqueda.familia']}" />
+					<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.ui.general.campo.obligatorio.label']}" style="color:red" />
+				</p:column>
+
+				<p:column >
+					<p:selectOneMenu id="somFamilia" value="#{productoBean.productoDTO.familia.identificadorTipo}"
+						required="true" requiredMessage="#{rbgpaUI['gpa.producto.busqueda.familia']}" disabled="#{productoBean.isDetalle}"
+						style="width:150px;">
+						<f:selectItem itemLabel="seleccione" itemValue="" />
+						<f:selectItems value="#{productoBean.listaFamilia}" var="valor"
+										itemLabel="#{valor.descripcionTipo}" itemValue="#{valor.identificadorTipo}" />
+					</p:selectOneMenu>
+					<p:message for="somFamilia" />
+					<p:tooltip  for="somFamilia" value="#{rbgpaUI['gpa.producto.busqueda.familia']}" trackMouse="true" />
+				</p:column>
+			</p:row>
+			
+			<!-- <p:row>
+				<p:column >
+					<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.producto.tipo.categoria']}" />
+					<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.ui.general.campo.obligatorio.label']}" style="color:red" />
+				</p:column>
+
+				<p:column >
+					<p:selectOneMenu id="somTipoRequerimiento" value="#{productoBean.productoDTO.tipoCategoria.identificadorTipo}"
+						required="true" requiredMessage="#{rbgpaUI['gpa.producto.tipo.categoria']}" disabled="#{productoBean.isDetalle}"
+						style="width:150px;">
+						<f:selectItem itemLabel="seleccione" itemValue="" />
+						<f:selectItems value="#{productoBean.listaTipoCategoria}" var="valor"
+										itemLabel="#{valor.descripcionTipo}" itemValue="#{valor.identificadorTipo}" />
+					</p:selectOneMenu>
+					<p:message for="somTipoRequerimiento" />
+					<p:tooltip  for="somTipoRequerimiento" value="#{rbgpaUI['gpa.producto.tipo.categoria']}" trackMouse="true" />
+				</p:column>
+			</p:row> -->	
+				
+				
+				
+				
+		</p:panelGrid>
+		<p:panelGrid styleClass="ui-panelgrid columnaOcultar" style="width:100%">
+				<p:row>
+					<p:column style="text-align:right;">
+										
+						<p:commandButton id="btnActualizar" rendered="#{!productoBean.isDetalle}"
+										value="#{rbgpaUI['gpa.ui.general.boton.actualizar.label']}"
+										action="#{productoBean.mensajeConfirmacion()}"
+										update="EDITAR_PRODUCTO_MNT" styleClass="buttonColorRed" />
+						<p:commandButton icon="ui-icon-pencil" styleClass="buttonColorBlack" rendered="#{!productoBean.isDetalle}"
+										action="#{productoBean.mensajeConfirmacion()}"
+										update="EDITAR_PRODUCTO_MNT" />	
+								<p:tooltip  for="btnActualizar" value="actualizar"
+											trackMouse="true" />
+												
+						<p:commandButton id="btnCancelar"
+										value="#{rbgpaUI['gpa.ui.general.boton.cancelar.label']}"
+										onclick="PF('dialogoEditarProducto').hide();" styleClass="buttonColorRed" />
+										
+						<p:commandButton icon="ui-icon-cancel" styleClass="buttonColorBlack" 
+										onclick="PF('dialogoEditarProducto').hide();" />			
+								<p:tooltip  for="btnCancelar" value="Cancelar"
+												trackMouse="true" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column colspan="2">
+						<p:outputLabel styleClass="resaltar"
+							value="#{rbgpaUI['gpa.ui.general.campo.obligatorio.label']}"
+							style="color:red" />
+
+						<p:outputLabel styleClass="resaltar"
+							value="#{rbgpaUI['gpa.ui.general.campos.obligatorio.label']}" />
+					</p:column>
+				</p:row>
+		</p:panelGrid>
+	</h:form>
+	<p:dialog id="popupConfirmar"
+			widgetVar="popupConfirmar" closable="false" resizable="false"
+			header="#{rbgpaUI['gpa.ui.general.titulo.mensaje.aviso']}"
+			width="350px" height="80px" modal="true" appendTo="@(body)">
+<p:growl id="growl" showDetail="true" sticky="true" /> 
+			<h:panelGrid columns="2" style="width:100%; height:60%">
+				<p:graphicImage value="/recursos/images/warning.png" width="20px"
+					style="padding-right: 10px"
+					height="20px" />
+				<p:outputLabel 
+					value="#{rbgpaUI['gpa.ui.general.mensaje.alerta.actualizar.label']}" />
+
+			</h:panelGrid>
+
+			<h:panelGrid columns="2" style="width:100%;" height="20px">
+				<h:panelGroup style="display:block;text-align:center;">
+					<p:commandButton style="margin-right: 5px;"
+						value="#{rbgpaUI['gpa.ui.general.boton.aceptar.label']}"
+						icon="ui-icon-check" 
+						actionListener="#{productoBean.actualizarProducto}"
+						update="@([id$=dtListaProducto]) growl"
+						onstart="PF('statusDialog').show()" 
+						onsuccess="PF('statusDialog').hide()" />
+
+					<p:commandButton style="margin-left: 5px;"
+						onstart="PF('statusDialog').show();"
+						onsuccess="PF('statusDialog').hide();" 
+						value="#{rbgpaUI['gpa.ui.general.boton.cancelar.label']}"
+						onclick="PF('popupConfirmar').hide();" icon="ui-icon-cancel" />
+				</h:panelGroup>
+			</h:panelGrid>
+		</p:dialog>
+	
+	
+	
+	
+</h:body>
+</html>

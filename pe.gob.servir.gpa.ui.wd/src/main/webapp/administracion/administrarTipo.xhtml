@@ -1,0 +1,62 @@
+<!--
+* Resumen                         :         Vista de Administración de Competencias.
+* Objeto                          :         buscarCompetenciaGrado.xhtml
+* Descripcion                     :         Pagina para la Administración de Competencias.
+* Fecha de Creacion               :         20/10/2015.
+* Proyecto de Creacion            :         GPA.
+* Autor                           :         Consultora  - P & P BMS (P & P Business Management Solutions)
+* ================================================================================================
+* Modificaciones
+* Motivo                      Fecha             Nombre             Descripcion
+* ================================================================================================
+*
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	<ui:composition template="/template/layout.xhtml">
+	<ui:define name="content">
+	
+		<h:body>
+			<h:form id="BUSCAR_TIPO_PRS">
+				<p:dataTable value="#{tipoBean.listaTipo}" id="TablaUsuario" paginator="true"
+								rows="10" paginatorPosition="bottom" rowIndexVar="posicion" var="valor"
+								currentPageReportTemplate="Mostrando de {startRecord} a {endRecord} | Total Registros : {totalRecords}"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+								emptyMessage="Campos vacios">
+
+								<p:column headerText="Item" width="7%">
+											#{posicion+1}
+										</p:column>
+								<!-- <p:column headerText="Tipo de Pedido">
+									<p:outputLabel value="valor" />
+								</p:column> -->
+								<p:column headerText="Descripción programación">
+									<p:outputLabel value="#{valor.codigoTipo}" />
+								</p:column>
+								
+								<p:column width="15%" headerText="Estado">
+									<p:outputLabel value="#{valor.estado.descripcionEstado}" />
+								</p:column>
+
+
+								<p:column width="15%" headerText="Acciones">
+									<p:commandButton id="btnDetalle" icon="ui-icon-zoomin">
+										<p:tooltip id="tolTipActualizar" for="btnDetalle"
+											value="Ver Detalle" trackMouse="true" />
+									</p:commandButton>
+								</p:column>
+
+							</p:dataTable>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>

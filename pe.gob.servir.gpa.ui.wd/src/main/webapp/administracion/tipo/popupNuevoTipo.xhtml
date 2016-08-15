@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<h:form id="NUEVO_TIPO_MNT" class="div_formulario">
+		<p:panelGrid layout="grid" styleClass="ui-panelgrid columnaOcultar">
+			<p:row>
+				<p:column colspan="2">
+					<p:outputLabel styleClass="resaltar"
+						style="font-size: 12px !important;" value="#{tipoBean.titulo}" />
+					<p:separator />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:outputLabel
+						value="#{rbgpaUI['gpa.formulario.tipo.listado.outputlabel']}" />
+					<p:outputLabel styleClass="resaltar"
+						value="#{rbgpaUI['gpa.ui.general.campo.obligatorio.label']}"
+						style="color:red" />
+				</p:column>
+				<p:column>
+					<p:selectOneMenu id="somListado"
+						value="#{tipoBean.tipoDTO.padre.id}" required="true"
+						requiredMessage="#{rbgpaUI['gpa.formulario.tipo.listado.outputlabel']}"
+						style="width:250px;">
+						<f:selectItem itemLabel="Seleccione"  />
+						<f:selectItems value="#{tipoBean.listaTipoPadre}" var="valor"
+							itemLabel="#{valor.descripcionTipo}"
+							itemValue="#{valor.id}" />
+					</p:selectOneMenu>
+					<p:message for="somListado" />
+					<p:tooltip for="somListado"
+						value="#{rbgpaUI['gpa.formulario.tipo.listado.outputlabel']}"
+						trackMouse="true" />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:outputLabel styleClass="resaltar"
+						value="#{rbgpaUI['gpa.formulario.tipo.descripcion.outputlabel']}" />
+					<p:outputLabel styleClass="resaltar"
+						value="#{rbgpaUI['gpa.ui.general.campo.obligatorio.label']}"
+						style="color:red" />
+				</p:column>
+				<p:column>
+					<p:inputTextarea id="itaDescripcion" rows="5" cols="50" maxlength="100" autoResize="true"
+					value="#{tipoBean.tipoDTO.descripcionTipo}" required="true"
+					requiredMessage="#{rbgpaUI['gpa.formulario.tipo.descripcion.outputlabel']}"
+					/>
+					<p:message for="itaDescripcion" />
+					<p:tooltip for="itaDescripcion"
+						value="#{rbgpaUI['gpa.formulario.tipo.descripcion.outputlabel']}"
+						trackMouse="true" />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column>
+					<p:outputLabel styleClass="resaltar"
+						value="#{rbgpaUI['gpa.formulario.tipo.abreviatura.outputlabel']}" />
+					<p:outputLabel styleClass="resaltar"
+						value="#{rbgpaUI['gpa.ui.general.campo.obligatorio.label']}"
+						style="color:red" />
+				</p:column>
+				<p:column>
+					<p:inputText id="inpAbreviatura"
+						value="#{tipoBean.tipoDTO.abreviaturaTipo}"
+						onkeyup="$(this).val($(this).val().replace(/(^\s)|(\s\s\s$)/g, '').toUpperCase());"
+						size="50" maxlength="100" required="true"
+						requiredMessage="#{rbgpaUI['gpa.formulario.tipo.abreviatura.outputlabel']}" />
+					<p:message for="inpAbreviatura" />
+					<p:tooltip for="inpAbreviatura"
+						value="#{rbgpaUI['gpa.formulario.tipo.abreviatura.outputlabel']}"
+						trackMouse="true" />
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+
+		<p:panelGrid styleClass="ui-panelgrid columnaOcultar" style="width:100%">
+			<p:row>
+				<p:column style="text-align:right;">
+					<p:commandButton id="btnRegistrar" rendered="#{!tipoBean.isEditar}"
+						value="#{rbgpaUI['gpa.ui.general.boton.registrar.label']}"
+						action="#{tipoBean.mensajeConfirmacion()}"
+						update="NUEVO_TIPO_MNT"/>					
+					<p:commandButton id="btnActualizar" rendered="#{tipoBean.isEditar}"
+						value="#{rbgpaUI['gpa.ui.general.boton.actualizar.label']}"
+						action="#{tipoBean.mensajeConfirmacion()}"
+						update="NUEVO_TIPO_MNT"/>										
+					<p:commandButton id="btnCancelar"
+						value="#{rbgpaUI['gpa.ui.general.boton.cancelar.label']}"
+						onclick="PF('dialogoNuevoTipo').hide();" />										
+
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column colspan="2">
+					<p:outputLabel styleClass="resaltar"
+						value="#{rbgpaUI['gpa.ui.general.campo.obligatorio.label']}"
+						style="color:red" />
+					<p:outputLabel styleClass="resaltar"
+						value="#{rbgpaUI['gpa.ui.general.campos.obligatorio.label']}" />
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+	</h:form>
+
+
+
+	<p:dialog id="popupConfirmar" widgetVar="popupConfirmar"
+		closable="false" resizable="false"
+		header="#{rbgpaUI['gpa.ui.general.titulo.mensaje.aviso']}"
+		width="350px" height="80px" modal="true" appendTo="@(body)">
+		<p:growl id="growl" showDetail="true" sticky="true" />
+		<h:panelGrid columns="2" style="width:100%; height:60%">
+			<p:graphicImage value="/recursos/images/warning.png" width="20px"
+				style="padding-right: 10px" height="20px" />
+			<p:outputLabel rendered="#{!tipoBean.isEditar}"
+				value="#{rbgpaUI['gpa.ui.general.mensaje.alerta.registrar.label']}" />			
+			<p:outputLabel rendered="#{tipoBean.isEditar}"
+				value="#{rbgpaUI['gpa.ui.general.mensaje.alerta.actualizar.label']}" />
+		</h:panelGrid>
+
+		<h:panelGrid columns="2" style="width:100%;" height="20px">
+			<h:panelGroup style="display:block;text-align:center;">
+				<p:commandButton style="margin-right: 5px;"
+					value="#{rbgpaUI['gpa.ui.general.boton.aceptar.label']}"
+					icon="ui-icon-check" rendered="#{!tipoBean.isEditar}"
+					actionListener="#{tipoBean.registrarTipo()}"
+					update="@([id$=dtListaTipo]) growl"
+					onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+
+				<p:commandButton style="margin-right: 5px;"
+					value="#{rbgpaUI['gpa.ui.general.boton.aceptar.label']}"
+					icon="ui-icon-check" rendered="#{tipoBean.isEditar}"
+					actionListener="#{tipoBean.actualizarTipo()}"
+					update="@([id$=dtListaTipo]) growl"
+					onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+
+				<p:commandButton style="margin-left: 5px;"
+					onstart="PF('statusDialog').show();"
+					onsuccess="PF('statusDialog').hide();"
+					value="#{rbgpaUI['gpa.ui.general.boton.cancelar.label']}"
+					onclick="PF('popupConfirmar').hide();" icon="ui-icon-cancel" />
+			</h:panelGroup>
+
+		</h:panelGrid>
+
+	</p:dialog>
+
+
+</h:body>
+
+</html>

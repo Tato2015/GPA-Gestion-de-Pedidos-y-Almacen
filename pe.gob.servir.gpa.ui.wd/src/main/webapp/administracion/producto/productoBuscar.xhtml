@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/template/layout.xhtml">
+	<ui:define name="content">
+		<h:body>
+		
+			<h:form id="BUSCAR_PRODUCTO_PRC" >
+				<br />
+				<p:panelGrid layout="grid" styleClass="ui-panelgrid columnaOcultar" id="pnlGeneral" style="border:hidden;width:100%"> 
+						<p:row>
+						<p:column colspan="4">
+							<p:outputLabel styleClass="resaltar"
+								style="font-size: 12px !important; text-align:left;"
+								value="#{rbgpaUI['gpa.producto.administrar.producto.titulo.ouputlabel']}" />
+							<p:separator />
+						</p:column>
+					</p:row>
+					<br />
+						<p:row>
+										<p:column>
+											<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.producto.busqueda.familia']}" />
+										</p:column>
+
+										<p:column >
+											<p:selectOneMenu id="somFamilia" value="#{productoBean.identificadorFamilia}"
+												>
+												<f:selectItem itemLabel="[Todos]" itemValue="" />
+												<f:selectItems value="#{productoBean.listaFamilia}" var="valor"
+												itemLabel="#{valor.descripcionTipo}" itemValue="#{valor.identificadorTipo}" />
+											</p:selectOneMenu>
+											<p:tooltip  for="somFamilia"
+												value="#{rbgpaUI['gpa.producto.busqueda.familia']}" trackMouse="true" />
+										</p:column>
+									</p:row>
+						<!-- 	<p:row>
+										<p:column>
+											<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.producto.tipo.categoria']}" />
+										</p:column>
+
+										<p:column >
+											<p:selectOneMenu id="somRequerimiento" value="#{productoBean.identificadorCategoria}"
+												>
+												<f:selectItem itemLabel="[Todos]" itemValue="" />
+												<f:selectItems value="#{productoBean.listaTipoCategoria}" var="valor"
+												itemLabel="#{valor.descripcionTipo}" itemValue="#{valor.identificadorTipo}" />
+											</p:selectOneMenu>
+											<p:tooltip  for="somRequerimiento"
+												value="#{rbgpaUI['gpa.producto.tipo.categoria']}" trackMouse="true" />
+										</p:column>
+									</p:row> -->		
+									<p:row>
+										<p:column>
+											<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.producto.busqueda.descripcion.producto']}" />
+										</p:column>
+
+										<p:column >
+											<p:inputText value="#{productoBean.descripcionProducto}"  
+											id="inpDescripcion" size="52" maxlength="50"
+										onkeyup="$(this).val($(this).val().replace(/(^\s)|(\s\s\s$)/g, '').toUpperCase());"
+											>
+											 </p:inputText>
+											 <p:message for="inpDescripcion" />
+											<p:tooltip  for="inpDescripcion"
+												value="#{rbgpaUI['gpa.producto.busqueda.descripcion.producto']}" trackMouse="true" />
+										</p:column>
+									</p:row>
+									<p:row>
+										<p:column>
+											<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.producto.busqueda.codigo.producto.bien.label']}" />
+										</p:column>
+
+										<p:column >
+											<p:inputText value="#{productoBean.codigoProducto}"  id="inpCodigo" 
+											maxlength="20" size="25" 
+											onkeyup="$(this).val($(this).val().replace(/(^\s)|(\s\s\s$)/g, '').toUpperCase());"
+											>
+											</p:inputText>
+											<p:message for="inpCodigo" />
+											<p:tooltip  for="inpCodigo"
+												value="#{rbgpaUI['gpa.producto.busqueda.codigo.producto.bien.label']}" trackMouse="true" />
+										</p:column>
+									</p:row>
+
+								<p:row>
+										<p:column>
+											<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.ui.general.campo.estado.label']}" />
+										</p:column>
+
+										<p:column  >
+											<p:selectOneMenu id="somMenEstado" style="width:150px;"
+											value="#{productoBean.identificadorEstado}">
+												<f:selectItems value="#{productoBean.listaEstado}"/>
+											</p:selectOneMenu>
+											<p:tooltip for="somMenEstado"
+												value="Seleccionar Estado" trackMouse="true" />
+										</p:column>
+									</p:row> 
+					</p:panelGrid>
+					
+					<p:panelGrid styleClass="ui-panelgrid columnaOcultar" style="width:100%">
+							<p:row>
+								<p:column style="text-align:right;">
+								<p:commandButton id="btnAbrirCatalogo" 
+								value="CONFIGURAR CATÁLOGO"
+								styleClass="buttonColorRed"
+								update=":dialogoCatalogoProducto  @([id$=mensajeVista])" 
+								action="#{productoBean.abrirCatalogoPopup()}">
+								<p:ajax update=":dialogoCatalogoProducto" resetValues="true" />	
+								</p:commandButton>
+								<p:commandButton icon="ui-icon-gear"
+												update=":dialogoCatalogoProducto" 
+												action="#{productoBean.abrirCatalogoPopup()}" 
+												styleClass="buttonColorBlack" >
+									<p:ajax update=":dialogoCatalogoProducto" resetValues="true" />			
+								</p:commandButton>	
+								<p:tooltip  for="btnAbrirCatalogo"
+										value="configurar Catalogo" trackMouse="true" />
+										
+								
+											<p:commandButton id="btnBuscar"  styleClass="buttonColorRed"
+												value="BUSCAR"
+												action="#{productoBean.buscarProducto}"
+												update="dtListaProducto BUSCAR_PRODUCTO_PRC" />
+												<p:commandButton icon="ui-icon-search"
+												action="#{productoBean.buscarProducto}"
+												update="dtListaProducto BUSCAR_PRODUCTO_PRC"  
+												styleClass="buttonColorBlack" />			
+											<p:tooltip  for="btnBuscar" value="Buscar"
+												trackMouse="true" />
+												
+											<p:commandButton id="btnLimpiar" styleClass="buttonColorRed"
+												value="LIMPIAR"
+												action="#{productoBean.limpiarBusqueda}"
+												update="dtListaProducto BUSCAR_PRODUCTO_PRC" />
+												<p:commandButton icon="ui-icon-trash" styleClass="buttonColorBlack"
+												action="#{productoBean.limpiarBusqueda}"
+												update="dtListaProducto BUSCAR_PRODUCTO_PRC" />		
+											<p:tooltip  for="btnLimpiar" value="Limpiar"
+												trackMouse="true" />	
+			
+										</p:column>
+									</p:row>
+					</p:panelGrid>
+					
+					
+					<p:panelGrid style="border:hidden;width:100%" >
+					<p:row>
+						<p:column >
+							<p:dataTable value="#{productoBean.listaProducto}" id="dtListaProducto" paginator="true"
+								rows="10" paginatorPosition="bottom" rowIndexVar="posicion" var="valor"
+								currentPageReportTemplate="Mostrando de {startRecord} a {endRecord} | Total Registros : {totalRecords}"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+								emptyMessage="Campos vacios" rowStyleClass="#{productoBean.posicion eq posicion?'old':'null'}">
+
+								<p:column headerText="Item" width="6%">
+											#{posicion+1}
+								</p:column>
+								<p:column headerText="#{rbgpaUI['gpa.producto.busqueda.codigo.producto.bien.label']}" width="10%">
+									<p:outputLabel value="#{valor.codigoProducto}" />
+								</p:column>
+								<p:column headerText="#{rbgpaUI['gpa.producto.busqueda.descripcion.producto']}" width="45%" >
+									<p:outputLabel value="#{valor.descripcionProducto}" />
+								</p:column>
+								<p:column headerText="#{rbgpaUI['gpa.producto.busqueda.unidad.medida.producto']}" width="8%" >
+									<p:outputLabel value="#{valor.unidadMedida.abreviaturaTipo}" />
+								</p:column>
+								<p:column headerText="#{rbgpaUI['gpa.producto.busqueda.familia']}" width="8%" >
+									<p:outputLabel value="#{valor.familia.descripcionTipo}" />
+								</p:column>
+								<p:column headerText="#{rbgpaUI['gpa.producto.minimo.stock.producto']}" width="8%" >
+									<p:outputLabel value="#{valor.stockMinimo}" />
+								</p:column>
+								<p:column headerText="#{rbgpaUI['gpa.ui.general.campo.estado.label']}" width="7%" >
+									<p:outputLabel value="#{valor.estado.identificadorEstado==4?'INACTIVO':'ACTIVO'}" />
+								</p:column>
+
+
+								<p:column width="12%" headerText="Acciones">
+									<p:commandButton id="btnEditar" icon="ui-icon-pencil"
+									action="#{productoBean.abrirEditarPopup(posicion)}" rendered="#{valor.estado.identificadorEstado ne 4}"
+									update=":dialogoEditarProducto" immediate="true"
+									>
+								<p:ajax update=":dialogoEditarProducto" resetValues="true" />	
+									</p:commandButton>
+									<p:tooltip  for="btnEditar"
+											value="Actualizar" trackMouse="true" />
+											
+									<p:commandButton id="btnModificarEstado" icon="#{valor.estado.identificadorEstado eq 4?'ui-icon-unlocked':'ui-icon-locked'}"
+									action="#{productoBean.abrirActualizarEstado(posicion)}" 
+									update=":dialogoActualizarEstado" immediate="true"
+									>
+								<p:ajax update=":dialogoEditarProducto" resetValues="true" />	
+									</p:commandButton>
+									<p:tooltip  for="btnModificarEstado"
+											 value="#{valor.estado.identificadorEstado==4?'ACTIVAR':'INACTIVAR'}" trackMouse="true" />		
+											
+								<p:commandButton id="btnDetalle" icon="ui-icon-zoomin" update=":dialogoEditarProducto" 
+												action="#{productoBean.abrirDetallePopup(posicion)}">
+								<p:ajax update=":dialogoEditarProducto" resetValues="true" />				
+											
+								</p:commandButton>
+								<p:tooltip  for="btnDetalle"
+										value="Ver Detalle" trackMouse="true" />
+								
+								</p:column>
+
+							</p:dataTable>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				
+			</h:form>
+			<p:dialog id="dialogoEditarProducto" widgetVar="dialogoEditarProducto" 
+				closable="true" resizable="false" showEffect="puff" modal="true"
+				styleClass="ui-dialog-medium">
+				<ui:include src="popupEditarProducto.xhtml" />
+			</p:dialog>
+			<p:dialog id="dialogoCatalogoProducto" widgetVar="dialogoCatalogoProducto" 
+				closable="true" resizable="false" showEffect="puff" modal="true" width="90%"
+				styleClass="ui-dialog-medium">
+				<ui:include src="popupCatalogoProducto.xhtml" />
+			</p:dialog>
+			<p:dialog id="dialogoActualizarEstado"
+			widgetVar="dialogoActualizarEstado" closable="false" resizable="false"
+			header="#{rbgpaUI['gpa.ui.general.titulo.mensaje.aviso']}"
+			width="350px" height="80px" modal="true" appendTo="@(body)">
+			<p:growl showDetail="true" sticky="true" /> 
+			<h:panelGrid columns="2" style="width:100%; height:60%">
+				<p:graphicImage value="/recursos/images/warning.png" width="20px"
+					style="padding-right: 10px"
+					height="20px" />
+				
+				<p:outputLabel 
+					value="#{productoBean.isActivar eq true? rbgpaUI['gpa.ui.general.mensaje.alerta.activar.label']:rbgpaUI['gpa.ui.general.mensaje.alerta.inactivar.label'] }" />
+
+			</h:panelGrid>
+
+			<h:panelGrid columns="2" style="width:100%;" height="20px">
+				<h:panelGroup style="display:block;text-align:center;">
+					<p:commandButton style="margin-right: 5px;"
+						value="#{rbgpaUI['gpa.ui.general.boton.aceptar.label']}"
+						icon="ui-icon-check" 
+						actionListener="#{productoBean.actualizarEstadoProducto()}"
+						update="@([id$=dtListaProducto]) growl"
+						onstart="PF('statusDialog').show()" 
+						onsuccess="PF('statusDialog').hide()" />
+
+					<p:commandButton style="margin-left: 5px;"
+						onstart="PF('statusDialog').show();"
+						onsuccess="PF('statusDialog').hide();" 
+						value="#{rbgpaUI['gpa.ui.general.boton.cancelar.label']}"
+						onclick="PF('dialogoActualizarEstado').hide();" icon="ui-icon-cancel" />
+				</h:panelGroup>
+			</h:panelGrid>
+		</p:dialog>
+			
+					<p:dialog id="mensajeVista" widgetVar="mensajeVista" width="50%"
+				height="80px" closable="false" resizable="false" modal="true"
+				appendTo="@(body)" header="#{rbgpaUI['gpa.ui.mensaje.aviso']}">
+
+				<h:panelGrid columns="2" style="width:100%; height:60%">
+					<p:graphicImage value="/recursos/images/warning.png" width="20px"
+						style="padding-right:10px"
+						rendered="#{productoBean.tipoMensaje eq 3}"
+						height="20px" />
+
+					<p:graphicImage value="/recursos/images/accepted.png" width="20px"
+						style="padding-right:10px"
+						rendered="#{productoBean.tipoMensaje eq 1}"
+						height="20px" />
+
+					<p:graphicImage value="/recursos/images/alert.png" width="20px"
+						style="padding-right:10px"
+						rendered="#{productoBean.tipoMensaje eq 2}"
+						height="20px" />
+
+					<p:outputLabel value="#{productoBean.mensajeAlerta}" />
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2" style="width:100%" height="20px">
+					<h:panelGroup style="display:block;text-align:center;">
+						<p:commandButton onstart="PF('statusDialog').show();"
+							onsuccess="PF('statusDialog').hide();"
+							value="#{rbgpaUI['gpa.ui.general.boton.aceptar.label']}"
+							onclick="PF('mensajeVista').hide();" icon="ui-icon-check">
+						</p:commandButton>
+
+					</h:panelGroup>
+				</h:panelGrid>
+			</p:dialog>
+			
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="pe.gob.servir.gpa.ui.wd">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="pe.gob.servir.gpa.bp-0.1-A.DESA.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/pe.gob.servir.gpa.bp/pe.gob.servir.gpa.bp">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="pe.gob.servir.gpa.be.client-0.1-A.DESA.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/pe.gob.servir.gpa.be.client/pe.gob.servir.gpa.be.client">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="java-output-path" value="/pe.gob.servir.gpa.ui.wd/target/classes"/>
+        <property name="context-root" value="pe.gob.servir.gpa.ui.wd"/>
+    </wb-module>
+</project-modules>

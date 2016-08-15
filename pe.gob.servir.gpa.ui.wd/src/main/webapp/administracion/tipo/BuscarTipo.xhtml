@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/template/layout.xhtml">
+	<ui:define name="content">
+		<h:body>
+			<h:form id="buscarTipo" styleClass="columnaOcultar">
+				<p:panelGrid id="pnlGeneral" layout="grid" 
+				styleclass="columnaOcultar" 
+				style="border: hidden;width:100%" >
+					<p:row>
+						<p:column colspan="4">
+							<p:outputLabel value="Administrar Tipo" styleclass="resaltar"
+							style="font-size: 20px !important; text-align:left;"/>
+							<p:separator />
+						</p:column>
+					</p:row>
+					<br />
+					<p:row>
+						<p:column>
+							<p:fieldset legend="Criterios de Búsqueda ">
+								<p:panelGrid layout="grid" styleClass="ui-panelGrid columnaOcultar"
+								style="width:100%;text-align: center;border: none;border-color:transparent;" >
+									<p:row>
+										<p:column>
+											<p:outputLabel styleClass="resaltar" value="Listado"/>
+										</p:column>
+										<p:column>
+											<p:selectOneMenu id="somListado"
+											value="#{tipoBean.identificadorPadre}" style="width:200px;">
+												<f:selectItem itemLabel="Seleccione"/>
+												<f:selectItems value="#{tipoBean.listaTipoPadre}" var="valor"
+												itemLabel="#{valor.descripcionTipo}" itemValue="#{valor.id}"/>
+											</p:selectOneMenu>											
+										</p:column>									
+									</p:row>
+									<p:row>
+										<p:column>
+											<p:outputLabel styleClass="resltar" value="Estado"/>
+										</p:column>
+										<p:column>
+											<p:selectOneMenu id="somEstado" style="width:200px;"
+											value="#{tipoBean.identificadorEstado}">
+												<f:selectItems value="#{tipoBean.listaEstado}"/>											
+											</p:selectOneMenu>
+										</p:column>
+									</p:row>																
+								</p:panelGrid>	
+							</p:fieldset>									
+						</p:column>					
+					</p:row>
+					
+					<p:row>
+						<p:column colspan="2" style="text-align:right;"> 
+							<p:commandButton id="btnBuscar" value="BUSCAR" action="#{tipoBean.buscarTipo()}" update="dtListaTipo" style="font-size:15px !important;" styleClass="search" />
+							<p:commandButton id="btnNuevo" value="NUEVO" action="#{tipoBean.abrirPopupNuevoTipo()}" update=":dialogoNuevoTipo" style="font-size:15px !important" styleClass="search">
+								<p:ajax resetValues="true" update=":dialogoNuevoTipo"/>
+							</p:commandButton>
+							<p:commandButton id="btnLimpiar" value="LIMPIAR" actionListener="#{tipoBean.limpiarTipo()}" update="buscarTipo" resetValues="true" style="font-size:15px !important" styleClass="search"/>
+						</p:column>					
+					</p:row>				
+				</p:panelGrid>
+				<br />
+				<p:panelGrid style="border:hidden;width:100%">
+					<p:row>
+						<p:column colspna="6">
+							<p:dataTable value="#{tipoBean.listaTipo}" id="dtListaTipo" styleClass="columnaOcultar"
+								paginator="true" rows="8" paginatorPosition="bottom"
+								rowIndexVar="posicion" var="valor"  
+								currentPageReportTemplate="Mostrando de {startRecord} a {endRecord} | Total Registros : {totalRecords}"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+								emptyMessage="Campos vacios">
+
+								<p:column headerText="#" width="7%" style="font-size: 17px !important;text-align:center;">
+										<p:outputLabel>#{posicion+1}</p:outputLabel>	 
+								</p:column>
+																
+								<p:column headerText="Código" style="font-size: 17px !important;text-align:center;">
+									<p:outputLabel value="#{valor.id}"/>
+								</p:column>
+																															
+								<p:column headerText="Listado" style="font-size: 17px !important;text-align:center;">
+									<p:outputLabel value="#{valor.padre.descripcionTipo}" />
+								</p:column>
+																
+								<p:column headerText="Descripción " style="font-size: 17px !important;text-align:center;">
+									<p:outputLabel value="#{valor.descripcionTipo}" style="text-align:center;"/>
+								</p:column>
+																
+								<p:column  headerText="Abreviatura" style="font-size: 17px !important;text-align:center;">
+									<p:outputLabel value="#{valor.abreviaturaTipo}" />
+								</p:column>
+								
+								<p:column headerText="Estado" style="font-size: 17px !important;text-align:center;">
+									<p:outputLabel value="#{valor.estado.descripcionEstado}"/>
+								</p:column>
+								
+								<p:column headerText="Indicador" style="font-size: 17px !important;text-align:center;">
+									<p:outputLabel value="#{valor.indicadorActivo==0?'INACTIVO':'ACTIVO'}" />
+								</p:column>
+								
+								<p:column headerText="Acciones" style="font-size: 17px !important;text-align:center;">
+									<p:commandButton id="btnDetalle" icon="ui-icon-pencil"
+										action="#{tipoBean.abrirPopupActualizarTipo(posicion)}"
+										update=":dialogoNuevoTipo " immediate="true" styleClass="detalle">
+										<p:ajax update=":dialogoNuevoTipo" resetValues="true" />
+									</p:commandButton>	
+									<p:tooltip for="btnDetalle" value="Actualizar"></p:tooltip>															
+									<p:commandButton id="btnModificarEstado" icon="#{valor.indicadorActivo eq 0?'ui-icon-unlocked':'ui-icon-locked'}"
+										action="#{tipoBean.abrirActualizarEstado(posicion)}" styleClass="detalle"
+										update=":dialogoActualizarEstado">
+									</p:commandButton>						
+									<p:tooltip for="btnModificarEstado" value="#{valor.indicadorActivo eq 0?'ACTIVAR':'INACTIVAR'}"></p:tooltip>		
+								</p:column>
+							</p:dataTable> 
+						</p:column>
+					</p:row>
+				
+				</p:panelGrid>
+			
+			
+			
+			
+			</h:form>
+				
+			<p:dialog id="dialogoNuevoTipo"
+				widgetVar="dialogoNuevoTipo" closable="true"
+				resizable="false" showEffect="puff" modal="true" 				
+				styleClass="ui-dialog-medium">
+				<ui:include src="popupNuevoTipo.xhtml" />
+			</p:dialog>	
+			
+			<p:dialog id="dialogoActualizarEstado"
+				widgetVar="dialogoActualizarEstado" closable="false" resizable="false"
+				header="#{rbgpaUI['gpa.ui.general.titulo.mensaje.aviso']}"
+				width="350px" height="80px" modal="true" appendTo="@(body)">
+				<p:growl showDetail="true" sticky="true" /> 
+				<h:panelGrid columns="2" style="width:100%; height:60%">
+					<p:graphicImage value="/recursos/images/warning.png" width="20px"
+						style="padding-right: 10px"
+						height="20px" />
+					
+					<p:outputLabel 
+						value="#{tipoBean.isActivar eq true? rbgpaUI['gpa.ui.general.mensaje.alerta.activar.label']:rbgpaUI['gpa.ui.general.mensaje.alerta.inactivar.label'] }" />
+	
+				</h:panelGrid>
+	
+				<h:panelGrid columns="2" style="width:100%;" height="20px">
+					<h:panelGroup style="display:block;text-align:center;">
+						<p:commandButton style="margin-right: 5px;"
+							value="#{rbgpaUI['gpa.ui.general.boton.aceptar.label']}"
+							icon="ui-icon-check" 
+							actionListener="#{tipoBean.actualizarEstadoTipo()}"
+							update="@([id$=dtListaTipo]) growl"
+							onstart="PF('statusDialog').show()" 
+							onsuccess="PF('statusDialog').hide()" />
+	
+						<p:commandButton style="margin-left: 5px;"
+							onstart="PF('statusDialog').show();"
+							onsuccess="PF('statusDialog').hide();" 
+							value="#{rbgpaUI['gpa.ui.general.boton.cancelar.label']}"
+							onclick="PF('dialogoActualizarEstado').hide();" icon="ui-icon-cancel" />
+					</h:panelGroup>
+					
+				</h:panelGrid>
+		</p:dialog>
+			
+				
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>

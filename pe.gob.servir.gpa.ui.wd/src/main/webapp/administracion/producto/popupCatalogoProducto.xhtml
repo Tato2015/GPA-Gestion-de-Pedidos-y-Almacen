@@ -1,0 +1,223 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<div onscroll="">
+
+	<h:form id="AGREGAR_PRODUCTO_MNT" class="div_formulario">
+		<p:panelGrid id="panelPrincipalProducto" layout="grid" styleClass="ui-panelgrid columnaOcultar" style="width:100%">
+			<p:row>
+				<p:column>
+					<p:outputLabel styleClass="resaltar" style="font-size: 18px !important;" value="CATÁLOGO DE PRODUCTOS"/>
+					<p:separator />
+				</p:column>
+			</p:row>
+			
+			<p:row>
+				<p:column>
+					<p:dataTable var="valor" id="listaProductoSeleccionado" rows="8" value="#{productoBean.listaProducto}"
+					widgetVar="filtrar" paginator="true" paginatorPosition="bottom" rowIndexVar="posicion"
+					currentPageReportTemplate="Mostrando de {startRecord} a {endRecord} | Total De Productos Asignados  : {totalRecords}"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+					emptyMessage="#{rbgpaUI['gpa.ui.general.sin.registros.label']}">
+					
+					<p:column headerText="#" width="3%" style="text-align:center;">
+						#{posicion+1}
+					</p:column>
+					<p:column headerText="Id" width="3%" style="text-align:center;">
+						<p:outputLabel value="#{valor.id}" />
+					</p:column>
+					<p:column headerText="#{rbgpaUI['gpa.producto.busqueda.descripcion.producto']}" width="25%" >
+						<p:outputLabel value="#{valor.descripcionProducto}" />
+					</p:column>
+					<p:column headerText="#{rbgpaUI['gpa.producto.busqueda.unidad.medida.producto']}" width="8%" style="text-align:center;">
+						<p:outputLabel value="#{valor.tipoUnidadMedida.descripcionTipo}" />
+					</p:column>
+					<p:column headerText="Stock Mínimo" width="50px;" style="text-align:center;">
+						<p:outputLabel value="#{valor.stockMinimo}" />
+					</p:column>
+					<p:column headerText="Stock Actual" width="50px;" style="text-align:center;">
+						<p:outputLabel value="#{valor.stockMaximo}" />
+					</p:column>
+					<p:column headerText="Indicador Activo" width="50px;" style="text-align:center;">
+						<p:outputLabel value="#{valor.indicadorActivo==2?'INACTIVO':'ACTIVO'}"/>
+					</p:column>
+					
+
+					</p:dataTable>
+				</p:column>
+			</p:row>
+			
+		</p:panelGrid>
+	</h:form>
+<!-- 		<p:panelGrid layout="grid" styleClass="ui-panelgrid columnaOcultar" style="width:100%" id="panelPrincipalProducto"> -->
+<!-- 				<p:row> -->
+<!-- 					<p:column colspan="2"> -->
+<!-- 					<p:outputLabel styleClass="resaltar" style="font-size: 12px !important;" -->
+<!-- 							value="#{rbgpaUI['gpa.formulario.programacion.agregar.producto.ouputlabel']}" -->
+<!-- 							 /> -->
+<!-- 							<p:separator /> -->
+<!-- 					</p:column> -->
+<!-- 				</p:row> -->
+<!-- 				<p:row> -->
+<!-- 					<p:column > -->
+<!-- 						<p:dataTable var="valor" id="listaProductosSeleccionado" rows="10" -->
+<!-- 							value="#{productoBean.listaProductoIntegrix}" widgetVar="filtrar" -->
+<!-- 							paginator="true"  paginatorPosition="bottom" rowIndexVar="posicion" -->
+<!-- 							selection="#{productoBean.productosSeleccionados}" -->
+<!-- 							rowKey="#{valor.codigoProducto}"  filteredValue="#{productoBean.listaProductosFiltro}" -->
+<!-- 							currentPageReportTemplate="Mostrando de {startRecord} a {endRecord} | Total De Productos Asignados  : {totalRecords}" -->
+<!-- 							paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} " -->
+<!-- 							emptyMessage="#{rbgpaUI['gpa.ui.general.sin.registros.label']}"> -->
+
+<!--         					<p:column selectionMode="multiple"  -->
+<!-- 							style="width:16px;text-align:center" /> -->
+<!-- 							<p:column  -->
+<!-- 								headerText="#{rbgpaUI['gpa.ui.general.numerador.lista.ouputtext']}" -->
+<!-- 								style="width:25px;"> -->
+<!-- 								<h:outputText -->
+<!-- 									value="#{posicion+1}" /> -->
+<!-- 							</p:column> -->
+<!-- 							<p:column width="10%" filterBy="#{valor.codigoProducto}" filterStyle="width:70%;" -->
+<!-- 								headerText="#{rbgpaUI['gpa.formulario.programacion.codigo.producto.bien.label']}"> -->
+<!-- 								<h:outputText style="text-align:center" -->
+<!-- 									value="#{valor.codigoProducto}" /> -->
+<!-- 							</p:column> -->
+<!-- 							<p:column width="40%" filterBy="#{valor.descripcionProducto}" filterMaxLength="50" filterStyle="width:70%;" -->
+<!-- 								headerText="#{rbgpaUI['gpa.formulario.programacion.producto.ouputlabel']}"> -->
+<!-- 								<h:outputText  -->
+<!-- 									value="#{valor.descripcionProducto}" /> -->
+<!-- 							</p:column> -->
+<!-- 							<p:column width="20%" filterBy="#{valor.familia.identificadorTipo}"   filterMatchMode="exact" -->
+<!-- 								headerText="#{rbgpaUI['gpa.formulario.programacion.familia.ouputlabel']}"> -->
+<!-- 								<f:facet name="filter"> -->
+<!-- 					                <p:selectOneMenu onchange="PF('filtrar').filter()" > -->
+<!-- 					                    <f:selectItem itemLabel="[Todos]" itemValue="#{null}" noSelectionOption="true" /> -->
+<!-- 					                    <f:selectItems value="#{productoBean.listaFamilia}" var="lista" -->
+<!-- 					                    itemLabel="#{lista.descripcionTipo}" itemValue="#{lista.identificadorTipo}"/> -->
+<!-- 					                </p:selectOneMenu> -->
+<!-- 					            </f:facet> -->
+								
+<!-- 								<p:selectOneMenu value="#{valor.familia.identificadorTipo}" > -->
+<!-- 					                    <f:selectItem itemLabel="[Seleccione]" itemValue="#{null}" noSelectionOption="true" /> -->
+<!-- 					                    <f:selectItems value="#{productoBean.listaFamilia}" var="lista" -->
+<!-- 					                    itemLabel="#{lista.descripcionTipo}" itemValue="#{lista.identificadorTipo}"/> -->
+<!-- 					            </p:selectOneMenu> -->
+<!-- 							</p:column> -->
+<!-- 							<p:column width="20%" -->
+<!-- 								headerText="#{rbgpaUI['gpa.producto.minimo.stock.producto']}"> -->
+<!-- 								<p:inputText  value="#{valor.stockMinimo}" -->
+<!-- 								onkeypress="return justNumbersDecimal(event);" maxlength="8" > -->
+<!-- 								<p:ajax  event="blur"/> -->
+<!-- 								</p:inputText> -->
+<!-- 							</p:column> -->
+							
+							<!-- <p:column width="10%" filterBy="#{valor.unidadMedida.identificadorTipo}"  filterMatchMode="exact"
+								headerText="#{rbgpaUI['gpa.producto.busqueda.unidad.medida.producto']}">
+								<f:facet name="filter">
+					                <p:selectOneMenu onchange="PF('filtrar').filter()" >
+					                    <f:selectItem itemLabel="[Todos]" itemValue="#{null}" noSelectionOption="true" />
+					                    <f:selectItems value="#{productoBean.listaTipoUnidad}" var="lista"
+					                    itemLabel="#{lista.descripcionTipo}" itemValue="#{lista.identificadorTipo}"/>
+					                </p:selectOneMenu>
+					            </f:facet>
+								<h:outputText
+									value="#{valor.unidadMedida.abreviaturaTipo}" />
+							</p:column> -->
+							<!-- <p:column width="10%" filterBy="#{valor.familia.identificadorTipo}"   filterMatchMode="exact"
+								headerText="#{rbgpaUI['gpa.formulario.programacion.familia.ouputlabel']}">
+								<f:facet name="filter">
+					                <p:selectOneMenu onchange="PF('filtrar').filter()" >
+					                    <f:selectItem itemLabel="[Todos]" itemValue="#{null}" noSelectionOption="true" />
+					                    <f:selectItems value="#{productoBean.listaTipoFamilia}" var="lista"
+					                    itemLabel="#{lista.descripcionTipo}" itemValue="#{lista.identificadorTipo}"/>
+					                </p:selectOneMenu>
+					            </f:facet>
+								
+								<h:outputText
+									value="#{valor.familia.descripcionTipo}" />
+							</p:column> -->
+							
+<!-- 						</p:dataTable> -->
+
+<!-- 				</p:column> -->
+<!-- 			</p:row> -->
+<!-- 		</p:panelGrid> -->
+<!-- 		<p:panelGrid styleClass="ui-panelgrid columnaOcultar" style="width:100%"> -->
+<!-- 				<p:row> -->
+<!-- 					<p:column style="text-align:right;"> -->
+<!-- 						<p:commandButton id="btnAgregar"  -->
+<!-- 										value="#{rbgpaUI['gpa.ui.general.boton.aceptar.label']}" -->
+<!-- 										styleClass="buttonColorRed" -->
+<!-- 										action="#{productoBean.mensajeConfirmacionAgregar()}"  -->
+<!-- 										update=":popupConfirmarAgregar @([id$=mensajeVista])"> -->
+<!-- 						</p:commandButton> -->
+<!-- 						<p:commandButton icon="ui-icon-plus" styleClass="buttonColorBlack" -->
+<!-- 										action="#{productoBean.mensajeConfirmacionAgregar()}"  -->
+<!-- 										update=":popupConfirmarAgregar @([id$=mensajeVista])" />	 -->
+<!-- 						<p:tooltip  for="btnAgregar"  -->
+<!-- 						value="#{rbgpaUI['gpa.ui.general.boton.aceptar.label']}" -->
+<!-- 											trackMouse="true" />			 -->
+									
+											
+<!-- 						<p:commandButton id="btnCancelar" -->
+<!-- 										resetValues="true" process="@all" -->
+<!-- 										value="#{rbgpaUI['gpa.ui.general.boton.cancelar.label']}" -->
+<!-- 										onclick="PF('dialogoCatalogoProducto').hide();" styleClass="buttonColorRed" > -->
+<!-- 							<p:ajax update="@([id$=BUSCAR_PRODUCTO_PRC])" resetValues="true"/> -->
+<!-- 						</p:commandButton> -->
+										
+<!-- 						<p:commandButton icon="ui-icon-cancel" styleClass="buttonColorBlack" -->
+<!-- 						onclick="PF('dialogoCatalogoProducto').hide();" resetValues="true" process="@all" > -->
+<!-- 						<p:ajax update="@([id$=BUSCAR_PRODUCTO_PRC])" resetValues="true"/> -->
+<!-- 						</p:commandButton>			 -->
+<!-- 								<p:tooltip  for="btnCancelar" value="#{rbgpaUI['gpa.ui.general.boton.cancelar.label']}" -->
+<!-- 									trackMouse="true" /> -->
+									
+<!-- 					</p:column> -->
+<!-- 				</p:row> -->
+				
+<!-- 		</p:panelGrid> -->
+	
+	
+	
+<!-- 	<p:dialog id="popupConfirmarAgregar" -->
+<!-- 			widgetVar="popupConfirmarAgregar" closable="true" resizable="false" -->
+<!-- 			header="#{rbgpaUI['gpa.ui.general.titulo.mensaje.aviso']}" -->
+<!-- 			width="350px" height="80px" modal="true" appendTo="@(body)"> -->
+<!-- 			<h:panelGrid columns="2" style="width:100%; height:60%"> -->
+<!-- 				<p:graphicImage value="/recursos/images/warning.png" width="20px" -->
+<!-- 					style="padding-right: 10px" -->
+<!-- 					height="20px" /> -->
+					
+<!-- 				<p:outputLabel -->
+<!-- 					value="#{rbgpaUI['gpa.ui.general.mensaje.alerta.producto.agregar.activar.label']}" /> -->
+					
+
+<!-- 			</h:panelGrid> -->
+
+<!-- 			<h:panelGrid columns="2" style="width:100%;" height="20px"> -->
+<!-- 				<h:panelGroup style="display:block;text-align:center;"> -->
+				
+<!-- 					<p:commandButton style="margin-right: 5px;"  -->
+<!-- 						value="#{rbgpaUI['gpa.ui.general.boton.aceptar.label']}" -->
+<!-- 						icon="ui-icon-check"  -->
+<!-- 						actionListener="#{productoBean.agregarProducto()}" -->
+<!-- 						update="@([id$=dtListaProducto])" -->
+<!-- 						onstart="PF('statusDialog').show()"  -->
+<!-- 						onsuccess="PF('statusDialog').hide()" /> -->
+				
+				
+<!-- 					<p:commandButton style="margin-left: 5px;" -->
+<!-- 						onstart="PF('statusDialog').show();" -->
+<!-- 						onsuccess="PF('statusDialog').hide();"  -->
+<!-- 						value="#{rbgpaUI['gpa.ui.general.boton.cancelar.label']}" -->
+<!-- 						onclick="PF('popupConfirmarAgregar').hide();" icon="ui-icon-cancel" /> -->
+<!-- 				</h:panelGroup> -->
+<!-- 			</h:panelGrid> -->
+<!-- 		</p:dialog>  -->
+		
+	
+</div>
+</ui:composition>

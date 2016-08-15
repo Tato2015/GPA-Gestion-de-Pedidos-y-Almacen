@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config version="1.2" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>Inicio</from-outcome>
+			<to-view-id>/template/bandejaPrincipal.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>		
+		
+		<navigation-case>
+			<from-outcome>VistaPersona</from-outcome>
+			<to-view-id>/mantenimiento/Administracion_Persona.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>VistaAdministrarUsuario</from-outcome>
+			<to-view-id>/mantenimiento/Administracion_Usuario.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>VistaUsuarioSuministro
+		</from-outcome>
+			<to-view-id>/requerimientoUsuario/requerimientoUsuarioSuministro.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>VistaUsuarioExtraordinario
+		</from-outcome>
+			<to-view-id>/requerimientoUsuario/requerimientoUsuarioExtraordinario.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		
+		
+		<navigation-case>
+			<from-outcome>VistaAreaSuministro
+		</from-outcome>
+			<to-view-id>/requerimientoArea/requerimientoAreaSuministro.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	
+		<navigation-case>
+			<from-outcome>VistaAreaComestible
+		</from-outcome>
+			<to-view-id>/requerimientoUsuario/requerimientoAreaComestible.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	<navigation-case>
+			<from-outcome>VistaAprobacionJefe
+		</from-outcome>
+			<to-view-id>/aprobacionJefe/aprobacionJefeBuscar.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	
+	<navigation-case>
+			<from-outcome>VistaProgramacion
+		</from-outcome>
+			<to-view-id>/administracion/programacion/BuscarProgramacion.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	<navigation-case>
+			<from-outcome>VistaProducto
+		</from-outcome>
+			<to-view-id>/administracion/producto/BuscarProducto.xhtml</to-view-id>
+			<redirect />
+	</navigation-case>
+	<navigation-case>
+			<from-outcome>VistaTipo
+		</from-outcome>
+			<to-view-id>/administracion/tipo/BuscarTipo.xhtml</to-view-id>
+			<redirect />
+	</navigation-case>
+	
+	</navigation-rule>
+</faces-config>

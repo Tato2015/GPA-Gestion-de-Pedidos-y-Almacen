@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/template/layout.xhtml">
+	<ui:define name="content">
+		<h:body>
+			<h:form id="FrmBuscarProducto">
+				<br />
+				<p:panelGrid layout="grid" styleClass="ui-panelgrid columnaOcultar" style="width:100%;">
+					<p:row>
+						<p:column colspan="4">
+							<p:outputLabel styleClass="resltar"
+							style="font-size:12px !important; text-align:left;"
+							value="#{rbgpaUI['gpa.producto.administrar.producto.titulo.ouputlabel']}"/>
+						<p:separator />												
+						</p:column>													
+					</p:row>	
+					<br />
+					<p:row>
+						<p:column>
+							<p:fieldset legend="Criterios de Búsqueda">				
+								<p:panelGrid layout="grid" styleClass="ui-panelgrid columnaOcultar" style="width:100%;">																							
+									<p:row>
+										<p:column>
+											<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.producto.busqueda.familia']}" />														
+										</p:column>
+										<p:column>
+											<p:selectOneMenu id="somFamilia" value="#{productoBean.identificadorTipoFamilia}" style="width:200px;">
+												<f:selectItem itemLabel="Seleccione" itemValue="" />
+												<f:selectItems var="valor" value="#{productoBean.listaTipoFamilia}"
+												itemLabel="#{valor.descripcionTipo}" itemValue="#{valor.id}" />
+											</p:selectOneMenu>
+											<p:tooltip  for="somFamilia" value="#{rbgpaUI['gpa.producto.busqueda.familia']}" trackMouse="true" />
+										</p:column>	
+										
+										<p:column>
+											<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.producto.busqueda.descripcion.producto']}" />
+										</p:column>
+										<p:column >
+											<p:inputText value="#{productoBean.descripcionProducto}"  
+											id="inpDescripcion" size="52" maxlength="50"
+											onkeyup="$(this).val($(this).val().replace(/(^\s)|(\s\s\s$)/g, '').toUpperCase());">
+											</p:inputText>
+											 <p:message for="inpDescripcion" />
+											<p:tooltip  for="inpDescripcion" value="#{rbgpaUI['gpa.producto.busqueda.descripcion.producto']}" trackMouse="true" />
+										</p:column>
+															
+									</p:row>
+									<p:row>
+										<p:column>
+											<p:outputLabel styleClass="resltar" value="#{rbgpaUI['gpa.producto.tipo.categoria']}"/>
+										</p:column>
+										<p:column>
+											<p:selectOneMenu id="somCategoria" value="#{productoBean.identificadorTipoCategoria}" style="width:200px;">
+												<f:selectItem itemLabel="Seleccione" itemValue="" />
+												<f:selectItems var="valor" value="#{productoBean.listaTipoCategoria}"
+												itemLabel="#{valor.descripcionTipo}" itemValue="#{valor.id}" />
+											</p:selectOneMenu>
+											<p:tooltip  for="somFamilia" value="#{rbgpaUI['gpa.producto.busqueda.familia']}" trackMouse="true" />
+										</p:column>		
+										
+										<p:column>
+											<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.producto.busqueda.codigo.producto.bien.label']}" />
+										</p:column>
+										<p:column >
+											<p:inputText value="#{productoBean.codigoProducto}"  id="inpCodigo" 
+											maxlength="20" size="25" onkeyup="$(this).val($(this).val().replace(/(^\s)|(\s\s\s$)/g, '').toUpperCase());">
+											</p:inputText>
+											<p:message for="inpCodigo" />
+											<p:tooltip  for="inpCodigo" value="#{rbgpaUI['gpa.producto.busqueda.codigo.producto.bien.label']}" trackMouse="true" />
+										</p:column>
+													
+									</p:row>																		
+									<p:row>
+										<p:column>
+											<p:outputLabel styleClass="resaltar" value="#{rbgpaUI['gpa.ui.general.campo.estado.label']}" />
+										</p:column>
+										<p:column  >
+											<p:selectOneMenu id="somMenEstado" style="width:200px;"
+												value="#{productoBean.identificadorEstado}">												
+												<f:selectItems value="#{productoBean.listaEstado}"/>
+											</p:selectOneMenu>
+											<p:tooltip for="somMenEstado" value="Seleccionar Estado" trackMouse="true" />
+										</p:column>
+									</p:row> 							
+								</p:panelGrid>
+							</p:fieldset>
+						</p:column>					
+					</p:row>				
+				</p:panelGrid>						
+				<p:panelGrid styleClass="ui-panelgrid columnaOcultar" style="width:100%">
+					<p:row>
+						<p:column style="text-align:right;">
+							<p:commandButton id="btnAbrirCatalogo" action="#{productoBean.abrirCatalogoPopup()}"
+								update=":dialogoCatalogoProducto " 
+								value="CONFIGURAR CATÁLOGO" styleClass="search">
+								<p:ajax update=":dialogoCatalogoProducto " resetValues="true" />								
+							</p:commandButton>																					
+							<p:tooltip  for="btnAbrirCatalogo" value="Configurar catálogo" trackMouse="true"/>																								
+							<p:commandButton id="btnBuscar"  styleClass="search" action="#{productoBean.buscarProducto()}" 
+										value="BUSCAR" update="dtListaProducto"/>									
+							<p:tooltip  for="btnBuscar" value="Buscar" trackMouse="true" />										
+							<p:commandButton id="btnLimpiar" actionListener="#{productoBean.limpiarBusqueda()}" styleClass="search"
+										value="LIMPIAR" resetValues="true" update="FrmBuscarProducto"/>							
+							<p:tooltip  for="btnLimpiar" value="Limpiar" trackMouse="true" />	
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			
+				<p:panelGrid style="border:hidden;width:100%" >
+					<p:row>
+						<p:column >
+							<p:dataTable  id="dtListaProducto" value="#{productoBean.listaProducto}" paginator="true"
+								rows="8" paginatorPosition="bottom" rowIndexVar="posicion" var="valor" styleClass="columnaOcultar"
+								currentPageReportTemplate="Mostrando de {startRecord} a {endRecord} | Total Registros : {totalRecords}"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+								emptyMessage="Campos vacios" >
+								<p:column headerText="#" width="5px;" style="text-align:center;">
+											#{posicion+1}
+								</p:column>
+								<p:column headerText="Id" width="10px;" style="text-align:center;">
+									<p:outputLabel value="#{valor.id}" />
+								</p:column>
+								<p:column headerText="#{rbgpaUI['gpa.producto.busqueda.descripcion.producto']}" width="25%" >
+									<p:outputLabel value="#{valor.descripcionProducto}" />
+								</p:column>
+								<p:column headerText="#{rbgpaUI['gpa.producto.busqueda.unidad.medida.producto']}" width="8%" style="text-align:center;">
+									<p:outputLabel value="#{valor.tipoUnidadMedida.descripcionTipo}" />
+								</p:column>
+								<p:column headerText="Stock Mínimo" width="50px;" style="text-align:center;">
+									<p:outputLabel value="#{valor.stockMinimo}" />
+								</p:column>
+								<p:column headerText="Stock Actual" width="50px;" style="text-align:center;">
+									<p:outputLabel value="#{valor.stockMaximo}" />
+								</p:column>
+								<p:column headerText="Indicadro Activo" style="text-align:center;width:80px;">
+									<p:outputLabel value="#{valor.indicadorActivo==2?'INACTIVO':'ACTIVO'}"/>
+								</p:column>
+								<p:column headerText="Acciones" width="80px;" style="text-align:center;">
+									<p:commandButton id="btnVerDetalles" icon="ui-icon-search" action="#{productoBean.generarDetalleProducto(posicion)}"
+									update=":dialogoDetalleProducto" immediate="true">
+										<p:ajax update=":dialogoDetalleProducto" resetValues="true" />
+									</p:commandButton>
+									<p:tooltip for="btnVerDetalles" value="Ver Detalles"/>
+									<p:commandButton id="btnModificar" 
+									icon="ui-icon-document" action="#{productoBean.generarModificarProducto(posicion)}" 
+									update=":dialogoDetalleProducto" immediate="true">
+										<p:ajax update=":dialogoDetalleProducto" resetValues="true" />
+									</p:commandButton>
+									<p:tooltip for="btnModificar" value="Actualizar"/>
+									
+								</p:column>
+
+							</p:dataTable>
+						</p:column>
+					</p:row>
+				</p:panelGrid>								
+			</h:form>											
+						
+			<p:dialog id="dialogoDetalleProducto"
+				widgetVar="dialogoDetalleProducto" closable="true"
+				resizable="false" showEffect="puff" modal="true" width="60%" height="100%"				
+				styleClass="ui-dialog-medium">
+				<ui:include src="popupDetalleProducto.xhtml" />
+			</p:dialog>					
+			
+			<p:dialog id="dialogoCatalogoProducto" widgetVar="dialogoCatalogoProducto" 
+				closable="true" resizable="false" showEffect="puff" modal="true" width="90%"
+				styleClass="ui-dialog-medium" onHide="#{productoBean.buscarProducto()}">
+				<ui:include src="popupCatalogoProducto.xhtml" />
+			</p:dialog>		
+		
+						
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>

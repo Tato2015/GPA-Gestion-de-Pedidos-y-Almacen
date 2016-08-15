@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	
+	<persistence-unit name="pe.gob.servir.gpa.bp"
+		transaction-type="JTA">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:jboss/gestionAlmacenDS</jta-data-source>
+		
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.OracleDialect" />
+			<property name="hibernate.show_sql" value="true" />
+
+			<!-- Determina el número de conexiones, que al mismo tiempo C3P0, va a 
+				tratar de adquirir cuando se agote el pool. -->
+			<property name="hibernate.c3p0.acquire_increment" value="1" />
+			<!-- c3p0 comprobara todas las conexiones inactivas , agrupadas pero sin 
+				control de salida , sobre el periodo indicado en segundos -->
+			<property name="hibernate.c3p0.idle_test_period" value="3000" />
+			<property name="hibernate.c3p0.min_size" value="1" />
+			<property name="hibernate.c3p0.max_size" value="50" />
+			<!--El tamaño de la memoria caché de PreparedStatement c3p0 . Cero significa 
+				el almacenamiento en caché está apagado. -->
+			<property name="hibernate.c3p0.max_statements" value="50" />
+			<!-- Tiempo que una conexión pueden permanecer agrupado pero no utilizada 
+				antes de ser desechado . Cero significa conexiones inactivas nunca caducan -->
+			<property name="hibernate.c3p0.timeout" value="300" />
+			<!-- Define el número de veces c3p0 tratarán de adquirir una nueva conexión -->
+			<property name="hibernate.c3p0.acquireRetryAttempts" value="3" />
+			<!-- tiempo que esperará c3p0 para volver a intentar adquirir. -->
+			<property name="hibernate.c3p0.acquireRetryDelay" value="250" />
+		</properties>
+		
+		
+	</persistence-unit>
+</persistence>

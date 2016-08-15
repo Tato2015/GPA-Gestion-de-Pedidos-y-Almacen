@@ -1,0 +1,77 @@
+@CHARSET "ISO-8859-1";
+
+.button_cursos{
+	background: url('../img2/1404178387_book.png') 3px 5px no-repeat;
+	padding-left: 40px !important;
+	padding-right: 15px !important;
+}
+
+.button_asistencia{
+	
+	background: url('../img2/1404180383_check.png') 3px 5px no-repeat;
+	padding-left: 40px !important;
+	padding-right: 15px !important;
+}
+
+.button_horario{
+	
+	background: url('../img2/1404180725_calendar.png') 3px 5px no-repeat;
+	padding-left: 40px !important;
+	padding-right: 15px !important;
+}
+
+.button_pagos{
+	
+	background: url('../img2/1404180856_678131-money.png') 3px 5px no-repeat;
+	padding-left: 40px !important;
+	padding-right: 15px !important;
+}
+
+.button_notas{
+	
+	background: url('../img2/1404181008_Noun_Project_100Icon_10px_grid-17.png') 3px 5px no-repeat;
+	padding-left: 40px !important;
+	padding-right: 15px !important;
+}
+
+.button_agenda{
+	
+	background: url('../img2/1404181207_Agenda.png') 3px 5px no-repeat;
+	padding-left: 40px !important;
+	padding-right: 15px !important;
+}
+
+.alternativo{
+	
+	background: #cc0000; /* Old browsers */
+	background: -moz-linear-gradient(top,  #cc0000 0%, #cc0000 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cc0000), color-stop(100%,#cc0000)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #cc0000 0%,#cc0000 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #cc0000 0%,#cc0000 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #cc0000 0%,#cc0000 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #cc0000 0%,#cc0000 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', endColorstr='#cc0000',GradientType=0 ); /* IE6-9 */
+	
+	
+}
+                
+.ui-bar-b, .ui-page-theme-b .ui-bar-inherit, html .ui-bar-b .ui-bar-inherit, html .ui-body-b .ui-bar-inherit, html body .ui-group-theme-b .ui-bar-inherit {
+    background-color: #1d1d1d;
+    border-color: #1b1b1b;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 1px 0 #111;
+}
+
+.ui-menu .ui-menuitem-link {
+    border: 1px solid transparent;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-weight: 400;
+    line-height: 40px;
+    outline: medium none;
+    padding: 0.3em;
+    text-decoration: none;
+    width: 92%;
+}

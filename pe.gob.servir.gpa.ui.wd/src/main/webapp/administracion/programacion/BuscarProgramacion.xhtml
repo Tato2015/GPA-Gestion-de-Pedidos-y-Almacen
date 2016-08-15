@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/template/layout.xhtml">
+	<ui:define name="content">
+		<h:body>
+			<h:form id="FrmBuscarProgramacion" styleClass="columnaOcultar">
+				<p:panelGrid style="width:100%;" styleClass="columnaOcultar" layout="grid">
+					<p:row>
+						<p:column colspan="4">
+							<p:outputLabel value="Administración de Programación" style="font-size:18px !important"/>
+							<p:separator />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:fieldset legend="Criterios de Búsqueda">
+								<p:panelGrid style="width:100%">
+									<p:row>
+										<p:column>
+											<p:outputLabel value="Año"/>
+										</p:column>
+										<p:column>
+											<p:selectOneMenu id="somAnio" value="#{programacionBean.anio}" style="width:200px;">
+												<f:selectItems value="#{programacionBean.listaAnios}"/>
+											</p:selectOneMenu>
+										</p:column>									 
+										<p:column>
+											<p:outputLabel value="Tipo de Periodo"/>
+										</p:column>
+										<p:column>
+											<p:selectOneMenu id="somTipoPeriodo" value="#{programacionBean.tipoPeriodo}" style="width:200px;">
+												<f:selectItem itemLabel="Seleccione" itemValue=""/>
+												<f:selectItems value="#{programacionBean.listaTipoPeriodo}" var="valor" 
+												itemValue="#{valor.id}" itemLabel="#{valor.descripcionTipo}"/>
+											</p:selectOneMenu>
+										</p:column>
+									</p:row>
+									<p:row>
+										<p:column>
+											<p:outputLabel value="Estado"/>
+										</p:column>
+										<p:column>
+											<p:selectOneMenu id="somEstado" value="#{programacionBean.estado}" style="width:200px;">												
+												<f:selectItems value="#{programacionBean.listaEstado}"/>
+											</p:selectOneMenu>
+										</p:column>
+										<p:column>
+											<p:outputLabel value="Tipo de Pedido"/>
+										</p:column>
+										<p:column>
+											<p:selectOneMenu id="somTipoPedido" value="#{programacionBean.tipoPedido}" style="width:200px;">
+												<f:selectItem  itemLabel="Seleccione" itemValue=""/>
+												<f:selectItems value="#{programacionBean.listaTipoPedido}" var="valor"
+												itemValue="#{valor.id}" itemLabel="#{valor.descripcionTipo}"/>
+											</p:selectOneMenu>
+										</p:column>
+									</p:row>
+									<p:row>
+										<p:column>
+											<p:outputLabel value="Aprobación"></p:outputLabel>
+										</p:column>
+										<p:column>
+											<p:selectOneMenu id="somAprobacion" value="#{programacionBean.aprobacion}" style="width:200px;">
+												<f:selectItems value="#{programacionBean.listaAprobacion}"/>													
+											</p:selectOneMenu>
+										</p:column>
+									</p:row>
+																		
+								</p:panelGrid>
+							</p:fieldset>
+						</p:column>
+					</p:row>									
+				</p:panelGrid>
+				<p:panelGrid style="width:100%;" styleClass="columnaOcultar">
+					<p:row>
+						<p:column style="text-align:right;">
+							<p:commandButton id="btnNuevo" value="Nuevo" action="#{programacionBean.abrirPopupNuevaProgramacion()}" update=":dialogoNuevoProgramacion" style="font-size:15px !important" styleClass="search" >
+								<p:ajax resetValues="true" update=":dialogoNuevoProgramacion"/>
+							</p:commandButton>							
+							<p:tooltip for="btnNuevo" value="Nuevo"/>
+							<p:commandButton id="btnBuscar" value="Buscar" action="#{programacionBean.buscarProgramacion()}" 
+							style="font-size:15px !important" update="dtListaProgramacion" styleClass="search"/>
+							<p:tooltip for="btnBuscar" value="Buscar"/>
+							<p:commandButton id="btnLimpiar" value="Limpiar" actionListener="#{programacionBean.limpiarProgramacion()}" resetValues="true" update="FrmBuscarProgramacion"
+							style="font-size:15px !important" styleClass="search"/>
+							<p:tooltip for="btnLimpiar" value="Limpiar"/>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<p:panelGrid>
+					<p:row>
+						<p:column>
+							<p:dataTable id="dtListaProgramacion" value="#{programacionBean.listaProgramacion}"  paginator="true"
+								rows="8" paginatorPosition="bottom" rowIndexVar="posicion" var="valor"
+								currentPageReportTemplate="Mostrando de {startRecord} a {endRecord} | Total Registros : {totalRecords}"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+								emptyMessage="Campos vacios" >
+							<p:column headerText="#" style="width:5px;text-align:center;">
+								<p:outputLabel>#{posicion+1}</p:outputLabel>
+							</p:column>	
+							<p:column headerText="Id" style="width:10px;text-align:center;">
+								<p:outputLabel value="#{valor.id}"/>
+							</p:column>
+							<p:column headerText="Descripcion">
+								<p:outputLabel value="#{valor.descripcionProgramacion}"/>
+							</p:column>
+							<p:column headerText="Fecha de Inicio" style="text-align:center;">
+								<p:outputLabel value="#{valor.fechaInicioRegistro}"/>
+							</p:column>
+							<p:column headerText="Fecha de Fin" style="text-align:center;">
+								<p:outputLabel value="#{valor.fechaFinRegistro}"/>
+							</p:column>
+							<p:column headerText="Estado" style="text-align:center;">
+								<p:outputLabel value="#{valor.estado.descripcionEstado}"/>
+							</p:column>
+							<p:column headerText="Tipo de Periodo" style="text-align:center;">
+								<p:outputLabel value="#{valor.tipoPeriodo.descripcionTipo}"/>
+							</p:column>
+							<p:column headerText="Tipo de Pedido" style="text-align:center;">
+								<p:outputLabel value="#{valor.tipoPedido.descripcionTipo}"/>
+							</p:column>
+							<p:column headerText="Acciones" style="text-align:center;width:100px;">
+								<p:commandButton id="btnDetalles" icon="ui-icon-search" action="#{programacionBean.generarDetalleProgramacion(posicion)}" update=":dialogoNuevoProgramacion" >
+									<p:ajax  resetValues="true" update=":dialogoNuevoProgramacion"/>
+								</p:commandButton>
+								<p:tooltip for="btnDetalles" value="Ver Detalles"/>
+								<p:commandButton id="btnModificar" icon="ui-icon-document" action="#{programacionBean.generarModificacionProgramacion(posicion)}"
+								update=":dialogoNuevoProgramacion">
+									<p:ajax update=":dialogoNuevoProgramacion" resetValues="true"/>
+								</p:commandButton>
+								<p:tooltip for="btnModificar" value="Actualizar"/>
+							</p:column>
+							
+							</p:dataTable>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				
+			</h:form>
+			
+			<p:dialog id="dialogoNuevoProgramacion"
+				widgetVar="dialogoNuevoProgramacion" closable="true"
+				resizable="false" showEffect="puff" modal="true" width="90%" 				
+				styleClass="ui-dialog-medium">
+				<ui:include src="popupNuevoProgramacion.xhtml" />
+			</p:dialog>							
+			
+			<p:dialog id="dialogoAreaProducto" 
+				widgetVar="dialogoAreaProducto" closable="false"   
+				resizable="false" showEffect="puff" modal="true" width="60%"  				
+				styleClass="ui-dialog-medium"> 
+				<ui:include src="popupAgregarAreaProducto.xhtml" />
+				<p:ajax event="close" listener="#{programacionBean.resetSeleccionProducto()}"
+				update=":FrmNuevaProgramacion"/>
+			</p:dialog>					
+			
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>
